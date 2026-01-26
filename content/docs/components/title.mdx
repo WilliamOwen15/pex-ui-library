@@ -1,0 +1,122 @@
+---
+title: Title Component
+description: A versatile title component with multiple variants inspired by Glide Apps
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Title } from "@/components/glide/title";
+
+# Title Component
+
+A highly versatile Title component that replicates Glide Apps' functionality. Supports multiple variants, sizes, and image fill options.
+
+## Simple Variant
+
+The simplest form of the Title component, displaying text without any additional styling.
+
+<ComponentPreview
+  name="Simple Title"
+  code={`<Title
+  title="Example Title"
+  subtitle="Subtitle goes here"
+/>`}
+>
+  <Title title="Example Title" subtitle="Subtitle goes here" />
+</ComponentPreview>
+
+## With Emphasis
+
+Add emphasis text above the title for additional context or categorization.
+
+<ComponentPreview
+  name="Title with Emphasis"
+  code={`<Title
+  emphasis="FEATURED"
+  title="Important Announcement"
+  subtitle="This is a highlighted section"
+/>`}
+>
+  <Title
+    emphasis="FEATURED"
+    title="Important Announcement"
+    subtitle="This is a highlighted section"
+  />
+</ComponentPreview>
+
+## Image Variant
+
+Horizontal layout with an image alongside the text content.
+
+<ComponentPreview
+  name="Title with Image"
+  code={`<Title
+  variant="image"
+  title="Alex Thompson"
+  subtitle="Product Manager at TechCorp"
+  imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+  imageAlt="Profile picture"
+/>`}
+>
+  <Title
+    variant="image"
+    title="Alex Thompson"
+    subtitle="Product Manager at TechCorp"
+    imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+    imageAlt="Profile picture"
+  />
+</ComponentPreview>
+
+## Profile Variant
+
+Centered layout perfect for profile displays with a circular avatar.
+
+<ComponentPreview name="Profile Layout">
+  <Title
+    variant="profile"
+    title="Jamie Lee"
+    subtitle="UX Designer"
+    imageUrl="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+    imageAlt="Profile picture"
+  />
+</ComponentPreview>
+
+## Cover Variant
+
+Full-width background image with text overlay - perfect for hero sections.
+
+<ComponentPreview name="Cover Layout">
+  <Title
+    variant="cover"
+    title="Mountain Adventure"
+    subtitle="Explore the wilderness"
+    imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop"
+    className="min-h-[300px]"
+  />
+</ComponentPreview>
+
+## Compact Size
+
+All variants support a compact size option for tighter layouts.
+
+<ComponentPreview name="Compact Size">
+  <Title
+    size="compact"
+    title="Compact Title"
+    subtitle="Uses less vertical space"
+  />
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Main title text (required) |
+| `subtitle` | `string` | - | Subtitle text (optional) |
+| `emphasis` | `string` | - | Emphasized text above title (optional) |
+| `imageUrl` | `string` | - | Image URL (optional) |
+| `imageAlt` | `string` | `""` | Alt text for image |
+| `variant` | `"simple" \| "image" \| "cover" \| "profile"` | `"simple"` | Layout style |
+| `size` | `"default" \| "compact"` | `"default"` | Component size |
+| `imageFill` | `"fill" \| "fit"` | `"fill"` | Image object-fit behavior |
+| `truncate` | `boolean` | `false` | Truncate text with ellipsis |
+| `className` | `string` | - | Additional CSS classes |
