@@ -1,0 +1,358 @@
+---
+title: Data Grid Component
+description: A spreadsheet-like data grid with inline editing, cell selection, copy-paste, and dynamic column generation
+---
+
+import { ComponentPreview } from "@/components/docs";
+import {
+	BasicDataGrid,
+	DataGridWithDynamicColumns,
+	DataGridWithSelection,
+	DataGridWithCustomEditors,
+	FullFeaturedDataGrid,
+	CompactStripedDataGrid,
+	MinimalDataGrid,
+} from "@/components/docs/data-grid-examples";
+
+# Data Grid Component
+
+A powerful spreadsheet-like Data Grid component built on react-data-grid that provides inline cell editing, cell/row/column selection, copy-paste functionality, keyboard navigation, and dynamic column generation from external data sources. Perfect for data-intensive applications that need Excel-like interactions.
+
+## Features
+
+- **Inline Editing**: Click any cell to edit with custom editors (text, number, date, dropdown)
+- **Cell Selection**: Single cell, range selection, and discontinuous selection with mouse/keyboard
+- **Copy-Paste**: Native Ctrl+C/V support with Excel-compatible TSV format
+- **Keyboard Navigation**: Arrow keys, Tab, Enter for spreadsheet-like UX
+- **Row Selection**: Checkboxes with multi-select and batch operations
+- **Dynamic Columns**: Generate columns from external data source definitions
+- **Search**: Filter rows across all columns
+- **Add/Delete**: Toolbar actions to manage data
+- **Sorting**: Click column headers to sort data
+- **Virtualization**: Efficiently renders large datasets
+
+## Basic Usage
+
+The simplest form displays an editable grid with text and number columns.
+
+<ComponentPreview
+	name="Basic Data Grid"
+	code={`import { DataGrid } from "@/components/glide/data-grid";
+import {
+  createEditableTextColumn,
+  createEditableNumberColumn,
+} from "@/components/glide/data-grid-helpers";
+
+const columns = [
+  createEditableTextColumn("name", "Name", 200),
+  createEditableTextColumn("email", "Email", 250),
+  createEditableNumberColumn("age", "Age", 100),
+  createEditableTextColumn("role", "Role", 150),
+];
+
+<DataGrid
+  data={users}
+  columns={columns}
+  onDataChange={setData}
+/>`}
+>
+	<BasicDataGrid />
+</ComponentPreview>
+
+## Dynamic Columns
+
+Generate columns dynamically from external data source definitions. This is useful when column structure comes from an API or configuration.
+
+<ComponentPreview
+	name="Dynamic Columns"
+	code={`import { DataGrid, type ColumnDefinition } from "@/components/glide/data-grid";
+
+const columnDefinitions: ColumnDefinition[] = [
+  { key: "name", name: "Product Name", type: "text", editable: true },
+  { key: "price", name: "Price ($)", type: "number", editable: true },
+  { key: "category", name: "Category", type: "select", editable: true,
+    options: ["Electronics", "Accessories", "Office"] },
+  { key: "lastUpdated", name: "Last Updated", type: "date", editable: true },
+];
+
+<DataGrid
+  data={products}
+  columnDefinitions={columnDefinitions}
+  onDataChange={setData}
+/>`}
+>
+	<DataGridWithDynamicColumns />
+</ComponentPreview>
+
+## Row Selection & Batch Operations
+
+Enable row selection with checkboxes and batch operations like delete and copy.
+
+<ComponentPreview
+	name="Row Selection"
+	code={`import { DataGrid } from "@/components/glide/data-grid";
+import {
+  createSelectColumn,
+  createRowNumberColumn,
+  createEditableTextColumn,
+} from "@/components/glide/data-grid-helpers";
+
+const columns = [
+  createSelectColumn(),
+  createRowNumberColumn(),
+  createEditableTextColumn("name", "Name", 200),
+  createEditableTextColumn("email", "Email", 250),
+];
+
+<DataGrid
+  data={users}
+  columns={columns}
+  enableRowSelection
+  enableDeleteRow
+  onDataChange={setData}
+/>`}
+>
+	<DataGridWithSelection />
+</ComponentPreview>
+
+## Custom Cell Editors
+
+Use different editor types for different data types: text, number, date, and dropdown select.
+
+<ComponentPreview
+	name="Custom Editors"
+	code={`import { DataGrid } from "@/components/glide/data-grid";
+import {
+  createEditableTextColumn,
+  createEditableNumberColumn,
+  createEditableDateColumn,
+  createEditableSelectColumn,
+} from "@/components/glide/data-grid-helpers";
+
+const columns = [
+  createEditableTextColumn("name", "Product Name", 200),
+  createEditableNumberColumn("price", "Price ($)", 120),
+  createEditableSelectColumn("category", "Category",
+    ["Electronics", "Accessories", "Office"], 150),
+  createEditableDateColumn("lastUpdated", "Last Updated", 150),
+];
+
+<DataGrid
+  data={products}
+  columns={columns}
+  onDataChange={setData}
+/>`}
+>
+	<DataGridWithCustomEditors />
+</ComponentPreview>
+
+## Full-Featured Grid
+
+All features enabled: search, add/delete rows, row selection, sorting, and custom toolbar actions.
+
+<ComponentPreview
+	name="Full-Featured Grid"
+	code={`<DataGrid
+  data={products}
+  columns={columns}
+  enableSearch
+  enableSorting
+  enableAddRow
+  enableDeleteRow
+  enableRowSelection
+  onAddRow={handleAddRow}
+  onDataChange={setData}
+  searchPlaceholder="Search products..."
+  toolbarActions={
+    <Button variant="outline" size="sm">Export</Button>
+  }
+/>`}
+>
+	<FullFeaturedDataGrid />
+</ComponentPreview>
+
+## Variants
+
+### Default Variant
+
+Border and shadow for a card-like appearance.
+
+<ComponentPreview
+	name="Default Variant"
+	code={`<DataGrid
+  data={users}
+  columns={columns}
+  variant="default"
+  onDataChange={setData}
+/>`}
+>
+	<BasicDataGrid />
+</ComponentPreview>
+
+### Striped Variant (Compact)
+
+Alternating row backgrounds with compact spacing for dense data.
+
+<ComponentPreview
+	name="Striped Compact"
+	code={`<DataGrid
+  data={users}
+  columns={columns}
+  variant="striped"
+  size="compact"
+  rowHeight={32}
+  onDataChange={setData}
+/>`}
+>
+	<CompactStripedDataGrid />
+</ComponentPreview>
+
+### Minimal Variant
+
+Clean design with top border only.
+
+<ComponentPreview
+	name="Minimal Variant"
+	code={`<DataGrid
+  data={users}
+  columns={columns}
+  variant="minimal"
+  enableSearch
+  searchPlaceholder="Filter users..."
+  onDataChange={setData}
+/>`}
+>
+	<MinimalDataGrid />
+</ComponentPreview>
+
+## Column Helper Functions
+
+The component provides helper functions to create commonly used column types:
+
+```typescript
+// Row numbering column (frozen, non-editable)
+createRowNumberColumn<TData>(): Column<TData>
+
+// Selection checkbox column
+createSelectColumn<TData>(): Column<TData>
+
+// Editable text input
+createEditableTextColumn<TData>(key: string, name: string, width?: number): Column<TData>
+
+// Editable number input
+createEditableNumberColumn<TData>(key: string, name: string, width?: number): Column<TData>
+
+// Editable date picker
+createEditableDateColumn<TData>(key: string, name: string, width?: number): Column<TData>
+
+// Editable dropdown select
+createEditableSelectColumn<TData>(
+  key: string,
+  name: string,
+  options: string[],
+  width?: number
+): Column<TData>
+
+// Read-only text column
+createTextColumn<TData>(key: string, name: string, width?: number): Column<TData>
+
+// Generate columns from external definitions
+createDynamicColumns<TData>(definitions: ColumnDefinition[]): Column<TData>[]
+```
+
+## Keyboard Shortcuts
+
+The Data Grid includes built-in keyboard navigation for a spreadsheet-like experience:
+
+| Shortcut | Action |
+|----------|--------|
+| **Arrow Keys** | Navigate between cells |
+| **Tab** | Move to next cell |
+| **Shift+Tab** | Move to previous cell |
+| **Enter** | Edit selected cell |
+| **Escape** | Cancel editing |
+| **Ctrl+C** (or Cmd+C) | Copy selected cells (TSV format) |
+| **Ctrl+V** (or Cmd+V) | Paste clipboard data |
+| **Delete** | Clear selected cell content |
+| **Shift+Arrow** | Extend selection range |
+
+## Copy-Paste Functionality
+
+The Data Grid supports Excel-compatible copy-paste:
+
+1. **Cell-level**: Select cells and press Ctrl+C to copy in TSV format
+2. **Row-level**: Use toolbar "Copy Selected Rows" button
+3. **All data**: Use toolbar "Copy All Data" button
+
+Copied data can be pasted directly into Excel, Google Sheets, or any application that accepts TSV format.
+
+## Props API
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `TData[]` | - | Array of data objects to display |
+| `columns` | `Column<TData>[]` | - | Column definitions (use helper functions) |
+| `columnDefinitions` | `ColumnDefinition[]` | - | Optional: Generate columns dynamically |
+| `onDataChange` | `(data: TData[]) => void` | - | Callback when data changes (edit/add/delete) |
+| `variant` | `"default" \| "minimal" \| "striped"` | `"default"` | Visual style variant |
+| `size` | `"default" \| "compact"` | `"default"` | Size variant |
+| `enableRowSelection` | `boolean` | `false` | Enable checkbox row selection |
+| `enableAddRow` | `boolean` | `false` | Show "Add Entry" button in toolbar |
+| `enableDeleteRow` | `boolean` | `false` | Show "Delete" button when rows selected |
+| `enableSearch` | `boolean` | `false` | Show search input in toolbar |
+| `enableSorting` | `boolean` | `false` | Enable column sorting |
+| `searchPlaceholder` | `string` | `"Search..."` | Placeholder text for search input |
+| `onAddRow` | `() => TData` | - | Function that returns a new empty row object |
+| `toolbarActions` | `ReactNode` | - | Custom action buttons in toolbar |
+| `showToolbar` | `boolean` | `true` | Show/hide toolbar |
+| `emptyMessage` | `string` | `"No data available"` | Message when no data |
+| `rowHeight` | `number` | `35` | Height of each row in pixels |
+| `className` | `string` | - | Additional CSS classes for grid |
+| `classNames` | `object` | - | CSS classes for wrapper, toolbar, grid |
+
+## ColumnDefinition Type
+
+When using dynamic columns via `columnDefinitions`:
+
+```typescript
+interface ColumnDefinition {
+  key: string;               // Data property key
+  name: string;              // Column header label
+  type: "text" | "number" | "date" | "select";  // Editor type
+  editable?: boolean;        // Whether column is editable (default: true)
+  options?: string[];        // Options for "select" type
+  width?: number;            // Column width in pixels
+}
+```
+
+## Accessibility
+
+The Data Grid component includes built-in accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support for navigation and editing
+- **Screen Reader Support**: ARIA labels on interactive elements
+- **Focus Management**: Clear focus indicators on cells and buttons
+- **Selection Feedback**: Visual and programmatic feedback for selected rows
+
+## Performance
+
+The Data Grid uses virtualization to efficiently render large datasets:
+
+- Only visible rows are rendered in the DOM
+- Handles thousands of rows without performance degradation
+- Smooth scrolling even with large datasets
+- Optimized re-renders using React memoization
+
+## Best Practices
+
+1. **Use column helpers** for consistent styling and behavior
+2. **Memoize columns** with `useMemo` to prevent unnecessary re-renders
+3. **Provide `onDataChange`** callback to handle data mutations
+4. **Use `rowHeight`** to control density for your use case
+5. **Enable only needed features** to keep the UI clean
+6. **Provide meaningful `searchPlaceholder`** for better UX
+7. **Implement `onAddRow`** to create properly structured new rows
+
+## Examples
+
+Check out the examples above to see the Data Grid in action with different configurations and feature combinations.

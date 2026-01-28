@@ -123,3 +123,34 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Data Grid Styling */
+.rdg {
+  --rdg-color: oklch(var(--foreground));
+  --rdg-background-color: oklch(var(--background));
+  --rdg-header-background-color: oklch(var(--muted));
+  --rdg-row-hover-background-color: oklch(var(--muted) / 0.5);
+  --rdg-row-selected-background-color: oklch(var(--accent));
+  --rdg-border-color: oklch(var(--border));
+  --rdg-selection-color: oklch(var(--primary));
+  --rdg-font-size: 0.875rem;
+
+  border: 1px solid oklch(var(--border));
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.rdg-minimal {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.rdg-striped .rdg-row:nth-child(even) {
+  background-color: oklch(var(--muted) / 0.3);
+}
+
+.rdg-size-compact {
+  --rdg-font-size: 0.8125rem;
+}

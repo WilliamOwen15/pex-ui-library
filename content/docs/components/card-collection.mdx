@@ -1,0 +1,791 @@
+---
+title: Card Collection Component
+description: A versatile card collection component inspired by Glide Apps' no-code card component
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { CardCollection } from "@/components/glide/card-collection";
+import { CardCollectionWithBadges, CardCollectionWithActions, CardCollectionWithFooter } from "@/components/docs/card-collection-examples";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+# Card Collection Component
+
+A highly versatile Card Collection component that replicates Glide Apps' no-code card functionality. Perfect for displaying grids or lists of items with images, titles, descriptions, and metadata.
+
+## Basic Usage
+
+The simplest form displays a grid of cards with default settings.
+
+<ComponentPreview
+  name="Basic Card Collection"
+  code={`<CardCollection
+  items={[
+    {
+      title: "Mountain Vista",
+      description: "Stunning mountain landscape",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+      meta: "NATURE"
+    },
+    {
+      title: "Ocean Sunset",
+      description: "Beautiful sunset over calm waters",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400",
+      meta: "TRAVEL"
+    }
+  ]}
+/>`}
+>
+  <CardCollection
+    items={[
+      {
+        title: "Mountain Vista",
+        description: "Stunning mountain landscape with clear blue skies",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "NATURE"
+      },
+      {
+        title: "Ocean Sunset",
+        description: "Beautiful sunset over calm ocean waters",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "TRAVEL"
+      },
+      {
+        title: "City Lights",
+        description: "Urban skyline illuminated at night",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "URBAN"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Size Variants
+
+Control the grid density with the `size` prop. Options range from `xs` (6 columns on desktop) to `xl` (2 columns max).
+
+<ComponentPreview
+  name="Extra Small Size"
+  code={`<CardCollection
+  size="xs"
+  items={items}
+/>`}
+>
+  <CardCollection
+    size="xs"
+    items={[
+      { title: "Item 1", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" },
+      { title: "Item 2", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop" },
+      { title: "Item 3", image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop" },
+      { title: "Item 4", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop" },
+      { title: "Item 5", image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=400&h=400&fit=crop" },
+      { title: "Item 6", image: "https://images.unsplash.com/photo-1579033461380-adb47c3eb938?w=400&h=400&fit=crop" }
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Large Size"
+  code={`<CardCollection
+  size="l"
+  items={items}
+/>`}
+>
+  <CardCollection
+    size="l"
+    items={[
+      { title: "Item 1", description: "Description text", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" },
+      { title: "Item 2", description: "Description text", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop" },
+      { title: "Item 3", description: "Description text", image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop" }
+    ]}
+  />
+</ComponentPreview>
+
+## Minimal Variant
+
+Remove card borders and shadows for a cleaner look.
+
+<ComponentPreview
+  name="Minimal Style"
+  code={`<CardCollection
+  variant="minimal"
+  items={items}
+/>`}
+>
+  <CardCollection
+    variant="minimal"
+    items={[
+      {
+        title: "Mountain Vista",
+        description: "Stunning mountain landscape",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "NATURE"
+      },
+      {
+        title: "Ocean Sunset",
+        description: "Beautiful sunset over calm waters",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "TRAVEL"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Horizontal Orientation
+
+Convert the grid into a list view perfect for mobile or sidebar layouts.
+
+<ComponentPreview
+  name="Horizontal List"
+  code={`<CardCollection
+  orientation="horizontal"
+  items={items}
+/>`}
+>
+  <CardCollection
+    orientation="horizontal"
+    items={[
+      {
+        title: "Mountain Vista",
+        description: "Stunning mountain landscape with clear blue skies",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "NATURE"
+      },
+      {
+        title: "Ocean Sunset",
+        description: "Beautiful sunset over calm ocean waters",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "TRAVEL"
+      },
+      {
+        title: "City Lights",
+        description: "Urban skyline illuminated at night",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "URBAN"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Aspect Ratios
+
+Choose from `square`, `video` (16:9), or `portrait` (3:4) aspect ratios.
+
+<ComponentPreview
+  name="Video Aspect Ratio"
+  code={`<CardCollection
+  aspectRatio="video"
+  items={items}
+/>`}
+>
+  <CardCollection
+    aspectRatio="video"
+    items={[
+      { title: "Landscape 1", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop" },
+      { title: "Landscape 2", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=450&fit=crop" },
+      { title: "Landscape 3", image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=450&fit=crop" }
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Portrait Aspect Ratio"
+  code={`<CardCollection
+  aspectRatio="portrait"
+  size="l"
+  items={items}
+/>`}
+>
+  <CardCollection
+    aspectRatio="portrait"
+    size="l"
+    items={[
+      { title: "Portrait 1", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=800&fit=crop" },
+      { title: "Portrait 2", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=800&fit=crop" }
+    ]}
+  />
+</ComponentPreview>
+
+## Image Shapes
+
+Use circular images for profile-style collections.
+
+<ComponentPreview
+  name="Circular Images"
+  code={`<CardCollection
+  imageShape="circle"
+  items={items}
+/>`}
+>
+  <CardCollection
+    imageShape="circle"
+    items={[
+      {
+        title: "Alex Thompson",
+        description: "Product Manager",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+        meta: "TEAM"
+      },
+      {
+        title: "Jamie Lee",
+        description: "UX Designer",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+        meta: "TEAM"
+      },
+      {
+        title: "Sam Rivers",
+        description: "Developer",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+        meta: "TEAM"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Without Images
+
+Cards work beautifully even without images, showing a placeholder icon.
+
+<ComponentPreview
+  name="No Images"
+  code={`<CardCollection
+  items={[
+    { title: "Document 1", description: "Important files" },
+    { title: "Document 2", description: "Project notes" }
+  ]}
+/>`}
+>
+  <CardCollection
+    items={[
+      { title: "Document 1", description: "Important project files", meta: "DOCS" },
+      { title: "Document 2", description: "Meeting notes and agendas", meta: "NOTES" },
+      { title: "Document 3", description: "Resource links", meta: "LINKS" }
+    ]}
+  />
+</ComponentPreview>
+
+## Title Style
+
+Control the title font weight with the `titleStyle` prop for different visual emphasis.
+
+<ComponentPreview
+  name="Bold Title Style"
+  code={`<CardCollection
+  titleStyle="bold"
+  items={items}
+/>`}
+>
+  <CardCollection
+    titleStyle="bold"
+    items={[
+      {
+        title: "Featured Product",
+        description: "Premium quality with bold title styling",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "FEATURED"
+      },
+      {
+        title: "New Release",
+        description: "Latest addition to our collection",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "NEW"
+      },
+      {
+        title: "Best Seller",
+        description: "Most popular item this month",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "TRENDING"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Limiting Items
+
+Display only a specific number of items with the `limit` prop. Perfect for showing previews or "featured" sections.
+
+<ComponentPreview
+  name="Limited to 3 Items"
+  code={`<CardCollection
+  limit={3}
+  items={allItems}
+/>`}
+>
+  <CardCollection
+    limit={3}
+    items={[
+      { title: "Item 1", description: "First item", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" },
+      { title: "Item 2", description: "Second item", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop" },
+      { title: "Item 3", description: "Third item", image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop" },
+      { title: "Item 4", description: "This won't show", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop" },
+      { title: "Item 5", description: "This won't show either", image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=400&h=400&fit=crop" }
+    ]}
+  />
+</ComponentPreview>
+
+## Combining Styles
+
+Combine different props for unique layouts. Here's a horizontal minimal list with circular avatars:
+
+<ComponentPreview
+  name="Combined Styles"
+  code={`<CardCollection
+  orientation="horizontal"
+  variant="minimal"
+  imageShape="circle"
+  items={items}
+/>`}
+>
+  <CardCollection
+    orientation="horizontal"
+    variant="minimal"
+    imageShape="circle"
+    items={[
+      {
+        title: "Alex Thompson",
+        description: "Joined 2 hours ago",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop"
+      },
+      {
+        title: "Jamie Lee",
+        description: "Joined yesterday",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop"
+      },
+      {
+        title: "Sam Rivers",
+        description: "Joined last week",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## New Features
+
+The Card Collection component has been enhanced with powerful new features while maintaining full backward compatibility. All existing code continues to work without changes.
+
+### Meta Positioning
+
+Control where the meta text appears using the `metaPosition` prop.
+
+<ComponentPreview
+  name="Meta in Footer"
+  code={`<CardCollection
+  metaPosition="footer"
+  items={items}
+/>`}
+>
+  <CardCollection
+    metaPosition="footer"
+    items={[
+      {
+        title: "Alpine Adventure",
+        description: "Explore breathtaking mountain trails",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "FEATURED"
+      },
+      {
+        title: "Coastal Escape",
+        description: "Relax by the tranquil seaside",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "POPULAR"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Meta Below Title"
+  code={`<CardCollection
+  metaPosition="below-title"
+  items={items}
+/>`}
+>
+  <CardCollection
+    metaPosition="below-title"
+    items={[
+      {
+        title: "City Skyline",
+        description: "Modern urban architecture",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "NEW"
+      },
+      {
+        title: "Forest Path",
+        description: "Peaceful woodland trails",
+        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop",
+        meta: "TRENDING"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+### Badge Integration
+
+Use the `renderMeta` prop to display meta information as styled badges from shadcn/ui.
+
+<ComponentPreview
+  name="With Badges"
+  code={`<CardCollection
+  renderMeta={(meta) => <Badge variant="secondary">{meta}</Badge>}
+  items={items}
+/>`}
+>
+  <CardCollectionWithBadges />
+</ComponentPreview>
+
+### Action Slots
+
+Add interactive elements like buttons or icons to each card using the `renderAction` prop.
+
+<ComponentPreview
+  name="With Actions"
+  code={`<CardCollection
+  renderAction={() => <Button size="sm">View</Button>}
+  items={items}
+/>`}
+>
+  <CardCollectionWithActions />
+</ComponentPreview>
+
+### Footer Content
+
+Add additional information at the bottom of cards using the `renderFooter` prop.
+
+<ComponentPreview
+  name="With Footer Stats"
+  code={`<CardCollection
+  renderFooter={(item) => (
+    <div className="text-xs text-muted-foreground">
+      Last updated: 2 days ago
+    </div>
+  )}
+  items={items}
+/>`}
+>
+  <CardCollectionWithFooter />
+</ComponentPreview>
+
+### Per-Item Customization
+
+Override collection-wide settings for individual items by adding properties directly to each item.
+
+<ComponentPreview
+  name="Mixed Customization"
+  code={`<CardCollection
+  items={[
+    {
+      title: "Item 1",
+      action: <Badge>Custom</Badge>,
+      footer: <span>Item-specific footer</span>
+    },
+    {
+      title: "Item 2",
+      metaPosition: "footer"
+    }
+  ]}
+/>`}
+>
+  <CardCollection
+    items={[
+      {
+        title: "Featured Item",
+        description: "Special card with custom action",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        action: <Badge variant="default">Featured</Badge>,
+        footer: <span className="text-xs text-muted-foreground">Exclusive content</span>
+      },
+      {
+        title: "Regular Item",
+        description: "Standard card with default styling",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "STANDARD"
+      },
+      {
+        title: "Custom Position",
+        description: "This card shows meta in footer",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "CUSTOM",
+        metaPosition: "footer"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+### Link Cards
+
+Make cards navigational by adding an `href` property to items. The cards will become semantic links instead of buttons.
+
+<ComponentPreview
+  name="Link Cards"
+  code={`<CardCollection
+  items={[
+    {
+      title: "Documentation",
+      href: "/docs",
+      description: "Browse the full documentation"
+    }
+  ]}
+/>`}
+>
+  <CardCollection
+    items={[
+      {
+        title: "Documentation",
+        description: "Learn how to use components",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        href: "#docs",
+        meta: "GUIDE"
+      },
+      {
+        title: "Examples",
+        description: "See components in action",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        href: "#examples",
+        meta: "DEMO"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+### Visual Separators
+
+Add subtle dividers between card sections using the `showSeparators` prop.
+
+<ComponentPreview
+  name="With Separators"
+  code={`<CardCollection
+  showSeparators={true}
+  metaPosition="footer"
+  items={items}
+/>`}
+>
+  <CardCollection
+    showSeparators={true}
+    metaPosition="footer"
+    items={[
+      {
+        title: "Structured Content",
+        description: "Clear visual separation between sections",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "ORGANIZED"
+      },
+      {
+        title: "Clean Layout",
+        description: "Professional appearance with dividers",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "POLISHED"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+### Text Clamping for Consistent Heights
+
+Use `clampTitle` and `clampDescription` props to ensure consistent card heights in grid layouts by limiting text to a specific number of lines.
+
+<ComponentPreview
+  name="With Text Clamping"
+  code={`<CardCollection
+  clampTitle={true}
+  clampDescription={true}
+  items={items}
+/>`}
+>
+  <CardCollection
+    clampTitle={true}
+    clampDescription={true}
+    items={[
+      {
+        title: "Short Title",
+        description: "Brief description",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        meta: "EXAMPLE"
+      },
+      {
+        title: "Much Longer Title That Would Normally Span Multiple Lines",
+        description: "This is a much longer description that would typically take up several lines of text, but with clamping enabled it will be truncated to maintain consistent card heights across the grid layout",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "EXAMPLE"
+      },
+      {
+        title: "Medium Length Title Here",
+        description: "A moderate amount of description text that falls somewhere in between the other examples",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&h=400&fit=crop",
+        meta: "EXAMPLE"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+You can also specify custom line counts:
+
+<ComponentPreview
+  name="Custom Line Clamping"
+  code={`<CardCollection
+  clampTitle={1}
+  clampDescription={2}
+  items={items}
+/>`}
+>
+  <CardCollection
+    clampTitle={1}
+    clampDescription={2}
+    items={[
+      {
+        title: "Single Line Title Only",
+        description: "With custom clamping you can specify exactly how many lines to show. This description is limited to just two lines.",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop"
+      },
+      {
+        title: "Another Single Line Title That Gets Truncated",
+        description: "Another example with two-line description limit. This helps maintain visual consistency while still showing enough content to be useful.",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop"
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Spacing & Visual Design
+
+The component uses a carefully designed spacing system for optimal visual hierarchy and readability:
+
+### Spacing Scale
+
+- **Card sections**: 32px gap between major sections (image, header, content, footer)
+- **Internal content**: 12px gap between title, description, and meta elements
+- **Grid gaps**:
+  - Card variant: 24px between cards for generous breathing room
+  - Minimal variant: 16px for a more compact layout
+  - Horizontal orientation: Automatically adjusts to 12px (card) or 8px (minimal)
+
+### Typography Improvements
+
+- Titles use `tracking-tight` and `leading-snug` for better optical balance
+- Increased spacing between text elements improves scanability
+- Consistent line heights maintain visual rhythm across all card sizes
+
+### Variant Differences
+
+The spacing system differentiates between variants to provide appropriate visual weight:
+
+- **Card variant** (bordered with shadows): More generous spacing matches the visual prominence
+- **Minimal variant** (no borders): Tighter spacing suitable for list views and compact layouts
+
+These spacing improvements ensure cards look professional and polished while maintaining excellent readability across all screen sizes.
+
+## Props
+
+### CardCollection
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `CardCollectionItem[]` | - | Array of items to display (required) |
+| `size` | `"xs" \| "s" \| "m" \| "l" \| "xl"` | `"m"` | Grid column density |
+| `variant` | `"card" \| "minimal"` | `"card"` | Card style with or without borders/shadows |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Grid layout or list view |
+| `aspectRatio` | `"square" \| "video" \| "portrait"` | `"square"` | Image aspect ratio |
+| `imageShape` | `"square" \| "circle"` | `"square"` | Image shape (uses Avatar for circles) |
+| `titleStyle` | `"simple" \| "bold"` | `"simple"` | Title font weight |
+| `limit` | `number` | - | Limit number of displayed items |
+| `className` | `string` | - | Additional CSS classes |
+| `onItemClick` | `(item, index) => void` | - | Click handler for items |
+| `metaPosition` | `"header" \| "footer" \| "above-title" \| "below-title"` | `"above-title"` | Where to display meta text |
+| `renderMeta` | `(meta, item) => ReactNode` | - | Custom meta renderer (e.g., for Badges) |
+| `renderAction` | `(item, index) => ReactNode` | - | Render action content per item |
+| `renderFooter` | `(item, index) => ReactNode` | - | Render footer content per item |
+| `showSeparators` | `boolean` | `false` | Show visual separators between sections |
+| `itemAs` | `"article" \| "div"` | `"article"` | Semantic HTML element for cards |
+| `renderItem` | `(item, index) => ReactNode` | - | Custom render function for full control |
+| `clampTitle` | `boolean \| number` | - | Clamp title to lines (true = 2 lines, number = custom) |
+| `clampDescription` | `boolean \| number` | - | Clamp description to lines (true = 3 lines, number = custom) |
+
+### CardCollectionItem
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `title` | `string` | Yes | Item title |
+| `description` | `string` | No | Item description |
+| `image` | `string` | No | Image URL |
+| `meta` | `string` | No | Metadata text |
+| `id` | `string \| number` | No | Unique identifier (improves key generation) |
+| `href` | `string` | No | Makes card a navigational link |
+| `action` | `ReactNode` | No | Per-item action content (overrides renderAction) |
+| `footer` | `ReactNode` | No | Per-item footer content (overrides renderFooter) |
+| `metaPosition` | `"header" \| "footer" \| "above-title" \| "below-title"` | No | Per-item meta position override |
+| `ariaLabel` | `string` | No | Custom accessibility label |
+
+## Advanced: CardItem Component
+
+For maximum control, you can use the `CardItem` component directly. This is useful when you need custom layouts or want to build cards programmatically.
+
+import { CardItem } from "@/components/glide/card-item";
+
+<ComponentPreview
+  name="Direct CardItem Usage"
+  code={`<CardItem
+  item={{
+    title: "Custom Card",
+    description: "Built with CardItem",
+    image: "...",
+    action: <Badge>Custom</Badge>,
+    footer: <span>Footer content</span>
+  }}
+  variant="card"
+  orientation="vertical"
+/>`}
+>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <CardItem
+      item={{
+        title: "Fully Customized",
+        description: "Complete control over card structure",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        action: <Badge variant="default">Pro</Badge>,
+        footer: <div className="text-xs text-muted-foreground">Updated today</div>
+      }}
+      variant="card"
+      orientation="vertical"
+      aspectRatio="square"
+    />
+    <CardItem
+      item={{
+        title: "With Separators",
+        description: "Clean visual organization",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
+        meta: "FEATURED",
+        footer: <div className="text-xs text-muted-foreground">2.5k views</div>
+      }}
+      variant="card"
+      orientation="vertical"
+      aspectRatio="square"
+      showSeparators={true}
+      metaPosition="footer"
+    />
+  </div>
+</ComponentPreview>
+
+## Accessibility
+
+The Card Collection component follows accessibility best practices:
+
+- Uses semantic HTML (`<article>` by default for cards)
+- Provides proper ARIA labels for screen readers
+- Supports keyboard navigation (Tab, Enter, Space)
+- Uses shadcn Avatar component for circular images with fallback support
+- Maintains focus indicators for interactive elements
+- Converts to semantic `<a>` tags when `href` is provided
+
+## Migration Note
+
+All existing code continues to work without any changes. The new features are purely additive and opt-in. Your current implementations will maintain exact visual parity with previous versions.
+
+## Size Breakdown
+
+- `xs`: Up to 6 columns on extra-large screens (densest)
+- `s`: Up to 5 columns on large screens
+- `m`: Up to 4 columns on large screens (default)
+- `l`: Up to 3 columns on medium screens
+- `xl`: Maximum 2 columns (sparsest)
+
+All sizes are responsive and adapt to smaller screens automatically.

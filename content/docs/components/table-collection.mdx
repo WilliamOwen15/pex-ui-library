@@ -1,0 +1,695 @@
+---
+title: Table Collection Component
+description: A powerful data table component with sorting, filtering, pagination, and row actions
+---
+
+import { ComponentPreview } from "@/components/docs";
+import {
+	BasicTable,
+	TableWithSorting,
+	TableWithSearch,
+	TableWithRowActions,
+	TableWithImages,
+	StripedTable,
+	MinimalTable,
+	CompactTable,
+	TableWithPagination,
+	TableWithSelection,
+	ClickableTable,
+	TableWithAllFeatures,
+	TableWithBadges,
+} from "@/components/docs/table-collection-examples";
+
+# Table Collection Component
+
+A comprehensive Table Collection component built on TanStack Table and shadcn/ui that provides sorting, filtering, pagination, row selection, and customizable row actions. Perfect for displaying tabular data with rich interactions.
+
+## Basic Usage
+
+The simplest form displays a table with default styling and no interactive features.
+
+<ComponentPreview
+	name="Basic Table"
+	code={`import { TableCollection } from "@/components/glide/table-collection";
+import { type ColumnDef } from "@tanstack/react-table";
+
+const columns: ColumnDef<User>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+  { accessorKey: "status", header: "Status" },
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+/>`}
+>
+	<BasicTable />
+</ComponentPreview>
+
+## Variants
+
+The component offers three visual variants to match your design needs.
+
+### Default Variant
+
+Full borders with shadow for a card-like appearance.
+
+<ComponentPreview
+	name="Default Variant"
+	code={`<TableCollection
+  data={users}
+  columns={columns}
+  variant="default"
+/>`}
+>
+	<BasicTable />
+</ComponentPreview>
+
+### Striped Variant
+
+Alternating row backgrounds for improved readability.
+
+<ComponentPreview
+	name="Striped Variant"
+	code={`<TableCollection
+  data={transactions}
+  columns={columns}
+  variant="striped"
+/>`}
+>
+	<StripedTable />
+</ComponentPreview>
+
+### Minimal Variant
+
+Clean design with only horizontal dividers.
+
+<ComponentPreview
+	name="Minimal Variant"
+	code={`<TableCollection
+  data={transactions}
+  columns={columns}
+  variant="minimal"
+/>`}
+>
+	<MinimalTable />
+</ComponentPreview>
+
+## Size Options
+
+Control table density with the `size` prop.
+
+### Compact Size
+
+Reduced padding and smaller text for dense data display.
+
+<ComponentPreview
+	name="Compact Size"
+	code={`<TableCollection
+  data={products}
+  columns={columns}
+  size="compact"
+/>`}
+>
+	<CompactTable />
+</ComponentPreview>
+
+## Sorting
+
+Enable column sorting with `enableSorting` and use helper functions for sortable columns.
+
+<ComponentPreview
+	name="Sortable Columns"
+	code={`import { createSortableColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+  createSortableColumn("name", "Name"),
+  createSortableColumn("email", "Email"),
+  createSortableColumn("role", "Role"),
+  { accessorKey: "status", header: "Status" },
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+  enableSorting={true}
+/>`}
+>
+	<TableWithSorting />
+</ComponentPreview>
+
+## Search & Filtering
+
+Built-in global search filters across all columns.
+
+<ComponentPreview
+	name="Table with Search"
+	code={`<TableCollection
+  data={users}
+  columns={columns}
+  enableFiltering={true}
+  searchPlaceholder="Search users..."
+/>`}
+>
+	<TableWithSearch />
+</ComponentPreview>
+
+## Row Actions
+
+Add a dropdown menu to each row with custom actions.
+
+<ComponentPreview
+	name="Row Actions"
+	code={`import { createActionsColumn } from "@/components/glide/table-helpers";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+
+const columns = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+  createActionsColumn((row) => (
+    <>
+      <DropdownMenuItem onClick={() => edit(row.original)}>
+        Edit
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={() => view(row.original)}>
+        View Details
+      </DropdownMenuItem>
+      <DropdownMenuItem
+        onClick={() => remove(row.original)}
+        className="text-destructive"
+      >
+        Delete
+      </DropdownMenuItem>
+    </>
+  )),
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+/>`}
+>
+	<TableWithRowActions />
+</ComponentPreview>
+
+## Images & Avatars
+
+Display user avatars or product images using the image column helper.
+
+<ComponentPreview
+	name="Table with Images"
+	code={`import { createImageColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+  createImageColumn("avatar", "User", "name"),
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+/>`}
+>
+	<TableWithImages />
+</ComponentPreview>
+
+## Pagination
+
+Handle large datasets with built-in pagination.
+
+<ComponentPreview
+	name="Paginated Table"
+	code={`<TableCollection
+  data={users}
+  columns={columns}
+  enablePagination={true}
+  pageSize={5}
+/>`}
+>
+	<TableWithPagination />
+</ComponentPreview>
+
+## Row Selection
+
+Enable row selection with checkboxes.
+
+<ComponentPreview
+	name="Table with Selection"
+	code={`import { createSelectColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+  createSelectColumn(),
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+  enableRowSelection={true}
+  enablePagination={true}
+  pageSize={5}
+/>`}
+>
+	<TableWithSelection />
+</ComponentPreview>
+
+## Clickable Rows
+
+Make entire rows clickable for navigation or actions.
+
+<ComponentPreview
+	name="Clickable Rows"
+	code={`<TableCollection
+  data={products}
+  columns={columns}
+  onRowClick={(row) => navigate(\`/products/\${row.id}\`)}
+/>`}
+>
+	<ClickableTable />
+</ComponentPreview>
+
+## Badges & Status
+
+Display status indicators with badges.
+
+<ComponentPreview
+	name="Table with Badges"
+	code={`import { Badge } from "@/components/ui/badge";
+
+const columns = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+      const variant = status === "Active" ? "default" : "secondary";
+      return <Badge variant={variant}>{status}</Badge>;
+    },
+  },
+];
+
+<TableCollection
+  data={users}
+  columns={columns}
+/>`}
+>
+	<TableWithBadges />
+</ComponentPreview>
+
+## Toolbar Actions
+
+Add custom actions to the toolbar, such as "Add" buttons.
+
+<ComponentPreview
+	name="Table with Toolbar Actions"
+	code={`import { Button } from "@/components/ui/button";
+
+<TableCollection
+  data={products}
+  columns={columns}
+  enableFiltering={true}
+  searchPlaceholder="Search products..."
+  toolbarActions={
+    <Button>Add Product</Button>
+  }
+/>`}
+>
+	<TableWithSearch />
+</ComponentPreview>
+
+## All Features Combined
+
+A fully-featured table with all capabilities enabled.
+
+<ComponentPreview
+	name="Full Featured Table"
+	code={`import {
+  createSelectColumn,
+  createImageColumn,
+  createSortableColumn,
+  createCurrencyColumn,
+  createBadgeColumn,
+  createActionsColumn,
+} from "@/components/glide/table-helpers";
+
+const columns = [
+  createSelectColumn(),
+  createImageColumn("image", "Product", "name"),
+  createSortableColumn("name", "Name"),
+  { accessorKey: "category", header: "Category" },
+  createCurrencyColumn("price", "Price"),
+  createBadgeColumn("status", "Status", (value) => {
+    if (value === "In Stock") return "default";
+    if (value === "Low Stock") return "secondary";
+    return "destructive";
+  }),
+  createActionsColumn((row) => (
+    <>
+      <DropdownMenuItem onClick={() => edit(row.original)}>
+        Edit
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={() => view(row.original)}>
+        View Details
+      </DropdownMenuItem>
+      <DropdownMenuItem
+        onClick={() => remove(row.original)}
+        className="text-destructive"
+      >
+        Delete
+      </DropdownMenuItem>
+    </>
+  )),
+];
+
+<TableCollection
+  data={products}
+  columns={columns}
+  variant="default"
+  size="default"
+  enableSorting={true}
+  enableFiltering={true}
+  enablePagination={true}
+  enableRowSelection={true}
+  searchPlaceholder="Search products..."
+  onRowClick={(row) => navigate(\`/products/\${row.id}\`)}
+  toolbarActions={<Button>Add Product</Button>}
+  pageSize={10}
+/>`}
+>
+	<TableWithAllFeatures />
+</ComponentPreview>
+
+## Column Helpers
+
+The component includes helper functions for common column patterns.
+
+### createSelectColumn()
+
+Creates a checkbox column for row selection.
+
+```tsx
+import { createSelectColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createSelectColumn(),
+	// ... other columns
+];
+```
+
+### createSortableColumn(accessorKey, label)
+
+Creates a sortable column with header button and sort indicators.
+
+```tsx
+import { createSortableColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createSortableColumn("name", "Name"),
+	createSortableColumn("email", "Email"),
+];
+```
+
+### createImageColumn(accessorKey, label, nameAccessorKey?)
+
+Creates a column displaying avatars or images with fallback initials.
+
+```tsx
+import { createImageColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createImageColumn("avatar", "User", "name"),
+	// Creates avatar with initials from name field
+];
+```
+
+### createActionsColumn(renderActions)
+
+Creates a column with a dropdown menu for row actions.
+
+```tsx
+import { createActionsColumn } from "@/components/glide/table-helpers";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+
+const columns = [
+	createActionsColumn((row) => (
+		<>
+			<DropdownMenuItem onClick={() => edit(row.original)}>
+				Edit
+			</DropdownMenuItem>
+			<DropdownMenuItem onClick={() => remove(row.original)}>
+				Delete
+			</DropdownMenuItem>
+		</>
+	)),
+];
+```
+
+### createBadgeColumn(accessorKey, label, getBadgeVariant?)
+
+Creates a column displaying badges with dynamic variants.
+
+```tsx
+import { createBadgeColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createBadgeColumn("status", "Status", (value) => {
+		if (value === "Active") return "default";
+		if (value === "Pending") return "secondary";
+		if (value === "Inactive") return "destructive";
+		return "outline";
+	}),
+];
+```
+
+### createDateColumn(accessorKey, label, formatOptions?)
+
+Creates a column with formatted dates.
+
+```tsx
+import { createDateColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createDateColumn("createdAt", "Created"),
+	// Uses default format: Jan 15, 2024
+
+	createDateColumn("updatedAt", "Updated", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	}),
+	// Custom format: January 15, 2024
+];
+```
+
+### createCurrencyColumn(accessorKey, label, currency?)
+
+Creates a column displaying currency values.
+
+```tsx
+import { createCurrencyColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createCurrencyColumn("price", "Price"),
+	// Displays as $299.99
+
+	createCurrencyColumn("cost", "Cost", "EUR"),
+	// Displays as €299.99
+];
+```
+
+### createNumberColumn(accessorKey, label, formatOptions?)
+
+Creates a column with formatted numbers.
+
+```tsx
+import { createNumberColumn } from "@/components/glide/table-helpers";
+
+const columns = [
+	createNumberColumn("quantity", "Qty"),
+	// Right-aligned numbers
+
+	createNumberColumn("percentage", "Rate", {
+		style: "percent",
+		minimumFractionDigits: 2,
+	}),
+	// Displays as 45.67%
+];
+```
+
+## Props Reference
+
+### TableCollection
+
+| Prop                  | Type                              | Default       | Description                                     |
+| --------------------- | --------------------------------- | ------------- | ----------------------------------------------- |
+| `data`                | `TData[]`                         | -             | Array of data to display (required)             |
+| `columns`             | `ColumnDef<TData>[]`              | -             | TanStack Table column definitions (required)    |
+| `variant`             | `"default" \| "minimal" \| "striped"` | `"default"`   | Visual style variant                            |
+| `size`                | `"default" \| "compact"`          | `"default"`   | Table density                                   |
+| `limit`               | `number`                          | -             | Limit displayed rows                            |
+| `pageSize`            | `number`                          | `10`          | Rows per page when pagination enabled           |
+| `searchPlaceholder`   | `string`                          | `"Search..."` | Placeholder text for search input               |
+| `emptyMessage`        | `string`                          | `"No results."` | Message shown when table is empty             |
+| `enableSorting`       | `boolean`                         | `false`       | Enable column sorting                           |
+| `enableFiltering`     | `boolean`                         | `false`       | Enable global search/filter                     |
+| `enablePagination`    | `boolean`                         | `false`       | Enable pagination                               |
+| `enableRowSelection`  | `boolean`                         | `false`       | Enable row selection with checkboxes            |
+| `onRowClick`          | `(row: TData) => void`            | -             | Callback when row is clicked                    |
+| `showToolbar`         | `boolean`                         | `true`        | Show toolbar area                               |
+| `toolbarActions`      | `ReactNode`                       | -             | Custom actions in toolbar                       |
+| `className`           | `string`                          | -             | Additional CSS classes for table container      |
+| `classNames`          | `object`                          | -             | CSS classes for specific parts (wrapper, toolbar, table, pagination) |
+
+## Responsive Design
+
+The table automatically handles responsive behavior:
+
+- **Desktop**: Full table layout with all columns visible
+- **Tablet**: Horizontal scroll for tables wider than viewport
+- **Mobile**: Touch-friendly interactions, horizontal scroll
+- **Pagination**: Controls stack vertically on small screens
+- **Toolbar**: Search and actions stack vertically on mobile
+
+## Accessibility
+
+The Table Collection component follows accessibility best practices:
+
+- Semantic HTML table elements (`<table>`, `<thead>`, `<tbody>`, `<th>`, `<td>`)
+- Proper ARIA labels for interactive elements
+- `aria-sort` attributes on sortable columns
+- Keyboard navigation support:
+  - Tab to navigate between interactive elements
+  - Enter/Space to activate buttons and checkboxes
+  - Enter/Space on clickable rows (when `onRowClick` is provided)
+- Screen reader friendly labels for icon-only buttons
+- Focus indicators on all interactive elements
+- Selected row state properly communicated
+
+## TypeScript Support
+
+The component is fully typed with generic support for your data structures:
+
+```tsx
+interface Product {
+	id: string;
+	name: string;
+	price: number;
+	category: string;
+}
+
+const columns: ColumnDef<Product>[] = [
+	{ accessorKey: "name", header: "Name" },
+	{ accessorKey: "price", header: "Price" },
+];
+
+<TableCollection<Product> data={products} columns={columns} />;
+```
+
+TypeScript provides autocomplete for:
+
+- Column accessor keys
+- Row data access in cell renderers
+- Props and prop values
+
+## Performance Tips
+
+For optimal performance with large datasets:
+
+1. **Enable Pagination**: Use `enablePagination={true}` and set reasonable `pageSize`
+2. **Memoize Columns**: Define columns outside component or use `useMemo`
+3. **Limit Rows**: Use the `limit` prop to cap maximum rows
+4. **Debounce Search**: The global filter is debounced by default
+5. **Virtual Scrolling**: For 1000+ rows, consider react-virtual (future enhancement)
+
+```tsx
+const columns = React.useMemo<ColumnDef<User>[]>(
+	() => [
+		{ accessorKey: "name", header: "Name" },
+		{ accessorKey: "email", header: "Email" },
+	],
+	[],
+);
+```
+
+## Common Patterns
+
+### Master-Detail View
+
+```tsx
+<TableCollection
+	data={items}
+	columns={columns}
+	onRowClick={(row) => setSelectedItem(row)}
+/>
+{selectedItem && <DetailPanel item={selectedItem} />}
+```
+
+### Bulk Actions
+
+```tsx
+const [selection, setSelection] = useState({});
+
+<TableCollection
+	data={items}
+	columns={columns}
+	enableRowSelection={true}
+	toolbarActions={
+		Object.keys(selection).length > 0 && (
+			<>
+				<Button onClick={() => bulkEdit(selection)}>Edit Selected</Button>
+				<Button variant="destructive" onClick={() => bulkDelete(selection)}>
+					Delete Selected
+				</Button>
+			</>
+		)
+	}
+/>
+```
+
+### External State Control
+
+```tsx
+const [sorting, setSorting] = useState<SortingState>([]);
+
+// Use TanStack Table directly for full control
+const table = useReactTable({
+	data,
+	columns,
+	state: { sorting },
+	onSortingChange: setSorting,
+	// ... other options
+});
+```
+
+## Integration with Forms
+
+```tsx
+import { useForm } from "react-hook-form";
+
+const form = useForm();
+
+<TableCollection
+	data={items}
+	columns={columns}
+	toolbarActions={
+		<form.Form>
+			<Button type="submit">Save Changes</Button>
+		</form.Form>
+	}
+/>
+```
+
+## Examples Repository
+
+For more examples and use cases, check the component examples file:
+
+[table-collection-examples.tsx](https://github.com/your-repo/components/docs/table-collection-examples.tsx)

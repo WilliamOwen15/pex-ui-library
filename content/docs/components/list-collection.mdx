@@ -1,0 +1,570 @@
+---
+title: List Collection Component
+description: A flexible list collection component for displaying vertical lists with images, titles, descriptions, and action menus
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { ListCollection } from "@/components/glide/list-collection";
+import {
+  TeamMemberList,
+  DocumentListWithBadges,
+  ActivityFeed,
+  ProductListCard,
+  ClickableList,
+  CompactCardList,
+} from "@/components/docs/list-collection-examples";
+import { Badge } from "@/components/ui/badge";
+
+# List Collection Component
+
+A versatile List Collection component optimized for vertical list layouts. Features left-aligned images, stacked content (title, description, meta), and right-aligned dropdown action menus. Perfect for team rosters, document lists, activity feeds, and product catalogs.
+
+## Basic Usage
+
+The simplest form displays a vertical list with default styling and separators between items.
+
+<ComponentPreview
+  name="Basic List Collection"
+  code={`<ListCollection
+  items={[
+    {
+      title: "Project Alpha",
+      description: "Innovative design system implementation",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
+      meta: "Active"
+    },
+    {
+      title: "Project Beta",
+      description: "Next-generation user interface redesign",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+      meta: "In Progress"
+    }
+  ]}
+/>`}
+>
+  <ListCollection
+    items={[
+      {
+        title: "Project Alpha",
+        description: "Innovative design system implementation",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop",
+        meta: "Active",
+      },
+      {
+        title: "Project Beta",
+        description: "Next-generation user interface redesign",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
+        meta: "In Progress",
+      },
+      {
+        title: "Project Gamma",
+        description: "Mobile app performance optimization",
+        image:
+          "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop",
+        meta: "Planning",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Size Variants
+
+Control spacing and typography with `size` prop. Choose `default` for comfortable spacing or `compact` for denser layouts.
+
+<ComponentPreview
+  name="Default Size"
+  code={`<ListCollection
+  size="default"
+  items={items}
+/>`}
+>
+  <ListCollection
+    size="default"
+    items={[
+      {
+        title: "Sarah Johnson",
+        description: "Lead Product Designer",
+        image:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+        meta: "Design",
+      },
+      {
+        title: "Michael Chen",
+        description: "Senior Frontend Engineer",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        meta: "Engineering",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Compact Size"
+  code={`<ListCollection
+  size="compact"
+  items={items}
+/>`}
+>
+  <ListCollection
+    size="compact"
+    items={[
+      {
+        title: "Sarah Johnson",
+        description: "Lead Product Designer",
+        image:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+        meta: "Design",
+      },
+      {
+        title: "Michael Chen",
+        description: "Senior Frontend Engineer",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        meta: "Engineering",
+      },
+      {
+        title: "Emma Williams",
+        description: "Product Manager",
+        image:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+        meta: "Product",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Style Variants
+
+Choose between `default` (minimal with separators) or `card` (elevated cards with shadows).
+
+<ComponentPreview
+  name="Default Variant"
+  code={`<ListCollection
+  variant="default"
+  items={items}
+/>`}
+>
+  <ListCollection
+    variant="default"
+    items={[
+      {
+        title: "Q4 Marketing Strategy",
+        description: "Comprehensive plan for product launches",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop",
+        meta: "Active",
+      },
+      {
+        title: "Brand Guidelines 2024",
+        description: "Updated visual identity standards",
+        image:
+          "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop",
+        meta: "Draft",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Card Variant"
+  code={`<ListCollection
+  variant="card"
+  items={items}
+/>`}
+>
+  <ListCollection
+    variant="card"
+    items={[
+      {
+        title: "Q4 Marketing Strategy",
+        description: "Comprehensive plan for product launches",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop",
+        meta: "Active",
+      },
+      {
+        title: "Brand Guidelines 2024",
+        description: "Updated visual identity standards",
+        image:
+          "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop",
+        meta: "Draft",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Image Shapes
+
+Use `square` for document thumbnails or `circle` for profile images and avatars.
+
+<ComponentPreview
+  name="Square Images"
+  code={`<ListCollection
+  imageShape="square"
+  items={items}
+/>`}
+>
+  <ListCollection
+    imageShape="square"
+    items={[
+      {
+        title: "Wireless Headphones Pro",
+        description: "Premium noise-cancelling headphones",
+        image:
+          "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+        meta: "Electronics",
+      },
+      {
+        title: "Smart Watch Series 5",
+        description: "Health tracking on your wrist",
+        image:
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+        meta: "Wearables",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Circle Images"
+  code={`<ListCollection
+  imageShape="circle"
+  items={items}
+/>`}
+>
+  <ListCollection
+    imageShape="circle"
+    items={[
+      {
+        title: "Sarah Johnson",
+        description: "Lead Product Designer",
+        image:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+        meta: "Design",
+      },
+      {
+        title: "Michael Chen",
+        description: "Senior Frontend Engineer",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        meta: "Engineering",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Title Styles
+
+Choose between `simple` (font-medium) or `bold` (font-semibold) title styling.
+
+<ComponentPreview
+  name="Simple Title Style"
+  code={`<ListCollection
+  titleStyle="simple"
+  items={items}
+/>`}
+>
+  <ListCollection
+    titleStyle="simple"
+    items={[
+      {
+        title: "User Research Findings",
+        description: "Insights from customer interviews",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
+        meta: "Research",
+      },
+      {
+        title: "Product Roadmap",
+        description: "Strategic vision for next 12 months",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        meta: "Planning",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Bold Title Style"
+  code={`<ListCollection
+  titleStyle="bold"
+  items={items}
+/>`}
+>
+  <ListCollection
+    titleStyle="bold"
+    items={[
+      {
+        title: "User Research Findings",
+        description: "Insights from customer interviews",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
+        meta: "Research",
+      },
+      {
+        title: "Product Roadmap",
+        description: "Strategic vision for next 12 months",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        meta: "Planning",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Without Images
+
+The component gracefully handles items without images by displaying a placeholder icon.
+
+<ComponentPreview
+  name="No Images"
+  code={`<ListCollection
+  items={[
+    { title: "Item 1", description: "Description text" },
+    { title: "Item 2", description: "Description text" }
+  ]}
+/>`}
+>
+  <ListCollection
+    items={[
+      {
+        title: "Documentation Update",
+        description: "Updated API reference and examples",
+        meta: "Completed",
+      },
+      {
+        title: "Bug Fix Release",
+        description: "Fixed critical issues in production",
+        meta: "Released",
+      },
+      {
+        title: "Feature Planning",
+        description: "Planning next quarter features",
+        meta: "In Progress",
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Item Limiting
+
+Use the `limit` prop to display only the first N items from your data set.
+
+<ComponentPreview
+  name="Limited Items"
+  code={`<ListCollection
+  limit={3}
+  items={items}
+/>`}
+>
+  <ActivityFeed />
+</ComponentPreview>
+
+## Action Menus
+
+Add dropdown action menus to list items using the `actions` prop. Actions appear as a 3-dots menu on the right side.
+
+<ComponentPreview
+  name="With Action Menus"
+  code={`<ListCollection
+  items={[
+    {
+      title: "Item Title",
+      description: "Item description",
+      actions: [
+        { label: "Edit", onClick: () => console.log("Edit") },
+        { label: "Delete", onClick: () => console.log("Delete"), variant: "destructive" }
+      ]
+    }
+  ]}
+/>`}
+>
+  <TeamMemberList />
+</ComponentPreview>
+
+## Custom Meta Rendering
+
+Use `renderMeta` to display badges, icons, or custom components for the meta content.
+
+<ComponentPreview
+  name="With Badge Meta"
+  code={`<ListCollection
+  items={items}
+  renderMeta={(meta) => <Badge variant="secondary">{meta}</Badge>}
+/>`}
+>
+  <DocumentListWithBadges />
+</ComponentPreview>
+
+## Combined Variants
+
+Mix and match variants for different use cases.
+
+<ComponentPreview
+  name="Compact Card List"
+  code={`<ListCollection
+  variant="card"
+  size="compact"
+  imageShape="square"
+  items={items}
+/>`}
+>
+  <CompactCardList />
+</ComponentPreview>
+
+<ComponentPreview
+  name="Card with Bold Titles"
+  code={`<ListCollection
+  variant="card"
+  titleStyle="bold"
+  items={items}
+/>`}
+>
+  <ProductListCard />
+</ComponentPreview>
+
+## Clickable Items
+
+Make entire list items clickable using `href` for links or `onItemClick` for custom handlers.
+
+<ComponentPreview
+  name="Clickable List Items"
+  code={`<ListCollection
+  items={items}
+  onItemClick={(item, index) => console.log("Clicked:", item.title)}
+/>`}
+>
+  <ClickableList />
+</ComponentPreview>
+
+## Complex Examples
+
+Here are some real-world use cases combining multiple features.
+
+### Team Member List
+
+<ComponentPreview
+  name="Team Member List"
+  code={`<ListCollection
+  variant="default"
+  imageShape="circle"
+  items={teamMembers}
+/>`}
+>
+  <TeamMemberList />
+</ComponentPreview>
+
+### Activity Feed
+
+<ComponentPreview
+  name="Activity Feed"
+  code={`<ListCollection
+  variant="default"
+  imageShape="circle"
+  size="compact"
+  limit={5}
+  items={activities}
+/>`}
+>
+  <ActivityFeed />
+</ComponentPreview>
+
+### Product Catalog
+
+<ComponentPreview
+  name="Product Catalog"
+  code={`<ListCollection
+  variant="card"
+  titleStyle="bold"
+  items={products}
+/>`}
+>
+  <ProductListCard />
+</ComponentPreview>
+
+## Props Reference
+
+### ListCollectionProps
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `ListCollectionItem[]` | **Required** | Array of items to display |
+| `size` | `"default" \| "compact"` | `"default"` | Size variant controlling spacing and typography |
+| `variant` | `"default" \| "card"` | `"default"` | Visual style variant |
+| `imageShape` | `"square" \| "circle"` | `"square"` | Shape of item images |
+| `titleStyle` | `"simple" \| "bold"` | `"simple"` | Font weight for titles |
+| `metaPosition` | `"above-title" \| "below-title"` | `"above-title"` | Position of meta content |
+| `limit` | `number` | `undefined` | Maximum number of items to display |
+| `onItemClick` | `(item, index) => void` | `undefined` | Handler for item clicks |
+| `renderMeta` | `(meta, item) => ReactNode` | `undefined` | Custom meta renderer |
+| `renderActions` | `(item, index) => ReactNode` | `undefined` | Custom actions renderer |
+| `clampTitle` | `boolean \| number` | `undefined` | Clamp title text (true = 2 lines, or specify number) |
+| `clampDescription` | `boolean \| number` | `undefined` | Clamp description text (true = 2 lines, or specify number) |
+| `itemAs` | `"div" \| "article"` | `"article"` | HTML element for items |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### ListCollectionItem
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `title` | `string` | **Yes** | Item title |
+| `description` | `string` | No | Item description |
+| `meta` | `string \| ReactNode` | No | Meta content (category, date, status) |
+| `image` | `string` | No | Image URL |
+| `imageAlt` | `string` | No | Alt text for image |
+| `id` | `string \| number` | No | Unique identifier |
+| `href` | `string` | No | Link URL (makes item a link) |
+| `onClick` | `() => void` | No | Click handler for this item |
+| `imageShape` | `"square" \| "circle"` | No | Override collection imageShape |
+| `titleStyle` | `"simple" \| "bold"` | No | Override collection titleStyle |
+| `metaPosition` | `"above-title" \| "below-title"` | No | Override collection metaPosition |
+| `actions` | `ListCollectionAction[]` | No | Action menu items |
+| `ariaLabel` | `string` | No | Accessibility label |
+
+### ListCollectionAction
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `label` | `string` | **Yes** | Action label |
+| `onClick` | `() => void` | **Yes** | Action handler |
+| `variant` | `"default" \| "destructive"` | No | Action variant |
+| `icon` | `ReactNode` | No | Optional icon |
+
+## Accessibility
+
+The List Collection component follows accessibility best practices:
+
+- **Semantic HTML**: Items render as `<article>` elements by default (configurable via `itemAs`)
+- **Keyboard Navigation**: Tab through items and dropdown triggers; arrow keys navigate menus
+- **ARIA Labels**: Descriptive labels for action menu triggers
+- **Focus Management**: Visible focus indicators on all interactive elements
+- **Alt Text**: Images use alt text with fallback to item title
+- **Touch Targets**: Action buttons meet minimum 44x44px touch target size on mobile
+
+## Design Patterns
+
+### When to Use Default vs Card Variant
+
+- **Default**: Clean minimal lists, activity feeds, simple rosters
+- **Card**: Featured items, product catalogs, emphasized content
+
+### When to Use Square vs Circle Images
+
+- **Square**: Documents, products, thumbnails, screenshots
+- **Circle**: People, avatars, user profiles, team members
+
+### Meta Position
+
+- **Above Title**: Category tags, status badges, timestamps
+- **Below Title**: Subtitles, secondary labels, additional context
+
+## Performance Considerations
+
+For very large lists (100+ items), consider:
+- Using the `limit` prop to paginate results
+- Implementing virtual scrolling at the application level
+- Using `itemAs="div"` instead of `"article"` for better performance

@@ -82,15 +82,21 @@ Centered layout perfect for profile displays with a circular avatar.
 
 ## Cover Variant
 
-Full-width background image with text overlay - perfect for hero sections.
+Cover layout with a header image area and a profile image with text at the bottom. Perfect for profile headers or detail pages.
 
-<ComponentPreview name="Cover Layout">
+<ComponentPreview name="Cover Layout" code={`<Title
+  variant="cover"
+  title="Cover Title"
+  subtitle="Subtitle"
+  imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop"
+  coverImageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop"
+/>`}>
   <Title
     variant="cover"
-    title="Mountain Adventure"
-    subtitle="Explore the wilderness"
-    imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop"
-    className="min-h-[300px]"
+    title="Cover Title"
+    subtitle="Subtitle"
+    imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop"
+    coverImageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop"
   />
 </ComponentPreview>
 
@@ -113,8 +119,10 @@ All variants support a compact size option for tighter layouts.
 | `title` | `string` | - | Main title text (required) |
 | `subtitle` | `string` | - | Subtitle text (optional) |
 | `emphasis` | `string` | - | Emphasized text above title (optional) |
-| `imageUrl` | `string` | - | Image URL (optional) |
-| `imageAlt` | `string` | `""` | Alt text for image |
+| `imageUrl` | `string` | - | Profile/main image URL (optional) |
+| `coverImageUrl` | `string` | - | Cover header image URL (for cover variant only) |
+| `imageAlt` | `string` | `""` | Alt text for profile/main image |
+| `coverImageAlt` | `string` | `""` | Alt text for cover header image |
 | `variant` | `"simple" \| "image" \| "cover" \| "profile"` | `"simple"` | Layout style |
 | `size` | `"default" \| "compact"` | `"default"` | Component size |
 | `imageFill` | `"fill" \| "fit"` | `"fill"` | Image object-fit behavior |
