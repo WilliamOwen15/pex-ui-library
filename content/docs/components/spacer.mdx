@@ -1,0 +1,463 @@
+---
+title: Spacer Component
+description: A flexible spacing utility component for controlling whitespace between elements with responsive sizing options
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Spacer } from "@/components/glide/spacer";
+
+# Spacer Component
+
+An invisible utility component that creates consistent, responsive spacing between elements. Unlike margin and padding utilities, Spacer provides a declarative way to manage whitespace as a standalone element in your layout.
+
+## Basic Usage
+
+The Spacer component creates vertical space by default. It's invisible but takes up space in the layout.
+
+<ComponentPreview
+  name="Basic Spacer"
+  code={`<div>
+  <div className="p-4 bg-slate-100 rounded-lg">
+    <p>First Section</p>
+  </div>
+  <Spacer size="md" />
+  <div className="p-4 bg-slate-100 rounded-lg">
+    <p>Second Section</p>
+  </div>
+</div>`}
+>
+  <div>
+    <div className="p-4 bg-slate-100 rounded-lg">
+      <p>First Section</p>
+    </div>
+    <Spacer size="md" />
+    <div className="p-4 bg-slate-100 rounded-lg">
+      <p>Second Section</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Size Options
+
+Choose from seven predefined sizes to create consistent spacing throughout your application.
+
+<ComponentPreview
+  name="Size Variants"
+  code={`<div>
+  <div className="p-3 bg-slate-100 rounded-lg">
+    <p className="text-sm">Content Block</p>
+  </div>
+  <Spacer size="xs" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">Extra Small (xs) - 8px</p>
+  </div>
+
+  <Spacer size="sm" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">Small (sm) - 16px</p>
+  </div>
+
+  <Spacer size="md" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">Medium (md) - 32px</p>
+  </div>
+
+  <Spacer size="lg" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">Large (lg) - 48px</p>
+  </div>
+
+  <Spacer size="xl" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">Extra Large (xl) - 64px</p>
+  </div>
+
+  <Spacer size="2xl" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">2XL - 96px</p>
+  </div>
+
+  <Spacer size="3xl" />
+  <div className="p-3 bg-slate-200 rounded-lg">
+    <p className="text-sm">3XL - 128px</p>
+  </div>
+</div>`}
+>
+  <div>
+    <div className="p-3 bg-slate-100 rounded-lg">
+      <p className="text-sm">Content Block</p>
+    </div>
+    <Spacer size="xs" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">Extra Small (xs) - 8px</p>
+    </div>
+
+    <Spacer size="sm" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">Small (sm) - 16px</p>
+    </div>
+
+    <Spacer size="md" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">Medium (md) - 32px</p>
+    </div>
+
+    <Spacer size="lg" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">Large (lg) - 48px</p>
+    </div>
+
+    <Spacer size="xl" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">Extra Large (xl) - 64px</p>
+    </div>
+
+    <Spacer size="2xl" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">2XL - 96px</p>
+    </div>
+
+    <Spacer size="3xl" />
+    <div className="p-3 bg-slate-200 rounded-lg">
+      <p className="text-sm">3XL - 128px</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Responsive Spacing
+
+Use the `responsive` prop to adjust spacing at different breakpoints. Perfect for maintaining optimal spacing across device sizes.
+
+<ComponentPreview
+  name="Responsive Spacing"
+  code={`<div>
+  <div className="p-4 bg-slate-100 rounded-lg">
+    <h3 className="font-semibold">Mobile Header</h3>
+    <p className="text-sm text-slate-600">
+      The spacing below this section changes based on screen size:
+      small on mobile, large on desktop.
+    </p>
+  </div>
+  <Spacer
+    size="sm"
+    responsive={{
+      md: "lg",
+      lg: "xl"
+    }}
+  />
+  <div className="p-4 bg-slate-100 rounded-lg">
+    <h3 className="font-semibold">Responsive Content</h3>
+    <p className="text-sm text-slate-600">
+      Try resizing your browser to see the spacing change.
+    </p>
+  </div>
+</div>`}
+>
+  <div>
+    <div className="p-4 bg-slate-100 rounded-lg">
+      <h3 className="font-semibold">Mobile Header</h3>
+      <p className="text-sm text-slate-600">
+        The spacing below this section changes based on screen size:
+        small on mobile, large on desktop.
+      </p>
+    </div>
+    <Spacer
+      size="sm"
+      responsive={{
+        md: "lg",
+        lg: "xl"
+      }}
+    />
+    <div className="p-4 bg-slate-100 rounded-lg">
+      <h3 className="font-semibold">Responsive Content</h3>
+      <p className="text-sm text-slate-600">
+        Try resizing your browser to see the spacing change.
+      </p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Horizontal Spacing
+
+Use `axis="horizontal"` to create horizontal space between inline or flex items.
+
+<ComponentPreview
+  name="Horizontal Spacing"
+  code={`<div className="flex items-center">
+  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
+    Save
+  </button>
+  <Spacer axis="horizontal" size="md" />
+  <button className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg">
+    Cancel
+  </button>
+  <Spacer axis="horizontal" size="md" />
+  <button className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg">
+    Reset
+  </button>
+</div>`}
+>
+  <div className="flex items-center">
+    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
+      Save
+    </button>
+    <Spacer axis="horizontal" size="md" />
+    <button className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg">
+      Cancel
+    </button>
+    <Spacer axis="horizontal" size="md" />
+    <button className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg">
+      Reset
+    </button>
+  </div>
+</ComponentPreview>
+
+## Vertical Spacing (Default)
+
+The `axis="vertical"` prop creates vertical space, which is the default behavior.
+
+<ComponentPreview
+  name="Vertical Spacing"
+  code={`<div>
+  <div className="inline-block p-4 bg-slate-100 rounded-lg">
+    <p>Top Section</p>
+  </div>
+  <Spacer axis="vertical" size="lg" />
+  <div className="inline-block p-4 bg-slate-100 rounded-lg">
+    <p>Bottom Section</p>
+  </div>
+</div>`}
+>
+  <div>
+    <div className="inline-block p-4 bg-slate-100 rounded-lg">
+      <p>Top Section</p>
+    </div>
+    <Spacer axis="vertical" size="lg" />
+    <div className="inline-block p-4 bg-slate-100 rounded-lg">
+      <p>Bottom Section</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Form Sections
+
+Spacer is particularly useful for creating consistent spacing between form sections.
+
+<ComponentPreview
+  name="Form Sections"
+  code={`<form className="max-w-md">
+  <div className="space-y-2">
+    <label className="block text-sm font-medium">Personal Information</label>
+    <input
+      type="text"
+      placeholder="Full Name"
+      className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+    />
+    <input
+      type="email"
+      placeholder="Email"
+      className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+    />
+  </div>
+
+  <Spacer size="lg" />
+
+  <div className="space-y-2">
+    <label className="block text-sm font-medium">Account Settings</label>
+    <input
+      type="password"
+      placeholder="Password"
+      className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+    />
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+    />
+  </div>
+
+  <Spacer size="xl" />
+
+  <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg">
+    Create Account
+  </button>
+</form>`}
+>
+  <form className="max-w-md">
+    <div className="space-y-2">
+      <label className="block text-sm font-medium">Personal Information</label>
+      <input
+        type="text"
+        placeholder="Full Name"
+        className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+      />
+    </div>
+
+    <Spacer size="lg" />
+
+    <div className="space-y-2">
+      <label className="block text-sm font-medium">Account Settings</label>
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+      />
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+      />
+    </div>
+
+    <Spacer size="xl" />
+
+    <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg">
+      Create Account
+    </button>
+  </form>
+</ComponentPreview>
+
+## Page Sections
+
+Create clear visual separation between major page sections.
+
+<ComponentPreview
+  name="Page Sections"
+  code={`<div>
+  <section className="p-6 bg-blue-50 rounded-lg">
+    <h2 className="text-2xl font-bold mb-2">Hero Section</h2>
+    <p className="text-slate-600">Welcome to our application</p>
+  </section>
+
+  <Spacer size="2xl" />
+
+  <section className="p-6 bg-green-50 rounded-lg">
+    <h2 className="text-2xl font-bold mb-2">Features</h2>
+    <p className="text-slate-600">Discover what makes us unique</p>
+  </section>
+
+  <Spacer size="2xl" />
+
+  <section className="p-6 bg-purple-50 rounded-lg">
+    <h2 className="text-2xl font-bold mb-2">Testimonials</h2>
+    <p className="text-slate-600">Hear from our satisfied customers</p>
+  </section>
+</div>`}
+>
+  <div>
+    <section className="p-6 bg-blue-50 rounded-lg">
+      <h2 className="text-2xl font-bold mb-2">Hero Section</h2>
+      <p className="text-slate-600">Welcome to our application</p>
+    </section>
+
+    <Spacer size="2xl" />
+
+    <section className="p-6 bg-green-50 rounded-lg">
+      <h2 className="text-2xl font-bold mb-2">Features</h2>
+      <p className="text-slate-600">Discover what makes us unique</p>
+    </section>
+
+    <Spacer size="2xl" />
+
+    <section className="p-6 bg-purple-50 rounded-lg">
+      <h2 className="text-2xl font-bold mb-2">Testimonials</h2>
+      <p className="text-slate-600">Hear from our satisfied customers</p>
+    </section>
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl"` | `"md"` | The size of the spacing |
+| `axis` | `"horizontal" \| "vertical" \| "both"` | `"both"` | Direction of spacing - vertical creates height, horizontal creates width, both creates a square |
+| `responsive` | `{ sm?, md?, lg?, xl? }` | - | Responsive size overrides at different breakpoints |
+| `className` | `string` | - | Additional CSS classes to apply |
+
+## Size Scale
+
+| Size | Pixels | Use Case |
+|------|--------|----------|
+| `xs` | 8px | Minimal spacing between tightly related elements |
+| `sm` | 16px | Compact spacing, dense layouts |
+| `md` | 32px | Default spacing for most use cases |
+| `lg` | 48px | Comfortable spacing between sections |
+| `xl` | 64px | Large spacing for major sections |
+| `2xl` | 96px | Extra large spacing, hero sections |
+| `3xl` | 128px | Maximum spacing for dramatic separation |
+
+## Responsive Breakpoints
+
+The `responsive` prop accepts size values for these breakpoints:
+- `sm`: 640px and up
+- `md`: 768px and up
+- `lg`: 1024px and up
+- `xl`: 1280px and up
+
+Example:
+```tsx
+<Spacer
+  size="sm"           // 16px on mobile
+  responsive={{
+    sm: "md",         // 32px on small screens
+    md: "lg",         // 48px on medium screens
+    lg: "xl",         // 64px on large screens
+    xl: "2xl"         // 96px on extra large screens
+  }}
+/>
+```
+
+## Usage Guidelines
+
+### When to Use Spacer
+
+**Use Spacer when:**
+- Creating consistent vertical spacing between unrelated sections
+- Separating form groups or major UI elements
+- Building layouts where spacing is a first-class design element
+- You want responsive spacing without custom CSS
+- Building component layouts where margin/padding utilities feel awkward
+
+**Don't use Spacer when:**
+- Simple margin/padding utilities would be clearer (e.g., `mt-4`)
+- Working with flex/grid gaps (use `gap-*` utilities instead)
+- Spacing is purely decorative and inconsistent
+- You need pixel-perfect custom spacing (use custom classes instead)
+
+### Best Practices
+
+1. **Consistency**: Stick to the predefined size scale for consistent spacing throughout your application
+2. **Semantic Meaning**: Larger spacers should separate less related content
+3. **Responsive Design**: Use the `responsive` prop to adjust spacing for different screen sizes
+4. **Accessibility**: The component includes `aria-hidden="true"` since it's purely decorative
+5. **Axis Clarity**: Be explicit with the `axis` prop when using flex layouts to avoid confusion
+
+### Spacer vs. Margin/Padding
+
+**Choose Spacer when:**
+- You want declarative, visible spacing in your JSX
+- Spacing needs to be responsive across breakpoints
+- Building reusable components where spacing is configurable
+- Working with dynamic layouts where spacing might change
+
+**Choose margin/padding when:**
+- Simple, one-off spacing needs
+- Spacing is tightly coupled to a specific element
+- Working with existing utility-first patterns
+- Need more control over specific edges (top, bottom, left, right independently)
+
+### Accessibility
+
+- Automatically includes `aria-hidden="true"` as it's purely for layout
+- Does not interfere with screen readers or keyboard navigation
+- Creates semantic spacing without affecting the accessibility tree
+
+## Performance Notes
+
+The Spacer component is lightweight and uses only CSS for rendering. Responsive classes are generated dynamically based on the `responsive` prop, but this has negligible performance impact. The component does not trigger re-renders unnecessarily.

@@ -1,0 +1,361 @@
+---
+title: Separator Component
+description: A visual divider for separating content sections with horizontal or vertical orientation
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Separator } from "@/components/ui/separator";
+
+# Separator Component
+
+A simple, accessible separator component for visually dividing content sections. Built on Radix UI primitives with customizable orientation and styling.
+
+## Basic Usage
+
+The most common usage is a horizontal separator to divide content vertically.
+
+<ComponentPreview
+  name="Basic Separator"
+  code={`<div className="space-y-4">
+  <div>
+    <h3 className="text-lg font-semibold">Section One</h3>
+    <p className="text-sm text-muted-foreground">
+      This is the first section of content.
+    </p>
+  </div>
+  <Separator />
+  <div>
+    <h3 className="text-lg font-semibold">Section Two</h3>
+    <p className="text-sm text-muted-foreground">
+      This is the second section of content.
+    </p>
+  </div>
+</div>`}
+>
+  <div className="space-y-4">
+    <div>
+      <h3 className="text-lg font-semibold">Section One</h3>
+      <p className="text-sm text-muted-foreground">
+        This is the first section of content.
+      </p>
+    </div>
+    <Separator />
+    <div>
+      <h3 className="text-lg font-semibold">Section Two</h3>
+      <p className="text-sm text-muted-foreground">
+        This is the second section of content.
+      </p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Vertical Separator
+
+Use `orientation="vertical"` to create a vertical divider for side-by-side content.
+
+<ComponentPreview
+  name="Vertical Separator"
+  code={`<div className="flex h-20 items-center space-x-4">
+  <div className="flex-1">
+    <p className="text-sm font-medium">Left Content</p>
+    <p className="text-xs text-muted-foreground">Details here</p>
+  </div>
+  <Separator orientation="vertical" />
+  <div className="flex-1">
+    <p className="text-sm font-medium">Right Content</p>
+    <p className="text-xs text-muted-foreground">More details</p>
+  </div>
+</div>`}
+>
+  <div className="flex h-20 items-center space-x-4">
+    <div className="flex-1">
+      <p className="text-sm font-medium">Left Content</p>
+      <p className="text-xs text-muted-foreground">Details here</p>
+    </div>
+    <Separator orientation="vertical" />
+    <div className="flex-1">
+      <p className="text-sm font-medium">Right Content</p>
+      <p className="text-xs text-muted-foreground">More details</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## In Lists
+
+Separators are commonly used between list items to create clear visual separation.
+
+<ComponentPreview
+  name="List with Separators"
+  code={`<div className="w-full max-w-md">
+  <div className="space-y-1">
+    <h4 className="text-sm font-medium leading-none">Recent Activity</h4>
+    <p className="text-sm text-muted-foreground">
+      Your latest actions and updates
+    </p>
+  </div>
+  <Separator className="my-4" />
+  <div className="space-y-4">
+    <div className="flex items-start justify-between">
+      <div className="space-y-1">
+        <p className="text-sm font-medium leading-none">Profile Updated</p>
+        <p className="text-xs text-muted-foreground">2 hours ago</p>
+      </div>
+    </div>
+    <Separator />
+    <div className="flex items-start justify-between">
+      <div className="space-y-1">
+        <p className="text-sm font-medium leading-none">Document Shared</p>
+        <p className="text-xs text-muted-foreground">5 hours ago</p>
+      </div>
+    </div>
+    <Separator />
+    <div className="flex items-start justify-between">
+      <div className="space-y-1">
+        <p className="text-sm font-medium leading-none">Task Completed</p>
+        <p className="text-xs text-muted-foreground">Yesterday</p>
+      </div>
+    </div>
+  </div>
+</div>`}
+>
+  <div className="w-full max-w-md">
+    <div className="space-y-1">
+      <h4 className="text-sm font-medium leading-none">Recent Activity</h4>
+      <p className="text-sm text-muted-foreground">
+        Your latest actions and updates
+      </p>
+    </div>
+    <Separator className="my-4" />
+    <div className="space-y-4">
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <p className="text-sm font-medium leading-none">Profile Updated</p>
+          <p className="text-xs text-muted-foreground">2 hours ago</p>
+        </div>
+      </div>
+      <Separator />
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <p className="text-sm font-medium leading-none">Document Shared</p>
+          <p className="text-xs text-muted-foreground">5 hours ago</p>
+        </div>
+      </div>
+      <Separator />
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <p className="text-sm font-medium leading-none">Task Completed</p>
+          <p className="text-xs text-muted-foreground">Yesterday</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Custom Styling
+
+Override the default styles with the `className` prop for custom colors, thickness, or spacing.
+
+<ComponentPreview
+  name="Custom Styling"
+  code={`<div className="space-y-6">
+  <div>
+    <p className="text-sm mb-3">Thicker separator</p>
+    <Separator className="h-1 bg-primary" />
+  </div>
+
+  <div>
+    <p className="text-sm mb-3">Custom color</p>
+    <Separator className="bg-blue-500" />
+  </div>
+
+  <div>
+    <p className="text-sm mb-3">Dashed style</p>
+    <Separator className="border-t border-dashed border-slate-300 bg-transparent" />
+  </div>
+
+  <div>
+    <p className="text-sm mb-3">Gradient separator</p>
+    <Separator className="h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+  </div>
+</div>`}
+>
+  <div className="space-y-6">
+    <div>
+      <p className="text-sm mb-3">Thicker separator</p>
+      <Separator className="h-1 bg-primary" />
+    </div>
+
+    <div>
+      <p className="text-sm mb-3">Custom color</p>
+      <Separator className="bg-blue-500" />
+    </div>
+
+    <div>
+      <p className="text-sm mb-3">Dashed style</p>
+      <Separator className="border-t border-dashed border-slate-300 bg-transparent" />
+    </div>
+
+    <div>
+      <p className="text-sm mb-3">Gradient separator</p>
+      <Separator className="h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+    </div>
+  </div>
+</ComponentPreview>
+
+## In Cards
+
+Separators work well within cards to organize different sections of content.
+
+<ComponentPreview
+  name="Card Sections"
+  code={`<div className="w-full max-w-md rounded-lg border bg-card p-6">
+  <div className="space-y-1">
+    <h3 className="text-lg font-semibold">Account Settings</h3>
+    <p className="text-sm text-muted-foreground">
+      Manage your account preferences
+    </p>
+  </div>
+  <Separator className="my-4" />
+  <div className="space-y-2">
+    <div className="flex items-center justify-between">
+      <span className="text-sm">Email Notifications</span>
+      <span className="text-sm text-muted-foreground">Enabled</span>
+    </div>
+    <div className="flex items-center justify-between">
+      <span className="text-sm">Two-Factor Auth</span>
+      <span className="text-sm text-muted-foreground">Disabled</span>
+    </div>
+  </div>
+  <Separator className="my-4" />
+  <div className="space-y-2">
+    <div className="flex items-center justify-between">
+      <span className="text-sm">Privacy Mode</span>
+      <span className="text-sm text-muted-foreground">On</span>
+    </div>
+    <div className="flex items-center justify-between">
+      <span className="text-sm">Data Sharing</span>
+      <span className="text-sm text-muted-foreground">Off</span>
+    </div>
+  </div>
+</div>`}
+>
+  <div className="w-full max-w-md rounded-lg border bg-card p-6">
+    <div className="space-y-1">
+      <h3 className="text-lg font-semibold">Account Settings</h3>
+      <p className="text-sm text-muted-foreground">
+        Manage your account preferences
+      </p>
+    </div>
+    <Separator className="my-4" />
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <span className="text-sm">Email Notifications</span>
+        <span className="text-sm text-muted-foreground">Enabled</span>
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="text-sm">Two-Factor Auth</span>
+        <span className="text-sm text-muted-foreground">Disabled</span>
+      </div>
+    </div>
+    <Separator className="my-4" />
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <span className="text-sm">Privacy Mode</span>
+        <span className="text-sm text-muted-foreground">On</span>
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="text-sm">Data Sharing</span>
+        <span className="text-sm text-muted-foreground">Off</span>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+## With Text Labels
+
+Create section headers with inline text and separator lines.
+
+<ComponentPreview
+  name="Text with Separators"
+  code={`<div className="space-y-6">
+  <div className="flex items-center gap-4">
+    <Separator className="flex-1" />
+    <span className="text-sm text-muted-foreground">OR</span>
+    <Separator className="flex-1" />
+  </div>
+
+  <div className="flex items-center gap-4">
+    <Separator className="flex-1" />
+    <span className="text-sm font-medium">Continue with</span>
+    <Separator className="flex-1" />
+  </div>
+
+  <div className="flex items-center gap-4">
+    <span className="text-xs text-muted-foreground">Section 1</span>
+    <Separator className="flex-1" />
+  </div>
+</div>`}
+>
+  <div className="space-y-6">
+    <div className="flex items-center gap-4">
+      <Separator className="flex-1" />
+      <span className="text-sm text-muted-foreground">OR</span>
+      <Separator className="flex-1" />
+    </div>
+
+    <div className="flex items-center gap-4">
+      <Separator className="flex-1" />
+      <span className="text-sm font-medium">Continue with</span>
+      <Separator className="flex-1" />
+    </div>
+
+    <div className="flex items-center gap-4">
+      <span className="text-xs text-muted-foreground">Section 1</span>
+      <Separator className="flex-1" />
+    </div>
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the separator |
+| `decorative` | `boolean` | `true` | When true, the separator is purely visual and ignored by screen readers |
+| `className` | `string` | - | Additional CSS classes for custom styling |
+
+## Accessibility
+
+- By default, the separator has `decorative={true}`, making it purely visual and ignored by assistive technologies
+- Set `decorative={false}` if the separator has semantic meaning and should be announced to screen readers
+- The component uses Radix UI's Separator primitive for proper ARIA attributes
+- Horizontal separators have `role="separator"` with `aria-orientation="horizontal"`
+- Vertical separators have `role="separator"` with `aria-orientation="vertical"`
+
+## Usage Guidelines
+
+### When to Use
+
+- Dividing sections of content within a page or component
+- Separating list items or menu options
+- Creating visual hierarchy in cards or panels
+- Organizing form sections
+- Separating header/footer from main content
+
+### Best Practices
+
+1. **Spacing**: Always provide adequate spacing around separators using margin classes (e.g., `my-4`, `mx-2`)
+2. **Vertical Height**: When using vertical separators, ensure the parent container has a defined height
+3. **Semantic Meaning**: Only set `decorative={false}` if the separator conveys important structural information
+4. **Color Contrast**: The default separator uses the `border` color token which adjusts with theme
+5. **Thickness**: Keep separators subtle (1-2px) unless emphasis is needed
+
+## Installation
+
+If you haven't already installed the separator component, run:
+
+```bash
+pnpm dlx shadcn@latest add separator
+```
+
+This will add the Separator component to your project at `components/ui/separator.tsx`.

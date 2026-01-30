@@ -1,0 +1,608 @@
+---
+title: Container Component
+description: A flexible layout container with responsive width constraints, padding, and background options
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Container } from "@/components/glide/container";
+import { CardCollection } from "@/components/glide/card-collection";
+
+# Container Component
+
+A foundational layout component that provides responsive width constraints, vertical padding, and background styling. Inspired by Emre Turan's "Shadcn Container" pattern and adapted for the Glide design system.
+
+## Standard Container
+
+The most common usage with default max-width constraints (max-w-7xl). Perfect for dashboard content, forms, and general page layouts.
+
+<ComponentPreview
+  name="Standard Container"
+  code={`<Container variant="default">
+  <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+  <p className="text-slate-600 mb-6">
+    This content is constrained to a maximum width of 1280px (7xl) and centered
+    on the page with responsive horizontal padding.
+  </p>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="p-4 bg-slate-100 rounded-lg">Card 1</div>
+    <div className="p-4 bg-slate-100 rounded-lg">Card 2</div>
+    <div className="p-4 bg-slate-100 rounded-lg">Card 3</div>
+  </div>
+</Container>`}
+>
+  <Container variant="default">
+    <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+    <p className="text-slate-600 mb-6">
+      This content is constrained to a maximum width of 1280px (7xl) and centered
+      on the page with responsive horizontal padding.
+    </p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="p-4 bg-slate-100 rounded-lg">Card 1</div>
+      <div className="p-4 bg-slate-100 rounded-lg">Card 2</div>
+      <div className="p-4 bg-slate-100 rounded-lg">Card 3</div>
+    </div>
+  </Container>
+</ComponentPreview>
+
+## Blog Layout (Narrow Variant)
+
+Optimized for reading with a narrower max-width (max-w-3xl). Ideal for blog posts, articles, and text-heavy content where readability is paramount.
+
+<ComponentPreview
+  name="Blog Layout"
+  code={`<Container variant="narrow">
+  <article>
+    <h1 className="text-4xl font-bold mb-4">The Art of Typography</h1>
+    <p className="text-slate-500 mb-8">Published on January 30, 2026</p>
+    <p className="text-lg leading-relaxed mb-4">
+      Typography is the art and technique of arranging type to make written
+      language legible, readable, and appealing when displayed. The arrangement
+      of type involves selecting typefaces, point sizes, line lengths, line
+      spacing, and letter spacing.
+    </p>
+    <p className="text-lg leading-relaxed mb-4">
+      Good typography establishes a visual hierarchy to guide readers through
+      content. It creates a seamless reading experience that feels natural and
+      unobtrusive. The narrow container width ensures optimal line length for
+      comfortable reading, typically 50-75 characters per line.
+    </p>
+    <h2 className="text-2xl font-bold mt-8 mb-4">Key Principles</h2>
+    <p className="text-lg leading-relaxed mb-4">
+      Typography should serve the content, never overshadow it. Every decision
+      about fonts, spacing, and layout should prioritize the reader's experience
+      and comprehension.
+    </p>
+  </article>
+</Container>`}
+>
+  <Container variant="narrow">
+    <article>
+      <h1 className="text-4xl font-bold mb-4">The Art of Typography</h1>
+      <p className="text-slate-500 mb-8">Published on January 30, 2026</p>
+      <p className="text-lg leading-relaxed mb-4">
+        Typography is the art and technique of arranging type to make written
+        language legible, readable, and appealing when displayed. The arrangement
+        of type involves selecting typefaces, point sizes, line lengths, line
+        spacing, and letter spacing.
+      </p>
+      <p className="text-lg leading-relaxed mb-4">
+        Good typography establishes a visual hierarchy to guide readers through
+        content. It creates a seamless reading experience that feels natural and
+        unobtrusive. The narrow container width ensures optimal line length for
+        comfortable reading, typically 50-75 characters per line.
+      </p>
+      <h2 className="text-2xl font-bold mt-8 mb-4">Key Principles</h2>
+      <p className="text-lg leading-relaxed mb-4">
+        Typography should serve the content, never overshadow it. Every decision
+        about fonts, spacing, and layout should prioritize the reader's experience
+        and comprehension.
+      </p>
+    </article>
+  </Container>
+</ComponentPreview>
+
+## Mobile Hero (Full Mobile Variant)
+
+Edge-to-edge on mobile screens, constrained on desktop. Perfect for hero sections that need maximum impact on small devices while maintaining readability on larger screens. Try resizing your browser to see the responsive behavior.
+
+<ComponentPreview
+  name="Mobile Hero"
+  code={`<Container
+  variant="fullMobile"
+  background="image"
+  backgroundImageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop"
+  padding="xl"
+>
+  <div className="relative z-10">
+    <div className="absolute inset-0 bg-slate-900/60 -z-10 rounded-lg" />
+    <div className="p-8 text-white">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        Welcome to Our Platform
+      </h1>
+      <p className="text-xl md:text-2xl mb-6 text-slate-100">
+        Edge-to-edge on mobile, beautifully constrained on desktop
+      </p>
+      <button className="px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
+        Get Started
+      </button>
+    </div>
+  </div>
+</Container>`}
+>
+  <Container
+    variant="fullMobile"
+    background="image"
+    backgroundImageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop"
+    padding="xl"
+  >
+    <div className="relative z-10">
+      <div className="absolute inset-0 bg-slate-900/60 -z-10 rounded-lg" />
+      <div className="p-8 text-white">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          Welcome to Our Platform
+        </h1>
+        <p className="text-xl md:text-2xl mb-6 text-slate-100">
+          Edge-to-edge on mobile, beautifully constrained on desktop
+        </p>
+        <button className="px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </Container>
+</ComponentPreview>
+
+## Section Header
+
+Use the `title` and `description` props to create organized sections with built-in headers. The Title component is automatically integrated with proper spacing.
+
+<ComponentPreview
+  name="Section Header"
+  code={`<Container
+  variant="default"
+  background="card"
+  title="Featured Products"
+  description="Check out our latest offerings and bestsellers"
+>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="p-6 bg-white rounded-lg border border-slate-200">
+      <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+      <h3 className="font-semibold mb-2">Product One</h3>
+      <p className="text-slate-600 text-sm">Amazing features and benefits</p>
+    </div>
+    <div className="p-6 bg-white rounded-lg border border-slate-200">
+      <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+      <h3 className="font-semibold mb-2">Product Two</h3>
+      <p className="text-slate-600 text-sm">Incredible value proposition</p>
+    </div>
+    <div className="p-6 bg-white rounded-lg border border-slate-200">
+      <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+      <h3 className="font-semibold mb-2">Product Three</h3>
+      <p className="text-slate-600 text-sm">Outstanding performance</p>
+    </div>
+  </div>
+</Container>`}
+>
+  <Container
+    variant="default"
+    background="card"
+    title="Featured Products"
+    description="Check out our latest offerings and bestsellers"
+  >
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="p-6 bg-white rounded-lg border border-slate-200">
+        <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+        <h3 className="font-semibold mb-2">Product One</h3>
+        <p className="text-slate-600 text-sm">Amazing features and benefits</p>
+      </div>
+      <div className="p-6 bg-white rounded-lg border border-slate-200">
+        <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+        <h3 className="font-semibold mb-2">Product Two</h3>
+        <p className="text-slate-600 text-sm">Incredible value proposition</p>
+      </div>
+      <div className="p-6 bg-white rounded-lg border border-slate-200">
+        <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+        <h3 className="font-semibold mb-2">Product Three</h3>
+        <p className="text-slate-600 text-sm">Outstanding performance</p>
+      </div>
+    </div>
+  </Container>
+</ComponentPreview>
+
+## Padding Variants
+
+Control vertical spacing with the `padding` prop. Horizontal padding is handled automatically by the variant.
+
+<ComponentPreview
+  name="Padding Options"
+  code={`<div className="space-y-4">
+  <Container variant="default" padding="none" background="accent">
+    <p>No padding (py-0)</p>
+  </Container>
+  <Container variant="default" padding="sm" background="accent">
+    <p>Small padding (py-4)</p>
+  </Container>
+  <Container variant="default" padding="md" background="accent">
+    <p>Medium padding (py-8) - Default</p>
+  </Container>
+  <Container variant="default" padding="lg" background="accent">
+    <p>Large padding (py-12)</p>
+  </Container>
+  <Container variant="default" padding="xl" background="accent">
+    <p>Extra large padding (py-16)</p>
+  </Container>
+</div>`}
+>
+  <div className="space-y-4">
+    <Container variant="default" padding="none" background="accent">
+      <p>No padding (py-0)</p>
+    </Container>
+    <Container variant="default" padding="sm" background="accent">
+      <p>Small padding (py-4)</p>
+    </Container>
+    <Container variant="default" padding="md" background="accent">
+      <p>Medium padding (py-8) - Default</p>
+    </Container>
+    <Container variant="default" padding="lg" background="accent">
+      <p>Large padding (py-12)</p>
+    </Container>
+    <Container variant="default" padding="xl" background="accent">
+      <p>Extra large padding (py-16)</p>
+    </Container>
+  </div>
+</ComponentPreview>
+
+## Background Variants
+
+Choose from multiple background styles to create visual hierarchy and separation.
+
+<ComponentPreview
+  name="Background Options"
+  code={`<div className="space-y-4">
+  <Container variant="default" background="none">
+    <p>Transparent background (default)</p>
+  </Container>
+  <Container variant="default" background="card">
+    <p>Card background - uses design system bg-card token</p>
+  </Container>
+  <Container variant="default" background="accent">
+    <p>Accent background - subtle emphasis</p>
+  </Container>
+  <Container variant="default" background="dark">
+    <p>Dark background with white text</p>
+  </Container>
+</div>`}
+>
+  <div className="space-y-4">
+    <Container variant="default" background="none">
+      <p>Transparent background (default)</p>
+    </Container>
+    <Container variant="default" background="card">
+      <p>Card background - uses design system bg-card token</p>
+    </Container>
+    <Container variant="default" background="accent">
+      <p>Accent background - subtle emphasis</p>
+    </Container>
+    <Container variant="default" background="dark">
+      <p>Dark background with white text</p>
+    </Container>
+  </div>
+</ComponentPreview>
+
+## Full Width Variant
+
+Edge-to-edge containers that span the entire viewport width. Useful for navigation bars, footers, and full-bleed sections.
+
+<ComponentPreview
+  name="Full Width"
+  code={`<Container variant="full" background="dark" padding="lg">
+  <div className="max-w-7xl mx-auto">
+    <h2 className="text-2xl font-bold mb-2">Full Width Section</h2>
+    <p className="text-slate-300">
+      This container spans edge-to-edge. Notice how we can nest a max-width
+      wrapper inside for controlled content width.
+    </p>
+  </div>
+</Container>`}
+>
+  <Container variant="full" background="dark" padding="lg">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-2xl font-bold mb-2">Full Width Section</h2>
+      <p className="text-slate-300">
+        This container spans edge-to-edge. Notice how we can nest a max-width
+        wrapper inside for controlled content width.
+      </p>
+    </div>
+  </Container>
+</ComponentPreview>
+
+## Two-Column Layouts
+
+Create responsive two-column layouts with different ratios. Columns stack vertically on mobile and display side-by-side on desktop.
+
+### Equal Columns (1:1)
+
+Perfect for balanced content like feature comparisons or side-by-side sections.
+
+<ComponentPreview
+  name="Equal Columns"
+  code={`<Container
+  variant="default"
+  columns="1:1"
+  leftColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-xl font-bold mb-4">Left Column</h3>
+      <p className="text-slate-600">
+        This column takes up 50% of the width on desktop screens.
+        Perfect for balanced layouts.
+      </p>
+    </div>
+  }
+  rightColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-xl font-bold mb-4">Right Column</h3>
+      <p className="text-slate-600">
+        This column also takes up 50% of the width, creating a
+        balanced two-column layout.
+      </p>
+    </div>
+  }
+/>`}
+>
+  <Container
+    variant="default"
+    columns="1:1"
+    leftColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-xl font-bold mb-4">Left Column</h3>
+        <p className="text-slate-600">
+          This column takes up 50% of the width on desktop screens.
+          Perfect for balanced layouts.
+        </p>
+      </div>
+    }
+    rightColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-xl font-bold mb-4">Right Column</h3>
+        <p className="text-slate-600">
+          This column also takes up 50% of the width, creating a
+          balanced two-column layout.
+        </p>
+      </div>
+    }
+  />
+</ComponentPreview>
+
+### Narrow Left, Wide Right (1:2)
+
+Ideal for sidebar + content layouts, where the left column is navigation or filters.
+
+<ComponentPreview
+  name="1:2 Ratio"
+  code={`<Container
+  variant="default"
+  columns="1:2"
+  leftColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-lg font-bold mb-4">Sidebar</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="text-slate-600">Navigation Item 1</li>
+        <li className="text-slate-600">Navigation Item 2</li>
+        <li className="text-slate-600">Navigation Item 3</li>
+      </ul>
+    </div>
+  }
+  rightColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-xl font-bold mb-4">Main Content</h3>
+      <p className="text-slate-600 mb-4">
+        This column takes up twice the width of the left column (2/3 of total width).
+        Perfect for content-focused layouts with a sidebar.
+      </p>
+      <p className="text-slate-600">
+        The narrow left column can contain filters, navigation, or supplementary
+        information while the main content gets the emphasis.
+      </p>
+    </div>
+  }
+/>`}
+>
+  <Container
+    variant="default"
+    columns="1:2"
+    leftColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-lg font-bold mb-4">Sidebar</h3>
+        <ul className="space-y-2 text-sm">
+          <li className="text-slate-600">Navigation Item 1</li>
+          <li className="text-slate-600">Navigation Item 2</li>
+          <li className="text-slate-600">Navigation Item 3</li>
+        </ul>
+      </div>
+    }
+    rightColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-xl font-bold mb-4">Main Content</h3>
+        <p className="text-slate-600 mb-4">
+          This column takes up twice the width of the left column (2/3 of total width).
+          Perfect for content-focused layouts with a sidebar.
+        </p>
+        <p className="text-slate-600">
+          The narrow left column can contain filters, navigation, or supplementary
+          information while the main content gets the emphasis.
+        </p>
+      </div>
+    }
+  />
+</ComponentPreview>
+
+### Wide Left, Narrow Right (2:1)
+
+Great for content + complementary information layouts, like articles with related content.
+
+<ComponentPreview
+  name="2:1 Ratio"
+  code={`<Container
+  variant="default"
+  columns="2:1"
+  leftColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-xl font-bold mb-4">Featured Article</h3>
+      <p className="text-slate-600 mb-4">
+        This column takes up twice the width of the right column (2/3 of total width).
+        Perfect for article layouts with supplementary content on the side.
+      </p>
+      <p className="text-slate-600">
+        The main content gets the majority of the space while the smaller right
+        column can show related links, author info, or advertisements.
+      </p>
+    </div>
+  }
+  rightColumn={
+    <div className="p-6 bg-slate-100 rounded-lg">
+      <h3 className="text-lg font-bold mb-4">Related</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="text-slate-600">Related Article 1</li>
+        <li className="text-slate-600">Related Article 2</li>
+        <li className="text-slate-600">Related Article 3</li>
+      </ul>
+    </div>
+  }
+/>`}
+>
+  <Container
+    variant="default"
+    columns="2:1"
+    leftColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-xl font-bold mb-4">Featured Article</h3>
+        <p className="text-slate-600 mb-4">
+          This column takes up twice the width of the right column (2/3 of total width).
+          Perfect for article layouts with supplementary content on the side.
+        </p>
+        <p className="text-slate-600">
+          The main content gets the majority of the space while the smaller right
+          column can show related links, author info, or advertisements.
+        </p>
+      </div>
+    }
+    rightColumn={
+      <div className="p-6 bg-slate-100 rounded-lg">
+        <h3 className="text-lg font-bold mb-4">Related</h3>
+        <ul className="space-y-2 text-sm">
+          <li className="text-slate-600">Related Article 1</li>
+          <li className="text-slate-600">Related Article 2</li>
+          <li className="text-slate-600">Related Article 3</li>
+        </ul>
+      </div>
+    }
+  />
+</ComponentPreview>
+
+## Semantic HTML
+
+Use the `as` prop to render the container as different semantic HTML elements for better accessibility and SEO.
+
+<ComponentPreview
+  name="Semantic Elements"
+  code={`<div className="space-y-4">
+  <Container as="section" variant="default">
+    <p>Rendered as &lt;section&gt;</p>
+  </Container>
+  <Container as="article" variant="narrow">
+    <p>Rendered as &lt;article&gt;</p>
+  </Container>
+  <Container as="main" variant="default">
+    <p>Rendered as &lt;main&gt;</p>
+  </Container>
+</div>`}
+>
+  <div className="space-y-4">
+    <Container as="section" variant="default">
+      <p>Rendered as &lt;section&gt;</p>
+    </Container>
+    <Container as="article" variant="narrow">
+      <p>Rendered as &lt;article&gt;</p>
+    </Container>
+    <Container as="main" variant="default">
+      <p>Rendered as &lt;main&gt;</p>
+    </Container>
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Content to render inside container (used for single-column layouts) |
+| `variant` | `"default" \| "narrow" \| "fullMobile" \| "full"` | `"default"` | Width constraint style |
+| `padding` | `"none" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"` | Vertical padding only (py-*) - horizontal padding is handled by variant |
+| `background` | `"none" \| "card" \| "accent" \| "dark" \| "image"` | `"none"` | Background style |
+| `backgroundImageUrl` | `string` | - | Background image URL (only used when background="image") |
+| `title` | `string` | - | Optional section title rendered with Title component |
+| `description` | `string` | - | Optional section description (rendered as subtitle in Title) |
+| `onClick` | `() => void` | - | Click handler - makes container a button element with keyboard support |
+| `as` | `"div" \| "section" \| "article" \| "main"` | `"div"` | HTML element to render (overridden to "button" when onClick is provided) |
+| `columns` | `"1:1" \| "1:2" \| "2:1"` | - | Two-column layout ratio (requires leftColumn and rightColumn props) |
+| `leftColumn` | `ReactNode` | - | Content for left column (only used when columns is set) |
+| `rightColumn` | `ReactNode` | - | Content for right column (only used when columns is set) |
+| `className` | `string` | - | Additional CSS classes merged with variant styles |
+
+## Variant Details
+
+### Width Constraints
+
+- **default**: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` - Standard dashboard/app layout (1280px max)
+- **narrow**: `max-w-3xl mx-auto px-4 sm:px-6` - Reading-optimized width (768px max)
+- **fullMobile**: `w-full md:max-w-7xl md:mx-auto md:px-8` - Full-width on mobile, constrained on desktop
+- **full**: `w-full` - Always edge-to-edge
+
+### Padding Scale
+
+- **none**: `py-0` - No vertical padding
+- **sm**: `py-4` - 16px vertical padding
+- **md**: `py-8` - 32px vertical padding (default)
+- **lg**: `py-12` - 48px vertical padding
+- **xl**: `py-16` - 64px vertical padding
+
+## Usage Guidelines
+
+### When to Use Each Variant
+
+**default**: Most common use case for app layouts, dashboards, forms, and general content. Provides comfortable reading width while utilizing screen space efficiently.
+
+**narrow**: Blog posts, articles, documentation, and any text-heavy content where readability is the primary concern. Optimal line length improves comprehension.
+
+**fullMobile**: Hero sections, promotional banners, and content that benefits from maximum impact on mobile while remaining manageable on desktop.
+
+**full**: Navigation bars, footers, dividers, and backgrounds that should span the entire viewport. Often combined with nested max-width containers for content.
+
+### When to Use Column Layouts
+
+**1:1 (Equal Columns)**: Feature comparisons, before/after sections, balanced content areas, dual CTAs, or any side-by-side content with equal importance.
+
+**1:2 (Narrow Left, Wide Right)**: Sidebar navigation with main content, filter panel with results, table of contents with article content, or any layout where supplementary information accompanies primary content.
+
+**2:1 (Wide Left, Narrow Right)**: Article with related links, main content with advertisements, featured content with supporting info, or layouts where primary content needs emphasis with secondary context nearby.
+
+All column layouts automatically stack vertically on mobile devices for optimal mobile experience.
+
+### Accessibility
+
+- Uses semantic HTML via the `as` prop for proper document structure
+- When `onClick` is provided, automatically becomes a `<button>` element
+- Includes keyboard support (Enter and Space keys) for clickable containers
+- Supports all standard HTML attributes via props spreading
+- Color contrast is maintained across all background variants
+
+### Best Practices
+
+1. **Nesting**: Avoid nesting containers with the same variant. Outer containers should provide the constraint.
+2. **Background Images**: Use `background="image"` with `backgroundImageUrl` for decorative backgrounds only. For content images, use Next.js Image component.
+3. **Clickable Containers**: Only use `onClick` for entire-section interactions. For specific buttons, use Button components inside the container.
+4. **Padding**: Use the padding prop for vertical spacing. Horizontal padding is automatically handled by variants.
+5. **Title Integration**: Let the Container handle section headers via `title` and `description` props rather than manually adding Title components.
+
+## Performance Notes
+
+**Background Images**: The `background="image"` variant uses CSS `background-image` for simplicity and flexibility. For optimized images with Next.js automatic optimization, use a transparent background container with Next.js `<Image>` components as children instead.

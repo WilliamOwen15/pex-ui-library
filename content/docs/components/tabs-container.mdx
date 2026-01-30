@@ -1,0 +1,851 @@
+---
+title: Tabs Container Component
+description: A flexible tabs system with drag-and-drop reordering, conditional visibility, and visual separators
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { TabsContainer } from "@/components/glide/tabs-container";
+import { User, CreditCard, Settings, Bell, Lock } from "lucide-react";
+
+# Tabs Container Component
+
+A powerful tabs component that extends the standard Radix UI Tabs with drag-and-drop reordering, conditional visibility, icon and badge support, and visual separators between tab triggers. Built for the Glide design system with full accessibility support.
+
+## Basic Usage
+
+The simplest usage with static tabs. Each tab contains a single component or element.
+
+<ComponentPreview
+  name="Basic Tabs Container"
+  code={`<TabsContainer
+  tabs={[
+    {
+      id: 'overview',
+      label: 'Overview',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Overview</h3>
+          <p className="text-slate-600">
+            This is the overview tab content. Use TabsContainer to organize
+            your interface into logical sections.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'details',
+      label: 'Details',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Details</h3>
+          <p className="text-slate-600">
+            Detailed information goes here. Each tab can contain any React component
+            or JSX element.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'settings',
+      label: 'Settings',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Settings</h3>
+          <p className="text-slate-600">
+            Configure your preferences and options in this tab.
+          </p>
+        </div>
+      )
+    }
+  ]}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'overview',
+        label: 'Overview',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Overview</h3>
+            <p className="text-slate-600">
+              This is the overview tab content. Use TabsContainer to organize
+              your interface into logical sections.
+            </p>
+          </div>
+        )
+      },
+      {
+        id: 'details',
+        label: 'Details',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Details</h3>
+            <p className="text-slate-600">
+              Detailed information goes here. Each tab can contain any React component
+              or JSX element.
+            </p>
+          </div>
+        )
+      },
+      {
+        id: 'settings',
+        label: 'Settings',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Settings</h3>
+            <p className="text-slate-600">
+              Configure your preferences and options in this tab.
+            </p>
+          </div>
+        )
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## With Icons and Badges
+
+Add visual context with icons and display notification counts or status indicators with badges.
+
+<ComponentPreview
+  name="Icons and Badges"
+  code={`<TabsContainer
+  tabs={[
+    {
+      id: 'profile',
+      label: 'Profile',
+      icon: <User className="h-4 w-4" />,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Profile Settings</h3>
+          <p className="text-slate-600">Manage your profile information.</p>
+        </div>
+      )
+    },
+    {
+      id: 'billing',
+      label: 'Billing',
+      icon: <CreditCard className="h-4 w-4" />,
+      badge: 3,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Billing & Payments</h3>
+          <p className="text-slate-600">You have 3 pending invoices.</p>
+        </div>
+      )
+    },
+    {
+      id: 'notifications',
+      label: 'Notifications',
+      icon: <Bell className="h-4 w-4" />,
+      badge: 12,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Notification Preferences</h3>
+          <p className="text-slate-600">12 unread notifications.</p>
+        </div>
+      )
+    },
+    {
+      id: 'security',
+      label: 'Security',
+      icon: <Lock className="h-4 w-4" />,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Security Settings</h3>
+          <p className="text-slate-600">Manage your account security.</p>
+        </div>
+      )
+    }
+  ]}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'profile',
+        label: 'Profile',
+        icon: <User className="h-4 w-4" />,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Profile Settings</h3>
+            <p className="text-slate-600">Manage your profile information.</p>
+          </div>
+        )
+      },
+      {
+        id: 'billing',
+        label: 'Billing',
+        icon: <CreditCard className="h-4 w-4" />,
+        badge: 3,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Billing & Payments</h3>
+            <p className="text-slate-600">You have 3 pending invoices.</p>
+          </div>
+        )
+      },
+      {
+        id: 'notifications',
+        label: 'Notifications',
+        icon: <Bell className="h-4 w-4" />,
+        badge: 12,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Notification Preferences</h3>
+            <p className="text-slate-600">12 unread notifications.</p>
+          </div>
+        )
+      },
+      {
+        id: 'security',
+        label: 'Security',
+        icon: <Lock className="h-4 w-4" />,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Security Settings</h3>
+            <p className="text-slate-600">Manage your account security.</p>
+          </div>
+        )
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## With Separators
+
+Add visual separators between tab triggers to create clear boundaries.
+
+<ComponentPreview
+  name="With Separators"
+  code={`<TabsContainer
+  tabs={[
+    {
+      id: 'tab1',
+      label: 'Tab One',
+      content: <div className="py-4">Content for tab one</div>
+    },
+    {
+      id: 'tab2',
+      label: 'Tab Two',
+      content: <div className="py-4">Content for tab two</div>
+    },
+    {
+      id: 'tab3',
+      label: 'Tab Three',
+      content: <div className="py-4">Content for tab three</div>
+    }
+  ]}
+  showSeparators
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'tab1',
+        label: 'Tab One',
+        content: <div className="py-4">Content for tab one</div>
+      },
+      {
+        id: 'tab2',
+        label: 'Tab Two',
+        content: <div className="py-4">Content for tab two</div>
+      },
+      {
+        id: 'tab3',
+        label: 'Tab Three',
+        content: <div className="py-4">Content for tab three</div>
+      }
+    ]}
+    showSeparators
+  />
+</ComponentPreview>
+
+## Line Variant
+
+Use the line variant for a minimal, underline-style tab design.
+
+<ComponentPreview
+  name="Line Variant"
+  code={`<TabsContainer
+  tabs={[
+    { id: 'code', label: 'Code', content: <div className="py-4">Code editor content</div> },
+    { id: 'preview', label: 'Preview', content: <div className="py-4">Preview content</div> },
+    { id: 'console', label: 'Console', content: <div className="py-4">Console output</div> }
+  ]}
+  variant="line"
+  showSeparators
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      { id: 'code', label: 'Code', content: <div className="py-4">Code editor content</div> },
+      { id: 'preview', label: 'Preview', content: <div className="py-4">Preview content</div> },
+      { id: 'console', label: 'Console', content: <div className="py-4">Console output</div> }
+    ]}
+    variant="line"
+    showSeparators
+  />
+</ComponentPreview>
+
+## Conditional Visibility (Boolean)
+
+Hide tabs based on boolean conditions. In this example, the Admin tab is hidden.
+
+<ComponentPreview
+  name="Boolean Visibility"
+  code={`const isAdmin = false;
+
+<TabsContainer
+  tabs={[
+    {
+      id: 'dashboard',
+      label: 'Dashboard',
+      content: <div className="py-4">Dashboard content available to all users</div>,
+      visible: true
+    },
+    {
+      id: 'reports',
+      label: 'Reports',
+      content: <div className="py-4">Reports content</div>,
+      visible: true
+    },
+    {
+      id: 'admin',
+      label: 'Admin',
+      content: <div className="py-4">Admin-only content</div>,
+      visible: isAdmin
+    }
+  ]}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'dashboard',
+        label: 'Dashboard',
+        content: <div className="py-4">Dashboard content available to all users</div>,
+        visible: true
+      },
+      {
+        id: 'reports',
+        label: 'Reports',
+        content: <div className="py-4">Reports content</div>,
+        visible: true
+      },
+      {
+        id: 'admin',
+        label: 'Admin',
+        content: <div className="py-4">Admin-only content</div>,
+        visible: false
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Conditional Visibility (Callback)
+
+Use callback functions for dynamic visibility logic based on context or other tabs.
+
+<ComponentPreview
+  name="Callback Visibility"
+  code={`// Simulated user permissions
+const userPermissions = ['read', 'write'];
+
+const hasPermission = (permission: string) =>
+  userPermissions.includes(permission);
+
+<TabsContainer
+  tabs={[
+    {
+      id: 'view',
+      label: 'View',
+      content: <div className="py-4">View-only content</div>,
+      visible: () => hasPermission('read')
+    },
+    {
+      id: 'edit',
+      label: 'Edit',
+      content: <div className="py-4">Edit content (requires write permission)</div>,
+      visible: () => hasPermission('write')
+    },
+    {
+      id: 'delete',
+      label: 'Delete',
+      content: <div className="py-4">Delete content (requires delete permission)</div>,
+      visible: () => hasPermission('delete')
+    }
+  ]}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'view',
+        label: 'View',
+        content: <div className="py-4">View-only content (visible to all)</div>,
+        visible: true
+      },
+      {
+        id: 'edit',
+        label: 'Edit',
+        content: <div className="py-4">Edit content (visible with write permission)</div>,
+        visible: true
+      },
+      {
+        id: 'delete',
+        label: 'Delete',
+        content: <div className="py-4">Delete content (hidden - no delete permission)</div>,
+        visible: false
+      }
+    ]}
+  />
+</ComponentPreview>
+
+## Drag-and-Drop Reordering
+
+Enable drag-and-drop to let users reorder tabs. Drag tabs with your mouse or use keyboard navigation (Arrow keys + Space).
+
+<ComponentPreview
+  name="Drag and Drop"
+  code={`const [tabs, setTabs] = useState([
+  { id: 'first', label: 'First Tab', content: <div className="py-4">First tab content</div> },
+  { id: 'second', label: 'Second Tab', content: <div className="py-4">Second tab content</div> },
+  { id: 'third', label: 'Third Tab', content: <div className="py-4">Third tab content</div> },
+  { id: 'fourth', label: 'Fourth Tab', content: <div className="py-4">Fourth tab content</div> }
+]);
+
+<TabsContainer
+  tabs={tabs}
+  draggable
+  showSeparators
+  onTabsReorder={(reordered) => {
+    console.log('Tabs reordered:', reordered);
+    setTabs(reordered);
+  }}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      { id: 'first', label: 'First Tab', content: <div className="py-4">First tab content - Try dragging me!</div> },
+      { id: 'second', label: 'Second Tab', content: <div className="py-4">Second tab content - Drag to reorder</div> },
+      { id: 'third', label: 'Third Tab', content: <div className="py-4">Third tab content - Keyboard: Arrow + Space</div> },
+      { id: 'fourth', label: 'Fourth Tab', content: <div className="py-4">Fourth tab content - Works on touch devices too</div> }
+    ]}
+    draggable
+    showSeparators
+  />
+</ComponentPreview>
+
+## Container Styling
+
+Apply container-level styling with background, padding, and width constraints.
+
+<ComponentPreview
+  name="Container Styling"
+  code={`<TabsContainer
+  tabs={[
+    {
+      id: 'home',
+      label: 'Home',
+      icon: <Settings className="h-4 w-4" />,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Home</h3>
+          <p className="text-slate-600">Welcome to your dashboard with card background.</p>
+        </div>
+      )
+    },
+    {
+      id: 'account',
+      label: 'Account',
+      icon: <User className="h-4 w-4" />,
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Account</h3>
+          <p className="text-slate-600">Manage your account settings.</p>
+        </div>
+      )
+    }
+  ]}
+  containerVariant="default"
+  padding="lg"
+  background="card"
+  showSeparators
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'home',
+        label: 'Home',
+        icon: <Settings className="h-4 w-4" />,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Home</h3>
+            <p className="text-slate-600">Welcome to your dashboard with card background.</p>
+          </div>
+        )
+      },
+      {
+        id: 'account',
+        label: 'Account',
+        icon: <User className="h-4 w-4" />,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Account</h3>
+            <p className="text-slate-600">Manage your account settings.</p>
+          </div>
+        )
+      }
+    ]}
+    containerVariant="default"
+    padding="lg"
+    background="card"
+    showSeparators
+  />
+</ComponentPreview>
+
+## Vertical Orientation
+
+Display tabs vertically for sidebar-style navigation.
+
+<ComponentPreview
+  name="Vertical Orientation"
+  code={`<TabsContainer
+  tabs={[
+    {
+      id: 'general',
+      label: 'General',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">General Settings</h3>
+          <p className="text-slate-600">Configure general application settings.</p>
+        </div>
+      )
+    },
+    {
+      id: 'appearance',
+      label: 'Appearance',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Appearance</h3>
+          <p className="text-slate-600">Customize the look and feel.</p>
+        </div>
+      )
+    },
+    {
+      id: 'advanced',
+      label: 'Advanced',
+      content: (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Advanced Options</h3>
+          <p className="text-slate-600">Advanced configuration options.</p>
+        </div>
+      )
+    }
+  ]}
+  orientation="vertical"
+  showSeparators
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'general',
+        label: 'General',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">General Settings</h3>
+            <p className="text-slate-600">Configure general application settings.</p>
+          </div>
+        )
+      },
+      {
+        id: 'appearance',
+        label: 'Appearance',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Appearance</h3>
+            <p className="text-slate-600">Customize the look and feel.</p>
+          </div>
+        )
+      },
+      {
+        id: 'advanced',
+        label: 'Advanced',
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Advanced Options</h3>
+            <p className="text-slate-600">Advanced configuration options.</p>
+          </div>
+        )
+      }
+    ]}
+    orientation="vertical"
+    showSeparators
+  />
+</ComponentPreview>
+
+## Advanced Example
+
+Combining all features: icons, badges, visibility, drag-and-drop, separators, and container styling.
+
+<ComponentPreview
+  name="Advanced Example"
+  code={`const [advancedTabs, setAdvancedTabs] = useState([
+  {
+    id: 'profile',
+    label: 'Profile',
+    icon: <User className="h-4 w-4" />,
+    content: <div className="py-4">Profile settings with icon</div>,
+    visible: true
+  },
+  {
+    id: 'billing',
+    label: 'Billing',
+    icon: <CreditCard className="h-4 w-4" />,
+    badge: 2,
+    content: <div className="py-4">Billing with badge indicator</div>,
+    visible: true
+  },
+  {
+    id: 'notifications',
+    label: 'Notifications',
+    icon: <Bell className="h-4 w-4" />,
+    badge: 5,
+    content: <div className="py-4">Notification preferences</div>,
+    visible: (tab, allTabs) => allTabs.length > 1
+  },
+  {
+    id: 'admin',
+    label: 'Admin',
+    icon: <Lock className="h-4 w-4" />,
+    content: <div className="py-4">Admin panel (hidden for non-admins)</div>,
+    visible: false
+  }
+]);
+
+<TabsContainer
+  tabs={advancedTabs}
+  variant="default"
+  draggable
+  showSeparators
+  containerVariant="default"
+  padding="lg"
+  background="card"
+  onTabsReorder={(reordered) => setAdvancedTabs(reordered)}
+/>`}
+>
+  <TabsContainer
+    tabs={[
+      {
+        id: 'profile',
+        label: 'Profile',
+        icon: <User className="h-4 w-4" />,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Profile Settings</h3>
+            <p className="text-slate-600">All features combined: drag to reorder, icons, and card background.</p>
+          </div>
+        ),
+        visible: true
+      },
+      {
+        id: 'billing',
+        label: 'Billing',
+        icon: <CreditCard className="h-4 w-4" />,
+        badge: 2,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Billing & Payments</h3>
+            <p className="text-slate-600">Badge shows 2 pending items.</p>
+          </div>
+        ),
+        visible: true
+      },
+      {
+        id: 'notifications',
+        label: 'Notifications',
+        icon: <Bell className="h-4 w-4" />,
+        badge: 5,
+        content: (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Notifications</h3>
+            <p className="text-slate-600">Visible with conditional logic (callback function in code example).</p>
+          </div>
+        ),
+        visible: true
+      }
+    ]}
+    variant="default"
+    draggable
+    showSeparators
+    containerVariant="default"
+    padding="lg"
+    background="card"
+  />
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tabs` | `TabItem[]` | **Required** | Array of tab items with id, label, content, and optional metadata |
+| `defaultValue` | `string \| number` | First tab ID | Initially active tab (uncontrolled mode) |
+| `value` | `string \| number` | - | Active tab (controlled mode) |
+| `onValueChange` | `(value: string \| number) => void` | - | Callback when active tab changes |
+| `onTabsReorder` | `(tabs: TabItem[]) => void` | - | Callback when tabs are reordered via drag-and-drop |
+| `variant` | `"default" \| "line"` | `"default"` | Tab trigger style variant |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Tab list orientation |
+| `draggable` | `boolean` | `false` | Enable drag-and-drop reordering |
+| `showSeparators` | `boolean` | `false` | Show visual separators between tab triggers |
+| `separatorClassName` | `string` | - | Custom className for separators |
+| `containerVariant` | `"default" \| "narrow" \| "fullMobile" \| "full"` | `"default"` | Container width constraint |
+| `padding` | `"none" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"` | Vertical padding |
+| `background` | `"none" \| "card" \| "accent" \| "dark"` | `"none"` | Background style |
+| `as` | `"div" \| "section" \| "article"` | `"div"` | HTML element to render |
+| `className` | `string` | - | Additional CSS classes |
+
+### TabItem Interface
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `string \| number` | Unique identifier for the tab |
+| `label` | `string` | Display text for tab trigger |
+| `content` | `React.ReactNode` | Tab content to display |
+| `icon` | `React.ReactNode` | Optional icon (displayed before label) |
+| `badge` | `string \| number` | Optional badge count or text |
+| `disabled` | `boolean` | Disable tab interaction and drag |
+| `visible` | `boolean \| ((tab: TabItem, allTabs: TabItem[]) => boolean)` | Visibility condition (boolean or callback) |
+| `ariaLabel` | `string` | Custom ARIA label for accessibility |
+
+## Variant Details
+
+### Tab Variants
+
+- **default**: Tabs with subtle background (muted style)
+- **line**: Minimal tabs with underline indicator
+
+### Container Variants
+
+- **default**: Standard max-width constraint (1280px)
+- **narrow**: Reading-optimized width (768px)
+- **fullMobile**: Edge-to-edge on mobile, constrained on desktop
+- **full**: Always full width
+
+### Padding Scale
+
+- **none**: No vertical padding
+- **sm**: 16px vertical padding
+- **md**: 32px vertical padding (default)
+- **lg**: 48px vertical padding
+- **xl**: 64px vertical padding
+
+## Usage Guidelines
+
+### When to Use TabsContainer vs Tabs
+
+**Use TabsContainer when:**
+- You need drag-and-drop reordering
+- Tabs should be conditionally visible
+- You want icons and badges on tabs
+- You need visual separators between tabs
+- You want container-level styling control
+
+**Use standard Tabs when:**
+- You have a simple, static tab layout
+- You need maximum flexibility with custom markup
+- You don't need the enhanced features
+
+### Visibility Logic Best Practices
+
+1. **Boolean Visibility**: Use for simple show/hide based on flags
+   ```tsx
+   visible: isAdmin
+   ```
+
+2. **Callback Visibility**: Use for complex logic
+   ```tsx
+   visible: (tab, allTabs) => userHasPermission(tab.id)
+   ```
+
+3. **Always Provide Fallback**: If all tabs might be hidden, show an empty state
+
+### Drag-and-Drop UX Patterns
+
+- Enable `draggable` only when users benefit from custom ordering
+- Combine with `onTabsReorder` to persist tab order
+- Use visual separators with draggable tabs for clearer boundaries
+- Disabled tabs cannot be dragged
+
+### Performance Considerations
+
+- Visibility callbacks are memoized and only re-evaluated when `tabs` changes
+- Tab content is unmounted when tab is hidden (not just hidden with CSS)
+- Drag-and-drop uses requestAnimationFrame for smooth animations
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Tab**: Focus into tabs, move focus within tab content
+- **Arrow Keys**: Navigate between tab triggers
+- **Enter/Space**: Activate focused tab (or initiate drag when draggable)
+- **Escape**: Cancel drag operation
+
+### Screen Reader Support
+
+- All tabs have proper ARIA labels and roles
+- Tab state changes are announced
+- Drag-and-drop operations are announced
+- Custom `ariaLabel` prop for descriptive labels
+
+### Focus Management
+
+- Focus is maintained during drag operations
+- Focus moves to first visible tab if active tab becomes hidden
+- Focus indicators are clearly visible
+
+## Best Practices
+
+1. **Tab Count**: Keep to 3-7 visible tabs for optimal usability. Use visibility conditions to hide less-used tabs.
+
+2. **Content Length**: Each tab's content should be self-contained. Avoid excessive scrolling within tabs.
+
+3. **Drag-and-Drop**: Only enable when users need custom ordering. Most interfaces work fine with static tab order.
+
+4. **Icons**: Use icons to reinforce tab meaning, not as the sole identifier. Always include text labels.
+
+5. **Badges**: Use for counts (notifications, items) or status indicators. Keep badge text short (1-3 characters).
+
+6. **Visibility**: Hidden tabs are removed from the DOM. Don't rely on hidden tab content being rendered.
+
+7. **Separators**: Use sparingly. They work best with the default variant and when you have 4+ tabs.
+
+8. **Controlled vs Uncontrolled**: Use controlled mode (`value` + `onValueChange`) when tab state is managed externally. Use uncontrolled mode (`defaultValue`) for simpler cases.
+
+## Migration from Standard Tabs
+
+```tsx
+// Before (standard Tabs)
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+</Tabs>
+
+// After (TabsContainer)
+<TabsContainer
+  tabs={[
+    { id: 'tab1', label: 'Tab 1', content: <div>Content 1</div> },
+    { id: 'tab2', label: 'Tab 2', content: <div>Content 2</div> }
+  ]}
+/>
+```
+
+The TabsContainer simplifies the API while adding powerful features. The standard Tabs component remains available for maximum flexibility.

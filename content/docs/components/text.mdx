@@ -1,0 +1,668 @@
+---
+title: Text Component
+description: A versatile typography component with variants for all text styling needs
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Text } from "@/components/glide/text";
+
+# Text Component
+
+A foundational typography component that provides comprehensive text styling control. Supports semantic HTML rendering, preset variants based on shadcn/ui patterns, and extensive customization options for size, weight, alignment, color, and text transformations.
+
+## Basic Usage
+
+The simplest usage with default paragraph styling. The component renders a `<p>` element by default.
+
+<ComponentPreview
+  name="Basic Paragraph"
+  code={`<Text variant="p">
+  This is a standard paragraph with proper line height and spacing. The Text
+  component handles all typography needs with a clean, consistent API.
+</Text>`}
+>
+  <Text variant="p">
+    This is a standard paragraph with proper line height and spacing. The Text
+    component handles all typography needs with a clean, consistent API.
+  </Text>
+</ComponentPreview>
+
+## Heading Variants
+
+Preset heading styles inspired by shadcn/ui. By default, heading variants render the corresponding semantic HTML element (h1, h2, h3, h4).
+
+<ComponentPreview
+  name="All Headings"
+  code={`<div className="space-y-4">
+  <Text variant="h1">
+    Heading 1 - Extra Bold Large
+  </Text>
+  <Text variant="h2">
+    Heading 2 - With Bottom Border
+  </Text>
+  <Text variant="h3">
+    Heading 3 - Semibold Medium
+  </Text>
+  <Text variant="h4">
+    Heading 4 - Semibold Small
+  </Text>
+</div>`}
+>
+  <div className="space-y-4">
+    <Text variant="h1">
+      Heading 1 - Extra Bold Large
+    </Text>
+    <Text variant="h2">
+      Heading 2 - With Bottom Border
+    </Text>
+    <Text variant="h3">
+      Heading 3 - Semibold Medium
+    </Text>
+    <Text variant="h4">
+      Heading 4 - Semibold Small
+    </Text>
+  </div>
+</ComponentPreview>
+
+## Text Variants
+
+Additional preset variants for common text styling patterns.
+
+<ComponentPreview
+  name="Text Variants"
+  code={`<div className="space-y-4">
+  <Text variant="lead">
+    Lead text - Larger body text in muted color for introductions
+  </Text>
+  <Text variant="large">
+    Large text - Emphasized text with semibold weight
+  </Text>
+  <Text variant="p">
+    Paragraph - Standard body text with optimal line height
+  </Text>
+  <Text variant="small">
+    Small text - Compact text for labels and secondary info
+  </Text>
+  <Text variant="muted">
+    Muted text - Deemphasized content in subdued color
+  </Text>
+  <Text variant="code">npm install @glide/ui</Text>
+</div>`}
+>
+  <div className="space-y-4">
+    <Text variant="lead">
+      Lead text - Larger body text in muted color for introductions
+    </Text>
+    <Text variant="large">
+      Large text - Emphasized text with semibold weight
+    </Text>
+    <Text variant="p">
+      Paragraph - Standard body text with optimal line height
+    </Text>
+    <Text variant="small">
+      Small text - Compact text for labels and secondary info
+    </Text>
+    <Text variant="muted">
+      Muted text - Deemphasized content in subdued color
+    </Text>
+    <Text variant="code">npm install @glide/ui</Text>
+  </div>
+</ComponentPreview>
+
+## Size Control
+
+Override the default size of any variant with the `size` prop. Useful when you want heading-style formatting at a different size.
+
+<ComponentPreview
+  name="Size Variants"
+  code={`<div className="space-y-3">
+  <Text size="xs">Extra Small (xs) - 12px</Text>
+  <Text size="sm">Small (sm) - 14px</Text>
+  <Text size="base">Base (base) - 16px</Text>
+  <Text size="lg">Large (lg) - 18px</Text>
+  <Text size="xl">Extra Large (xl) - 20px</Text>
+  <Text size="2xl">2X Large (2xl) - 24px</Text>
+  <Text size="3xl">3X Large (3xl) - 30px</Text>
+  <Text size="4xl">4X Large (4xl) - 36px</Text>
+</div>`}
+>
+  <div className="space-y-3">
+    <Text size="xs">Extra Small (xs) - 12px</Text>
+    <Text size="sm">Small (sm) - 14px</Text>
+    <Text size="base">Base (base) - 16px</Text>
+    <Text size="lg">Large (lg) - 18px</Text>
+    <Text size="xl">Extra Large (xl) - 20px</Text>
+    <Text size="2xl">2X Large (2xl) - 24px</Text>
+    <Text size="3xl">3X Large (3xl) - 30px</Text>
+    <Text size="4xl">4X Large (4xl) - 36px</Text>
+  </div>
+</ComponentPreview>
+
+## Weight Variants
+
+Control font weight for emphasis and hierarchy.
+
+<ComponentPreview
+  name="Font Weights"
+  code={`<div className="space-y-2">
+  <Text weight="light">Light (300)</Text>
+  <Text weight="normal">Normal (400)</Text>
+  <Text weight="medium">Medium (500)</Text>
+  <Text weight="semibold">Semibold (600)</Text>
+  <Text weight="bold">Bold (700)</Text>
+  <Text weight="extrabold">Extra Bold (800)</Text>
+</div>`}
+>
+  <div className="space-y-2">
+    <Text weight="light">Light (300)</Text>
+    <Text weight="normal">Normal (400)</Text>
+    <Text weight="medium">Medium (500)</Text>
+    <Text weight="semibold">Semibold (600)</Text>
+    <Text weight="bold">Bold (700)</Text>
+    <Text weight="extrabold">Extra Bold (800)</Text>
+  </div>
+</ComponentPreview>
+
+## Alignment
+
+Control text alignment with the `align` prop.
+
+<ComponentPreview
+  name="Text Alignment"
+  code={`<div className="space-y-4">
+  <Text align="left">
+    Left aligned text - Default alignment for most content
+  </Text>
+  <Text align="center">
+    Center aligned text - Great for headings and callouts
+  </Text>
+  <Text align="right">
+    Right aligned text - Useful for metadata and timestamps
+  </Text>
+  <Text align="justify">
+    Justified text - Distributes text evenly across the line width. Best for
+    longer paragraphs where a clean edge is desired on both sides.
+  </Text>
+</div>`}
+>
+  <div className="space-y-4">
+    <Text align="left">
+      Left aligned text - Default alignment for most content
+    </Text>
+    <Text align="center">
+      Center aligned text - Great for headings and callouts
+    </Text>
+    <Text align="right">
+      Right aligned text - Useful for metadata and timestamps
+    </Text>
+    <Text align="justify">
+      Justified text - Distributes text evenly across the line width. Best for
+      longer paragraphs where a clean edge is desired on both sides.
+    </Text>
+  </div>
+</ComponentPreview>
+
+## Color Variants
+
+Semantic color options that work with your theme. All colors maintain proper contrast ratios and support dark mode.
+
+<ComponentPreview
+  name="Color Options"
+  code={`<div className="space-y-2">
+  <Text color="default">Default - Standard foreground color</Text>
+  <Text color="muted">Muted - Subdued for secondary content</Text>
+  <Text color="primary">Primary - Brand color emphasis</Text>
+  <Text color="destructive">Destructive - Errors and warnings</Text>
+  <Text color="success">Success - Positive states and confirmations</Text>
+  <Text color="warning">Warning - Caution and important notices</Text>
+</div>`}
+>
+  <div className="space-y-2">
+    <Text color="default">Default - Standard foreground color</Text>
+    <Text color="muted">Muted - Subdued for secondary content</Text>
+    <Text color="primary">Primary - Brand color emphasis</Text>
+    <Text color="destructive">Destructive - Errors and warnings</Text>
+    <Text color="success">Success - Positive states and confirmations</Text>
+    <Text color="warning">Warning - Caution and important notices</Text>
+  </div>
+</ComponentPreview>
+
+## Text Transform
+
+Control text capitalization with the `transform` prop.
+
+<ComponentPreview
+  name="Text Transform"
+  code={`<div className="space-y-2">
+  <Text transform="none">No transformation applied</Text>
+  <Text transform="uppercase">Uppercase transformation</Text>
+  <Text transform="lowercase">LOWERCASE TRANSFORMATION</Text>
+  <Text transform="capitalize">capitalize each word</Text>
+</div>`}
+>
+  <div className="space-y-2">
+    <Text transform="none">No transformation applied</Text>
+    <Text transform="uppercase">Uppercase transformation</Text>
+    <Text transform="lowercase">LOWERCASE TRANSFORMATION</Text>
+    <Text transform="capitalize">capitalize each word</Text>
+  </div>
+</ComponentPreview>
+
+## Truncation
+
+Control text overflow with single-line truncation or multi-line clamping.
+
+### Single Line Truncation
+
+<ComponentPreview
+  name="Single Line"
+  code={`<div className="max-w-xs">
+  <Text truncate>
+    This is a very long piece of text that will be truncated with an ellipsis
+    when it exceeds the width of its container. Perfect for card titles and
+    list items with limited space.
+  </Text>
+</div>`}
+>
+  <div className="max-w-xs">
+    <Text truncate>
+      This is a very long piece of text that will be truncated with an ellipsis
+      when it exceeds the width of its container. Perfect for card titles and
+      list items with limited space.
+    </Text>
+  </div>
+</ComponentPreview>
+
+### Multi-Line Clamping
+
+<ComponentPreview
+  name="Line Clamping"
+  code={`<div className="space-y-4 max-w-md">
+  <div>
+    <Text variant="small" weight="semibold" className="mb-1">
+      2 Line Clamp
+    </Text>
+    <Text clamp={2}>
+      This paragraph will be clamped to exactly 2 lines. Any content that
+      extends beyond the second line will be hidden with an ellipsis. This is
+      extremely useful for card descriptions, preview text, and anywhere you
+      need consistent height.
+    </Text>
+  </div>
+  <div>
+    <Text variant="small" weight="semibold" className="mb-1">
+      3 Line Clamp
+    </Text>
+    <Text clamp={3}>
+      This paragraph demonstrates 3-line clamping. You can clamp text to any
+      number from 1 to 6 lines. The component uses Tailwind's line-clamp
+      utilities under the hood, which provide excellent browser support and
+      performance. This is perfect for maintaining consistent card layouts.
+    </Text>
+  </div>
+</div>`}
+>
+  <div className="space-y-4 max-w-md">
+    <div>
+      <Text variant="small" weight="semibold" className="mb-1">
+        2 Line Clamp
+      </Text>
+      <Text clamp={2}>
+        This paragraph will be clamped to exactly 2 lines. Any content that
+        extends beyond the second line will be hidden with an ellipsis. This is
+        extremely useful for card descriptions, preview text, and anywhere you
+        need consistent height.
+      </Text>
+    </div>
+    <div>
+      <Text variant="small" weight="semibold" className="mb-1">
+        3 Line Clamp
+      </Text>
+      <Text clamp={3}>
+        This paragraph demonstrates 3-line clamping. You can clamp text to any
+        number from 1 to 6 lines. The component uses Tailwind's line-clamp
+        utilities under the hood, which provide excellent browser support and
+        performance. This is perfect for maintaining consistent card layouts.
+      </Text>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Semantic HTML
+
+Use the `as` prop to control which HTML element is rendered. This is crucial for maintaining proper document structure and accessibility.
+
+<ComponentPreview
+  name="Semantic Elements"
+  code={`<div className="space-y-4">
+  <Text variant="h1" as="h1">
+    Page Title (renders as h1)
+  </Text>
+  <Text variant="h2" as="h2">
+    Section Heading (renders as h2)
+  </Text>
+  <Text variant="h1" as="p">
+    Styled like h1 but renders as p - useful when you need the visual style
+    but want to maintain proper heading hierarchy
+  </Text>
+  <Text as="label" variant="small" weight="medium">
+    Form Label (renders as label)
+  </Text>
+</div>`}
+>
+  <div className="space-y-4">
+    <Text variant="h1" as="h1">
+      Page Title (renders as h1)
+    </Text>
+    <Text variant="h2" as="h2">
+      Section Heading (renders as h2)
+    </Text>
+    <Text variant="h1" as="p">
+      Styled like h1 but renders as p - useful when you need the visual style
+      but want to maintain proper heading hierarchy
+    </Text>
+    <Text as="label" variant="small" weight="medium">
+      Form Label (renders as label)
+    </Text>
+  </div>
+</ComponentPreview>
+
+## Composition Examples
+
+Real-world patterns showing how to use the Text component in common UI scenarios.
+
+### Card with Title and Description
+
+<ComponentPreview
+  name="Product Card"
+  code={`<div className="max-w-sm p-6 bg-card rounded-lg border">
+  <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+  <Text variant="h3" weight="bold" className="mb-2">
+    Premium Headphones
+  </Text>
+  <Text variant="small" color="muted" clamp={2} className="mb-4">
+    Experience crystal-clear audio with active noise cancellation and up to
+    30 hours of battery life. Perfect for music lovers and professionals.
+  </Text>
+  <div className="flex items-center justify-between">
+    <Text variant="large" weight="bold">$299</Text>
+    <Text variant="small" color="success" weight="semibold">In Stock</Text>
+  </div>
+</div>`}
+>
+  <div className="max-w-sm p-6 bg-card rounded-lg border">
+    <div className="h-40 bg-slate-200 rounded-lg mb-4" />
+    <Text variant="h3" weight="bold" className="mb-2">
+      Premium Headphones
+    </Text>
+    <Text variant="small" color="muted" clamp={2} className="mb-4">
+      Experience crystal-clear audio with active noise cancellation and up to
+      30 hours of battery life. Perfect for music lovers and professionals.
+    </Text>
+    <div className="flex items-center justify-between">
+      <Text variant="large" weight="bold">$299</Text>
+      <Text variant="small" color="success" weight="semibold">In Stock</Text>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Form with Labels and Helper Text
+
+<ComponentPreview
+  name="Form Fields"
+  code={`<div className="space-y-4 max-w-md">
+  <div>
+    <Text as="label" variant="small" weight="medium" className="mb-2 block">
+      Email Address
+    </Text>
+    <input
+      type="email"
+      className="w-full px-3 py-2 border rounded-lg"
+      placeholder="you@example.com"
+    />
+    <Text variant="small" color="muted" className="mt-1">
+      We'll never share your email with anyone else.
+    </Text>
+  </div>
+  <div>
+    <Text as="label" variant="small" weight="medium" className="mb-2 block">
+      Password
+    </Text>
+    <input
+      type="password"
+      className="w-full px-3 py-2 border rounded-lg"
+    />
+    <Text variant="small" color="destructive" className="mt-1">
+      Password must be at least 8 characters.
+    </Text>
+  </div>
+</div>`}
+>
+  <div className="space-y-4 max-w-md">
+    <div>
+      <Text as="label" variant="small" weight="medium" className="mb-2 block">
+        Email Address
+      </Text>
+      <input
+        type="email"
+        className="w-full px-3 py-2 border rounded-lg"
+        placeholder="you@example.com"
+      />
+      <Text variant="small" color="muted" className="mt-1">
+        We'll never share your email with anyone else.
+      </Text>
+    </div>
+    <div>
+      <Text as="label" variant="small" weight="medium" className="mb-2 block">
+        Password
+      </Text>
+      <input
+        type="password"
+        className="w-full px-3 py-2 border rounded-lg"
+      />
+      <Text variant="small" color="destructive" className="mt-1">
+        Password must be at least 8 characters.
+      </Text>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Status Badges
+
+<ComponentPreview
+  name="Status Indicators"
+  code={`<div className="flex gap-2">
+  <div className="px-3 py-1 bg-green-100 rounded-full">
+    <Text variant="small" color="success" weight="semibold">
+      Active
+    </Text>
+  </div>
+  <div className="px-3 py-1 bg-amber-100 rounded-full">
+    <Text variant="small" color="warning" weight="semibold">
+      Pending
+    </Text>
+  </div>
+  <div className="px-3 py-1 bg-red-100 rounded-full">
+    <Text variant="small" color="destructive" weight="semibold">
+      Inactive
+    </Text>
+  </div>
+</div>`}
+>
+  <div className="flex gap-2">
+    <div className="px-3 py-1 bg-green-100 rounded-full">
+      <Text variant="small" color="success" weight="semibold">
+        Active
+      </Text>
+    </div>
+    <div className="px-3 py-1 bg-amber-100 rounded-full">
+      <Text variant="small" color="warning" weight="semibold">
+        Pending
+      </Text>
+    </div>
+    <div className="px-3 py-1 bg-red-100 rounded-full">
+      <Text variant="small" color="destructive" weight="semibold">
+        Inactive
+      </Text>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Article Header
+
+<ComponentPreview
+  name="Blog Post Header"
+  code={`<div className="max-w-2xl">
+  <Text variant="small" color="primary" weight="semibold" transform="uppercase" className="mb-2">
+    Technology
+  </Text>
+  <Text variant="h1" as="h1" className="mb-4">
+    The Future of Web Development
+  </Text>
+  <Text variant="lead" className="mb-6">
+    Exploring the latest trends and technologies shaping how we build for the web in 2026.
+  </Text>
+  <div className="flex items-center gap-4">
+    <Text variant="small" weight="medium">By John Doe</Text>
+    <Text variant="small" color="muted">•</Text>
+    <Text variant="small" color="muted">Jan 30, 2026</Text>
+    <Text variant="small" color="muted">•</Text>
+    <Text variant="small" color="muted">5 min read</Text>
+  </div>
+</div>`}
+>
+  <div className="max-w-2xl">
+    <Text variant="small" color="primary" weight="semibold" transform="uppercase" className="mb-2">
+      Technology
+    </Text>
+    <Text variant="h1" as="h1" className="mb-4">
+      The Future of Web Development
+    </Text>
+    <Text variant="lead" className="mb-6">
+      Exploring the latest trends and technologies shaping how we build for the web in 2026.
+    </Text>
+    <div className="flex items-center gap-4">
+      <Text variant="small" weight="medium">By John Doe</Text>
+      <Text variant="small" color="muted">•</Text>
+      <Text variant="small" color="muted">Jan 30, 2026</Text>
+      <Text variant="small" color="muted">•</Text>
+      <Text variant="small" color="muted">5 min read</Text>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Text content to render |
+| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "p" \| "span" \| "div" \| "label" \| "code"` | Auto | HTML element to render. Defaults based on variant (h1→h1, h2→h2, small→span, etc.) |
+| `variant` | `"h1" \| "h2" \| "h3" \| "h4" \| "p" \| "lead" \| "large" \| "small" \| "muted" \| "code"` | `"p"` | Preset typography style from shadcn/ui patterns |
+| `size` | `"xs" \| "sm" \| "base" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | - | Override text size (12px to 36px) |
+| `weight` | `"light" \| "normal" \| "medium" \| "semibold" \| "bold" \| "extrabold"` | - | Font weight (300 to 800) |
+| `align` | `"left" \| "center" \| "right" \| "justify"` | `"left"` | Text alignment |
+| `color` | `"default" \| "muted" \| "primary" \| "destructive" \| "success" \| "warning"` | `"default"` | Semantic color variant |
+| `transform` | `"none" \| "uppercase" \| "lowercase" \| "capitalize"` | `"none"` | Text capitalization |
+| `truncate` | `boolean` | `false` | Single-line truncation with ellipsis |
+| `clamp` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | - | Multi-line truncation (takes precedence over truncate) |
+| `className` | `string` | - | Additional CSS classes merged with variant styles |
+
+## Variant Details
+
+### Preset Variants
+
+- **h1**: `scroll-m-20 text-4xl font-extrabold tracking-tight` - Largest heading
+- **h2**: `scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight` - Secondary heading with border
+- **h3**: `scroll-m-20 text-2xl font-semibold tracking-tight` - Tertiary heading
+- **h4**: `scroll-m-20 text-xl font-semibold tracking-tight` - Smallest heading
+- **p**: `leading-7` - Body paragraph with optimal line height
+- **lead**: `text-xl text-muted-foreground` - Introductory text
+- **large**: `text-lg font-semibold` - Emphasized text
+- **small**: `text-sm font-medium leading-none` - Compact text
+- **muted**: `text-sm text-muted-foreground` - Deemphasized text
+- **code**: `relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold` - Inline code
+
+## Usage Guidelines
+
+### When to Use Each Variant
+
+**h1-h4**: Page titles, section headings, and content hierarchy. Always maintain proper heading order (h1 → h2 → h3 → h4) for accessibility. Use the `as` prop to override rendering when you need h1 styling but it's not semantically an h1.
+
+**p**: Standard body text, descriptions, and content paragraphs. The default variant for most text content.
+
+**lead**: Opening paragraphs, introductions, and callouts that need more emphasis than regular body text.
+
+**large**: Emphasized statements, important information, or when you need slightly larger text without full heading weight.
+
+**small**: Labels, captions, metadata, helper text, and any secondary information that should be compact.
+
+**muted**: Timestamps, supporting details, placeholder text, and any content that should be visually deemphasized.
+
+**code**: Inline code snippets, commands, file names, and technical terms that need monospace styling.
+
+### Combining Props
+
+Props can be combined for precise control. When props conflict with variant styles, the explicit prop takes precedence:
+
+```tsx
+{/* Heading style but smaller size */}
+<Text variant="h1" size="lg">Custom Sized Heading</Text>
+
+{/* Small text but bold weight */}
+<Text variant="small" weight="bold">Bold Label</Text>
+
+{/* Muted color with different size */}
+<Text variant="muted" size="base">Larger Muted Text</Text>
+```
+
+### Accessibility
+
+**Heading Hierarchy**: Always use headings in order (h1 → h2 → h3 → h4). Never skip levels. Use the `as` prop when you need h1 styling but it's not semantically correct:
+
+```tsx
+<Text variant="h1" as="h1">Page Title</Text>
+<Text variant="h2" as="h2">Section</Text>
+<Text variant="h1" as="p">Styled like h1 but not a heading</Text>
+```
+
+**Color Contrast**: All color variants maintain WCAG AA contrast ratios (4.5:1 for normal text, 3:1 for large text). The `muted` color variant may not meet contrast requirements for essential content.
+
+**Form Labels**: Always use the `<label>` element for form inputs with proper `htmlFor` attributes:
+
+```tsx
+<Text as="label" variant="small" htmlFor="email">
+  Email Address
+</Text>
+<input id="email" type="email" />
+```
+
+**Reading Length**: For optimal readability, keep line length between 50-75 characters. Use the Container component's `narrow` variant for text-heavy content.
+
+### Best Practices
+
+1. **Semantic HTML First**: Choose the `as` prop based on document structure, not visual appearance. Let the `variant` prop handle styling.
+
+2. **Consistent Hierarchy**: Maintain consistent visual hierarchy throughout your application. Don't mix h1 styling for multiple different purposes.
+
+3. **Avoid Over-Customization**: Use preset variants when possible. They're designed to work together as a system.
+
+4. **Truncation**: Test truncated text at various viewport sizes. Ensure critical information isn't hidden by truncation.
+
+5. **Responsive Typography**: For responsive text sizes, use Tailwind responsive prefixes in className rather than JavaScript:
+   ```tsx
+   <Text className="text-base md:text-lg lg:text-xl">
+     Responsive Text
+   </Text>
+   ```
+
+6. **Performance**: The Text component is pure CSS with no runtime overhead. All styling is compiled at build time.
+
+## Performance Notes
+
+**Zero Runtime Overhead**: All styling is compiled to CSS classes at build time. No JavaScript runs when the component renders.
+
+**CSS-Only Truncation**: Truncation uses pure CSS (`text-overflow` and `line-clamp`), not JavaScript measurement or manipulation.
+
+**Tree-Shaking**: Unused variants are removed during build optimization. Only the classes you use end up in your final bundle.
+
+**Polymorphic Typing**: TypeScript fully types the component based on the `as` prop, providing autocomplete for element-specific attributes with no runtime cost.

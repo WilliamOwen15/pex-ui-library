@@ -1,11 +1,24 @@
-import { Grid3x3, LayoutGrid, List, Table, TypeIcon } from "lucide-react";
+import {
+  ALargeSmall,
+  ArrowUpDown,
+  Box,
+  Grid3x3,
+  Layers,
+  LayoutGrid,
+  List,
+  Minus,
+  Table,
+  TypeIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="mx-auto max-w-5xl px-6 py-16">
-        <h1 className="mb-12 font-bold text-4xl">Exodus UI Library</h1>
+        <h1 className="mb-12 font-bold text-4xl">
+          Project Exodus Component Library
+        </h1>
 
         <div className="grid gap-4 md:grid-cols-2">
           <Link
@@ -18,6 +31,76 @@ export default function HomePage() {
             </div>
             <p className="text-muted-foreground text-sm">
               Versatile title component with multiple variants
+            </p>
+          </Link>
+
+          <Link
+            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:bg-accent"
+            href="/docs/components/container"
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <Box className="size-5" />
+              <h2 className="font-semibold text-lg">Container</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Flexible layout container with responsive width constraints,
+              padding, and two-column layouts
+            </p>
+          </Link>
+
+          <Link
+            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:bg-accent"
+            href="/docs/components/text"
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <ALargeSmall className="size-5" />
+              <h2 className="font-semibold text-lg">Text</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Versatile typography component with variants for all text styling
+              needs
+            </p>
+          </Link>
+
+          <Link
+            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:bg-accent"
+            href="/docs/components/tabs-container"
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <Layers className="size-5" />
+              <h2 className="font-semibold text-lg">Tabs Container</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Tabbed interface with drag-and-drop reordering, conditional
+              visibility, icons, badges, and visual separators
+            </p>
+          </Link>
+
+          <Link
+            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:bg-accent"
+            href="/docs/components/separator"
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <Minus className="size-5" />
+              <h2 className="font-semibold text-lg">Separator</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Visual divider for separating content sections with horizontal or
+              vertical orientation
+            </p>
+          </Link>
+
+          <Link
+            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:bg-accent"
+            href="/docs/components/spacer"
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <ArrowUpDown className="size-5" />
+              <h2 className="font-semibold text-lg">Spacer</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Flexible spacing utility component with responsive sizing for
+              controlling whitespace between elements
             </p>
           </Link>
 
