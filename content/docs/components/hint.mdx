@@ -1,0 +1,203 @@
+---
+title: Hint
+description: A component to highlight important text on the screen with different mood variants and optional icons.
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Hint } from "@/components/ui/hint";
+import { Info, CheckCircle2, AlertTriangle, XCircle, Lightbulb } from "lucide-react";
+
+A component to highlight important text on the screen. It supports multiple mood variants and can include an optional icon to enhance the visual hierarchy.
+
+## Basic Usage
+
+A simple hint without an icon:
+
+<ComponentPreview
+  name="Basic Hint"
+  code={`<Hint>
+  This is a default hint message that provides helpful information to users.
+</Hint>`}
+>
+  <Hint>
+    This is a default hint message that provides helpful information to users.
+  </Hint>
+</ComponentPreview>
+
+## With Icon
+
+Add an icon to make the hint more visually prominent:
+
+<ComponentPreview
+  name="Hint with Icon"
+  code={`import { Hint } from "@/components/ui/hint";
+import { Info } from "lucide-react";
+
+<Hint icon={<Info />}>
+  This hint includes an icon to draw attention to important information.
+</Hint>`}
+>
+  <Hint icon={<Info />}>
+    This hint includes an icon to draw attention to important information.
+  </Hint>
+</ComponentPreview>
+
+## Variants
+
+The Hint component supports five mood variants to convey different types of messages.
+
+### Default
+
+<ComponentPreview
+  name="Default Variant"
+  code={`<Hint variant="default" icon={<Lightbulb />}>
+  This is the default variant, suitable for general information and tips.
+</Hint>`}
+>
+  <Hint icon={<Lightbulb />}>
+    This is the default variant, suitable for general information and tips.
+  </Hint>
+</ComponentPreview>
+
+### Neutral
+
+<ComponentPreview
+  name="Neutral Variant"
+  code={`<Hint variant="neutral" icon={<Info />}>
+  The neutral variant provides a slightly more prominent appearance for standard informational messages.
+</Hint>`}
+>
+  <Hint variant="neutral" icon={<Info />}>
+    The neutral variant provides a slightly more prominent appearance for standard informational messages.
+  </Hint>
+</ComponentPreview>
+
+### Success
+
+<ComponentPreview
+  name="Success Variant"
+  code={`<Hint variant="success" icon={<CheckCircle2 />}>
+  The success variant indicates a positive outcome or confirmation message.
+</Hint>`}
+>
+  <Hint variant="success" icon={<CheckCircle2 />}>
+    The success variant indicates a positive outcome or confirmation message.
+  </Hint>
+</ComponentPreview>
+
+### Warning
+
+<ComponentPreview
+  name="Warning Variant"
+  code={`<Hint variant="warning" icon={<AlertTriangle />}>
+  The warning variant alerts users to important information that requires attention but is not critical.
+</Hint>`}
+>
+  <Hint variant="warning" icon={<AlertTriangle />}>
+    The warning variant alerts users to important information that requires attention but is not critical.
+  </Hint>
+</ComponentPreview>
+
+### Danger
+
+<ComponentPreview
+  name="Danger Variant"
+  code={`<Hint variant="danger" icon={<XCircle />}>
+  The danger variant communicates errors or critical information that requires immediate attention.
+</Hint>`}
+>
+  <Hint variant="danger" icon={<XCircle />}>
+    The danger variant communicates errors or critical information that requires immediate attention.
+  </Hint>
+</ComponentPreview>
+
+## All Variants Comparison
+
+<ComponentPreview name="All Variants">
+  <div className="space-y-4">
+    <Hint variant="default" icon={<Lightbulb />}>
+      Default: General information and helpful tips.
+    </Hint>
+    <Hint variant="neutral" icon={<Info />}>
+      Neutral: Standard informational messages.
+    </Hint>
+    <Hint variant="success" icon={<CheckCircle2 />}>
+      Success: Positive outcomes and confirmations.
+    </Hint>
+    <Hint variant="warning" icon={<AlertTriangle />}>
+      Warning: Important information requiring attention.
+    </Hint>
+    <Hint variant="danger" icon={<XCircle />}>
+      Danger: Errors or critical information.
+    </Hint>
+  </div>
+</ComponentPreview>
+
+## Without Icons
+
+Hints can also be displayed without icons for a cleaner look:
+
+<ComponentPreview name="Without Icons">
+  <div className="space-y-4">
+    <Hint>
+      This is a simple hint without an icon for cleaner layouts.
+    </Hint>
+    <Hint variant="success">
+      Changes saved successfully.
+    </Hint>
+    <Hint variant="warning">
+      Your session will expire soon.
+    </Hint>
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "neutral" \| "success" \| "warning" \| "danger"` | `"default"` | The mood variant of the hint |
+| `icon` | `React.ReactNode` | `undefined` | Optional icon to display at the start of the hint |
+| `className` | `string` | `undefined` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | The content to display in the hint |
+
+The component also accepts all standard HTML `div` attributes.
+
+## Accessibility
+
+- The component uses `role="note"` for proper semantic meaning
+- Icons are marked with `aria-hidden="true"` to avoid redundant screen reader announcements
+- Color is not the only indicator of meaning - icons and text provide context
+
+## Best Practices
+
+1. **Choose the right variant**: Match the variant to the message type for consistency
+2. **Use icons consistently**: If you use icons, use them across all hints of the same type
+3. **Keep messages concise**: Hints should be brief and to the point
+4. **Don't overuse**: Too many hints can overwhelm users - use sparingly
+5. **Combine with actions**: For warnings and errors, consider adding actionable next steps
+
+## Examples
+
+### Form Validation
+
+<ComponentPreview name="Form Validation">
+  <div className="space-y-4">
+    <Hint variant="success" icon={<CheckCircle2 />}>
+      Your password meets all security requirements.
+    </Hint>
+    <Hint variant="warning" icon={<AlertTriangle />}>
+      Your session will expire in 5 minutes. Please save your work.
+    </Hint>
+    <Hint variant="danger" icon={<XCircle />}>
+      Email address is required to create an account.
+    </Hint>
+  </div>
+</ComponentPreview>
+
+### Information Cards
+
+<ComponentPreview name="Information Card">
+  <Hint variant="neutral" icon={<Info />}>
+    Pro Tip: You can use keyboard shortcuts to navigate faster. Press <kbd>?</kbd> to view all available shortcuts.
+  </Hint>
+</ComponentPreview>

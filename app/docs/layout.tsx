@@ -6,19 +6,20 @@ import { docs } from "@/.source/server";
 
 const source = toFumadocsSource(docs, []);
 const utils = loader({
-  source,
-  baseUrl: "/docs",
+	source,
+	baseUrl: "/docs",
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return (
-    <DocsLayout
-      nav={{
-        title: "PEx UI Library",
-      }}
-      tree={utils.pageTree}
-    >
-      {children}
-    </DocsLayout>
-  );
+	return (
+		<DocsLayout
+			nav={{
+				component: <></>,
+				title: "PEx UI Library",
+			}}
+			tree={utils.pageTree}
+		>
+			{children}
+		</DocsLayout>
+	);
 }

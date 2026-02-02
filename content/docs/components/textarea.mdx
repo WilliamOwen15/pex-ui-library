@@ -1,0 +1,417 @@
+---
+title: Textarea Component
+description: Multi-line text input with auto-resizing, accessible form integration, and validation states
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Textarea } from "@/components/ui/textarea";
+
+A flexible multi-line text input component with auto-resizing capabilities, built-in validation states, and full accessibility support. Based on shadcn/ui patterns with enhanced styling and functionality.
+
+## Basic Usage
+
+The simplest usage with default styling and auto-resizing based on content.
+
+<ComponentPreview
+  name="Basic Textarea"
+  code={`<Textarea placeholder="Enter your message..." />`}
+>
+  <Textarea placeholder="Enter your message..." />
+</ComponentPreview>
+
+## With Label
+
+Combine with a label element for accessible form inputs.
+
+<ComponentPreview
+  name="Labeled Textarea"
+  code={`<div className="space-y-2">
+  <label htmlFor="message" className="text-sm font-medium">
+    Message
+  </label>
+  <Textarea
+    id="message"
+    placeholder="Type your message here..."
+  />
+</div>`}
+>
+  <div className="space-y-2">
+    <label htmlFor="message" className="text-sm font-medium">
+      Message
+    </label>
+    <Textarea
+      id="message"
+      placeholder="Type your message here..."
+    />
+  </div>
+</ComponentPreview>
+
+## With Helper Text
+
+Include helper text to provide additional context or instructions.
+
+<ComponentPreview
+  name="With Helper Text"
+  code={`<div className="space-y-2 max-w-md">
+  <label htmlFor="bio" className="text-sm font-medium">
+    Bio
+  </label>
+  <Textarea
+    id="bio"
+    placeholder="Tell us about yourself..."
+  />
+  <p className="text-xs text-muted-foreground">
+    Brief description for your profile. Maximum 500 characters.
+  </p>
+</div>`}
+>
+  <div className="space-y-2 max-w-md">
+    <label htmlFor="bio" className="text-sm font-medium">
+      Bio
+    </label>
+    <Textarea
+      id="bio"
+      placeholder="Tell us about yourself..."
+    />
+    <p className="text-xs text-muted-foreground">
+      Brief description for your profile. Maximum 500 characters.
+    </p>
+  </div>
+</ComponentPreview>
+
+## Disabled State
+
+Show a non-interactive state for disabled textareas.
+
+<ComponentPreview
+  name="Disabled"
+  code={`<Textarea
+  placeholder="This textarea is disabled"
+  disabled
+/>`}
+>
+  <Textarea
+    placeholder="This textarea is disabled"
+    disabled
+  />
+</ComponentPreview>
+
+## Invalid State
+
+Use the `aria-invalid` attribute to indicate validation errors.
+
+<ComponentPreview
+  name="Invalid State"
+  code={`<div className="space-y-2 max-w-md">
+  <label htmlFor="feedback" className="text-sm font-medium">
+    Feedback
+  </label>
+  <Textarea
+    id="feedback"
+    placeholder="Please provide feedback..."
+    aria-invalid="true"
+  />
+  <p className="text-xs text-destructive">
+    Feedback must be at least 10 characters long.
+  </p>
+</div>`}
+>
+  <div className="space-y-2 max-w-md">
+    <label htmlFor="feedback" className="text-sm font-medium">
+      Feedback
+    </label>
+    <Textarea
+      id="feedback"
+      placeholder="Please provide feedback..."
+      aria-invalid="true"
+    />
+    <p className="text-xs text-destructive">
+      Feedback must be at least 10 characters long.
+    </p>
+  </div>
+</ComponentPreview>
+
+## Readonly State
+
+Display content that can be selected but not modified.
+
+<ComponentPreview
+  name="Readonly"
+  code={`<Textarea
+  value="This content is read-only and cannot be edited."
+  readOnly
+/>`}
+>
+  <Textarea
+    value="This content is read-only and cannot be edited."
+    readOnly
+  />
+</ComponentPreview>
+
+## Custom Sizing
+
+Control the width and minimum height with utility classes.
+
+<ComponentPreview
+  name="Custom Sizes"
+  code={`<div className="space-y-4">
+  <Textarea
+    placeholder="Small - min-h-20"
+    className="min-h-20 max-w-xs"
+  />
+  <Textarea
+    placeholder="Medium (default) - min-h-16"
+    className="max-w-md"
+  />
+  <Textarea
+    placeholder="Large - min-h-32"
+    className="min-h-32 max-w-lg"
+  />
+</div>`}
+>
+  <div className="space-y-4">
+    <Textarea
+      placeholder="Small - min-h-20"
+      className="min-h-20 max-w-xs"
+    />
+    <Textarea
+      placeholder="Medium (default) - min-h-16"
+      className="max-w-md"
+    />
+    <Textarea
+      placeholder="Large - min-h-32"
+      className="min-h-32 max-w-lg"
+    />
+  </div>
+</ComponentPreview>
+
+## Form Example
+
+Complete form with textarea, showing validation and submission flow.
+
+<ComponentPreview
+  name="Contact Form"
+  code={`<form className="space-y-4 max-w-md">
+  <div className="space-y-2">
+    <label htmlFor="name" className="text-sm font-medium">
+      Name
+    </label>
+    <input
+      id="name"
+      type="text"
+      className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      placeholder="Your name"
+    />
+  </div>
+
+  <div className="space-y-2">
+    <label htmlFor="email" className="text-sm font-medium">
+      Email
+    </label>
+    <input
+      id="email"
+      type="email"
+      className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      placeholder="you@example.com"
+    />
+  </div>
+
+  <div className="space-y-2">
+    <label htmlFor="message-form" className="text-sm font-medium">
+      Message
+    </label>
+    <Textarea
+      id="message-form"
+      placeholder="How can we help you?"
+      className="min-h-24"
+    />
+    <p className="text-xs text-muted-foreground">
+      Please provide as much detail as possible.
+    </p>
+  </div>
+
+  <button
+    type="submit"
+    className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+  >
+    Send Message
+  </button>
+</form>`}
+>
+  <form className="space-y-4 max-w-md">
+    <div className="space-y-2">
+      <label htmlFor="name" className="text-sm font-medium">
+        Name
+      </label>
+      <input
+        id="name"
+        type="text"
+        className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        placeholder="Your name"
+      />
+    </div>
+
+    <div className="space-y-2">
+      <label htmlFor="email" className="text-sm font-medium">
+        Email
+      </label>
+      <input
+        id="email"
+        type="email"
+        className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        placeholder="you@example.com"
+      />
+    </div>
+
+    <div className="space-y-2">
+      <label htmlFor="message-form" className="text-sm font-medium">
+        Message
+      </label>
+      <Textarea
+        id="message-form"
+        placeholder="How can we help you?"
+        className="min-h-24"
+      />
+      <p className="text-xs text-muted-foreground">
+        Please provide as much detail as possible.
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+    >
+      Send Message
+    </button>
+  </form>
+</ComponentPreview>
+
+## With Character Count
+
+Track and display character count for textarea inputs.
+
+<ComponentPreview
+  name="Character Counter"
+  code={`<div className="space-y-2 max-w-md">
+  <label htmlFor="limited" className="text-sm font-medium">
+    Tweet
+  </label>
+  <Textarea
+    id="limited"
+    placeholder="What's happening?"
+    maxLength={280}
+    className="min-h-20"
+  />
+  <div className="flex items-center justify-between">
+    <p className="text-xs text-muted-foreground">
+      Share your thoughts in 280 characters or less
+    </p>
+    <p className="text-xs text-muted-foreground">
+      0 / 280
+    </p>
+  </div>
+</div>`}
+>
+  <div className="space-y-2 max-w-md">
+    <label htmlFor="limited" className="text-sm font-medium">
+      Tweet
+    </label>
+    <Textarea
+      id="limited"
+      placeholder="What's happening?"
+      maxLength={280}
+      className="min-h-20"
+    />
+    <div className="flex items-center justify-between">
+      <p className="text-xs text-muted-foreground">
+        Share your thoughts in 280 characters or less
+      </p>
+      <p className="text-xs text-muted-foreground">
+        0 / 280
+      </p>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Props
+
+The Textarea component accepts all standard HTML textarea attributes, plus:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes merged with default styles |
+| `disabled` | `boolean` | `false` | Disables the textarea |
+| `readOnly` | `boolean` | `false` | Makes the textarea read-only |
+| `placeholder` | `string` | - | Placeholder text when empty |
+| `aria-invalid` | `"true" \| "false"` | - | Indicates validation state for accessibility |
+| `rows` | `number` | - | Initial number of visible text lines |
+| `maxLength` | `number` | - | Maximum number of characters allowed |
+| `value` | `string` | - | Controlled value (requires onChange) |
+| `defaultValue` | `string` | - | Initial value for uncontrolled usage |
+
+All standard textarea props are supported including `onChange`, `onBlur`, `onFocus`, `name`, `id`, etc.
+
+## Features
+
+### Auto-Resizing
+
+The textarea automatically adjusts its height based on content using the `field-sizing-content` CSS property. This provides a better user experience without requiring JavaScript.
+
+### Focus Ring
+
+Enhanced focus indicators with a ring effect that appears on focus, providing clear visual feedback for keyboard navigation.
+
+### Validation States
+
+Built-in styling for invalid states via `aria-invalid` attribute. The border and ring change to destructive colors when validation fails.
+
+### Dark Mode
+
+Seamlessly adapts to dark mode with appropriate background colors and contrast adjustments.
+
+## Accessibility
+
+- **Labels**: Always associate the textarea with a label using `htmlFor` and `id` attributes
+- **Placeholder**: Don't rely solely on placeholder text for instructions - use labels and helper text
+- **Validation**: Use `aria-invalid` and `aria-describedby` to link error messages
+- **Required Fields**: Add `aria-required="true"` for required fields
+- **Disabled State**: Properly disables keyboard and mouse interaction
+- **Focus Management**: Clear focus indicators meet WCAG contrast requirements
+
+## Usage Guidelines
+
+### When to Use
+
+- Multi-line text input (comments, messages, descriptions)
+- Longer form fields (feedback, bio, notes)
+- Any input where users need to enter multiple sentences or paragraphs
+
+### Best Practices
+
+1. **Sizing**: Provide adequate initial height based on expected input length
+2. **Labels**: Always include a visible label for context
+3. **Helper Text**: Add helper text for format requirements or character limits
+4. **Validation**: Show clear error messages below the textarea
+5. **Character Limits**: Display character count when enforcing maxLength
+6. **Resize**: The component auto-resizes, but you can set min/max height with utility classes
+
+### Controlled vs Uncontrolled
+
+**Uncontrolled** (simpler, for most cases):
+```tsx
+<Textarea defaultValue="Initial value" />
+```
+
+**Controlled** (when you need to manage state):
+```tsx
+const [value, setValue] = useState("");
+<Textarea value={value} onChange={(e) => setValue(e.target.value)} />
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn@latest add textarea
+```
+
+This will add the Textarea component to your project at [components/ui/textarea.tsx](components/ui/textarea.tsx).

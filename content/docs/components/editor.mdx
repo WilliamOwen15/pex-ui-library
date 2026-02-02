@@ -1,0 +1,465 @@
+---
+title: Editor Component
+description: A powerful, extensible rich text editor with formatting, embeds, and real-time collaboration features
+---
+
+import { ComponentPreview } from "@/components/docs";
+
+A feature-rich text editor built on Lexical, providing a modern editing experience with formatting, embeds, tables, and more. Perfect for note-taking, documentation, content creation, and collaborative editing.
+
+## Basic Usage
+
+The Editor component is a controlled component that manages its state through serialized editor state.
+
+<ComponentPreview
+  name="Basic Editor"
+  code={`"use client"
+
+import { useState } from "react"
+import { SerializedEditorState } from "lexical"
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+const initialValue = {
+  root: {
+    children: [
+      {
+        children: [
+          {
+            detail: 0,
+            format: 0,
+            mode: "normal",
+            style: "",
+            text: "Start typing here...",
+            type: "text",
+            version: 1,
+          },
+        ],
+        direction: "ltr",
+        format: "",
+        indent: 0,
+        type: "paragraph",
+        version: 1,
+      },
+    ],
+    direction: "ltr",
+    format: "",
+    indent: 0,
+    type: "root",
+    version: 1,
+  },
+} as unknown as SerializedEditorState
+
+export default function MyEditor() {
+  const [editorState, setEditorState] = useState<SerializedEditorState>(initialValue)
+
+  return (
+    <Editor
+      editorSerializedState={editorState}
+      onSerializedChange={(value) => setEditorState(value)}
+    />
+  )
+}`}
+>
+  <div className="p-4">
+    <p className="text-sm text-muted-foreground mb-4">
+      A fully functional editor is available at <a href="/editor-x" className="text-blue-600 hover:underline">/editor-x</a>
+    </p>
+  </div>
+</ComponentPreview>
+
+## Features
+
+The Editor component comes with a comprehensive set of features out of the box:
+
+### Text Formatting
+
+- **Bold**, *italic*, ~~strikethrough~~, and underline
+- `Code` formatting
+- Subscript and superscript
+- Font family, size, and color customization
+- Background color highlighting
+- Clear formatting option
+
+### Block Types
+
+- Paragraphs
+- Headings (H1-H6)
+- Block quotes
+- Code blocks with syntax highlighting
+- Bulleted lists
+- Numbered lists
+- Check lists
+- Horizontal rules
+
+### Advanced Features
+
+- **Tables**: Create and edit tables with row/column manipulation
+- **Images**: Insert and resize images with captions
+- **Embeds**: YouTube videos and Twitter posts
+- **Columns**: Multi-column layouts
+- **Links**: Add and edit hyperlinks
+- **Alignment**: Left, center, right, and justify
+- **History**: Undo/redo support
+- **Character count**: Track document length
+- **Speech-to-text**: Voice input capability
+- **Import/Export**: Markdown and HTML support
+
+## Controlled Component
+
+The Editor is a controlled component, meaning you manage its state:
+
+<ComponentPreview
+  name="Controlled Editor"
+  code={`"use client"
+
+import { useState, useEffect } from "react"
+import { SerializedEditorState } from "lexical"
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+export default function ControlledEditor() {
+  const [editorState, setEditorState] = useState<SerializedEditorState>(initialValue)
+
+  // Save to localStorage whenever content changes
+  useEffect(() => {
+    localStorage.setItem('editor-content', JSON.stringify(editorState))
+  }, [editorState])
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('editor-content')
+    if (saved) {
+      setEditorState(JSON.parse(saved))
+    }
+  }, [])
+
+  return (
+    <div>
+      <Editor
+        editorSerializedState={editorState}
+        onSerializedChange={setEditorState}
+      />
+      <button
+        onClick={() => console.log(editorState)}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Log Content
+      </button>
+    </div>
+  )
+}`}
+>
+  <div className="p-4">
+    <p className="text-sm text-muted-foreground">
+      This example demonstrates saving editor content to localStorage and logging the state.
+    </p>
+  </div>
+</ComponentPreview>
+
+## Using EditorState (Advanced)
+
+For more control, you can work directly with Lexical's `EditorState` object:
+
+```tsx
+"use client"
+
+import { useState } from "react"
+import { EditorState } from "lexical"
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+export default function AdvancedEditor() {
+  const [editorState, setEditorState] = useState<EditorState>()
+
+  return (
+    <Editor
+      editorState={editorState}
+      onChange={setEditorState}
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `editorSerializedState` | `SerializedEditorState` | - | The serialized editor state (recommended for most use cases) |
+| `editorState` | `EditorState` | - | The raw Lexical editor state (advanced usage) |
+| `onSerializedChange` | `(state: SerializedEditorState) => void` | - | Callback when serialized state changes |
+| `onChange` | `(state: EditorState) => void` | - | Callback when editor state changes (advanced usage) |
+
+## Initial State Structure
+
+The editor uses a JSON structure to represent content:
+
+```typescript
+const initialValue = {
+  root: {
+    children: [
+      {
+        children: [
+          {
+            detail: 0,
+            format: 0,
+            mode: "normal",
+            style: "",
+            text: "Your text here",
+            type: "text",
+            version: 1,
+          },
+        ],
+        direction: "ltr",
+        format: "",
+        indent: 0,
+        type: "paragraph",
+        version: 1,
+      },
+    ],
+    direction: "ltr",
+    format: "",
+    indent: 0,
+    type: "root",
+    version: 1,
+  },
+} as unknown as SerializedEditorState
+```
+
+## Use Cases
+
+### Note Taking Application
+
+Perfect for building note-taking apps with rich formatting, images, and organization features.
+
+```tsx
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+function NoteEditor({ noteId }: { noteId: string }) {
+  const [content, setContent] = useState<SerializedEditorState>(initialValue)
+
+  // Save note to database
+  const saveNote = async () => {
+    await fetch(`/api/notes/${noteId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ content }),
+    })
+  }
+
+  return (
+    <div>
+      <Editor
+        editorSerializedState={content}
+        onSerializedChange={setContent}
+      />
+      <button onClick={saveNote}>Save Note</button>
+    </div>
+  )
+}
+```
+
+### Blog Post Editor
+
+Great for content management systems and blogging platforms.
+
+```tsx
+function BlogPostEditor() {
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState<SerializedEditorState>(initialValue)
+
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Post title..."
+        className="w-full text-3xl font-bold mb-4 border-none focus:outline-none"
+      />
+      <Editor
+        editorSerializedState={content}
+        onSerializedChange={setContent}
+      />
+    </div>
+  )
+}
+```
+
+### Comment System
+
+Use for rich comment inputs in discussion forums or collaborative platforms.
+
+```tsx
+function CommentEditor({ onSubmit }: { onSubmit: (content: SerializedEditorState) => void }) {
+  const [content, setContent] = useState<SerializedEditorState>(initialValue)
+
+  return (
+    <div className="space-y-2">
+      <Editor
+        editorSerializedState={content}
+        onSerializedChange={setContent}
+      />
+      <button
+        onClick={() => {
+          onSubmit(content)
+          setContent(initialValue) // Reset after submit
+        }}
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Post Comment
+      </button>
+    </div>
+  )
+}
+```
+
+## Accessibility
+
+The editor is built with accessibility in mind:
+
+- Full keyboard navigation support
+- ARIA labels and roles for all toolbar buttons
+- Screen reader compatible
+- Focus management and keyboard shortcuts
+- Semantic HTML structure
+
+### Keyboard Shortcuts
+
+- `Ctrl/Cmd + B`: Bold
+- `Ctrl/Cmd + I`: Italic
+- `Ctrl/Cmd + U`: Underline
+- `Ctrl/Cmd + K`: Insert link
+- `Ctrl/Cmd + Z`: Undo
+- `Ctrl/Cmd + Shift + Z`: Redo
+- `Tab`: Indent list item
+- `Shift + Tab`: Outdent list item
+
+## Styling and Theming
+
+The editor uses CSS variables for theming. You can customize the appearance by overriding these variables in your CSS:
+
+```css
+.editor-container {
+  --editor-background: white;
+  --editor-text: black;
+  --editor-border: #e5e7eb;
+  /* ... more variables */
+}
+```
+
+The editor theme is defined in [components/editor/themes/editor-theme.ts](components/editor/themes/editor-theme.ts) and can be customized to match your design system.
+
+## Performance Considerations
+
+- The editor is optimized for large documents (10,000+ words)
+- State updates are debounced to prevent excessive re-renders
+- Consider implementing auto-save with debouncing for better UX
+- Use `SerializedEditorState` for persistence (smaller, JSON-compatible)
+
+## Server-Side Rendering
+
+The Editor component is a client component (`"use client"`) and requires browser APIs. Ensure you're using it in a client-side context:
+
+```tsx
+// ✅ Correct: Using in a client component
+"use client"
+
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+export default function MyPage() {
+  return <Editor {...props} />
+}
+```
+
+```tsx
+// ✅ Also correct: Dynamic import with SSR disabled
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(
+  () => import('@/components/blocks/editor-x/editor').then(mod => ({ default: mod.Editor })),
+  { ssr: false }
+)
+```
+
+## Integration with Backend
+
+Example of saving and loading editor content:
+
+```tsx
+"use client"
+
+import { useState, useEffect } from "react"
+import { SerializedEditorState } from "lexical"
+import { Editor } from "@/components/blocks/editor-x/editor"
+
+export default function DocumentEditor({ documentId }: { documentId: string }) {
+  const [content, setContent] = useState<SerializedEditorState | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Load document
+  useEffect(() => {
+    fetch(`/api/documents/${documentId}`)
+      .then(res => res.json())
+      .then(data => {
+        setContent(data.content)
+        setIsLoading(false)
+      })
+  }, [documentId])
+
+  // Auto-save with debouncing
+  useEffect(() => {
+    if (!content) return
+
+    const timeoutId = setTimeout(() => {
+      fetch(`/api/documents/${documentId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content }),
+      })
+    }, 1000) // Save after 1 second of no changes
+
+    return () => clearTimeout(timeoutId)
+  }, [content, documentId])
+
+  if (isLoading) return <div>Loading...</div>
+  if (!content) return <div>Document not found</div>
+
+  return (
+    <Editor
+      editorSerializedState={content}
+      onSerializedChange={setContent}
+    />
+  )
+}
+```
+
+## Best Practices
+
+1. **State Management**: Always use controlled component pattern with state management
+2. **Persistence**: Use `SerializedEditorState` for saving to databases or localStorage
+3. **Auto-save**: Implement debounced auto-save for better user experience
+4. **Error Handling**: Wrap the editor in error boundaries for production apps
+5. **Loading States**: Show loading indicators when fetching initial content
+6. **Validation**: Validate content before submission if needed
+7. **Performance**: Debounce onChange callbacks for expensive operations
+
+## Troubleshooting
+
+### Editor not rendering
+
+Make sure you're using it in a client component:
+```tsx
+"use client"
+```
+
+### State not updating
+
+Ensure you're using the controlled component pattern correctly with `editorSerializedState` and `onSerializedChange`.
+
+### Styling issues
+
+Check that the editor theme CSS is imported in your global styles:
+```tsx
+import "@/components/editor/themes/editor-theme.css"
+```
+
+## Demo
+
+A fully functional demo is available at [/editor-x](/editor-x) where you can test all features of the editor.
