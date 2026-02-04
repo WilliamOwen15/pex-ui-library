@@ -2,16 +2,16 @@
 
 import { $isTableSelection } from "@lexical/table";
 import {
-	$isRangeSelection,
-	type BaseSelection,
-	FORMAT_TEXT_COMMAND,
-	type TextFormatType,
+  $isRangeSelection,
+  type BaseSelection,
+  FORMAT_TEXT_COMMAND,
+  type TextFormatType,
 } from "lexical";
 import {
-	BoldIcon,
-	ItalicIcon,
-	StrikethroughIcon,
-	UnderlineIcon,
+  BoldIcon,
+  ItalicIcon,
+  StrikethroughIcon,
+  UnderlineIcon,
 } from "lucide-react";
 import { useCallback, useState } from "react";
 
@@ -20,62 +20,62 @@ import { useUpdateToolbarHandler } from "@/components/editor/editor-hooks/use-up
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const FORMATS = [
-	{ format: "bold", icon: BoldIcon, label: "Bold" },
-	{ format: "italic", icon: ItalicIcon, label: "Italic" },
-	{ format: "underline", icon: UnderlineIcon, label: "Underline" },
-	{ format: "strikethrough", icon: StrikethroughIcon, label: "Strikethrough" },
+  { format: "bold", icon: BoldIcon, label: "Bold" },
+  { format: "italic", icon: ItalicIcon, label: "Italic" },
+  { format: "underline", icon: UnderlineIcon, label: "Underline" },
+  { format: "strikethrough", icon: StrikethroughIcon, label: "Strikethrough" },
 ] as const;
 
 export function FontFormatToolbarPlugin() {
-	const { activeEditor } = useToolbarContext();
-	const [activeFormats, setActiveFormats] = useState<string[]>([]);
+  const { activeEditor } = useToolbarContext();
+  const [activeFormats, setActiveFormats] = useState<string[]>([]);
 
-	const $updateToolbar = useCallback((selection: BaseSelection) => {
-		if ($isRangeSelection(selection) || $isTableSelection(selection)) {
-			const formats: string[] = [];
-			FORMATS.forEach(({ format }) => {
-				if (selection.hasFormat(format as TextFormatType)) {
-					formats.push(format);
-				}
-			});
-			setActiveFormats((prev) => {
-				// Only update if formats have changed
-				if (
-					prev.length !== formats.length ||
-					!formats.every((f) => prev.includes(f))
-				) {
-					return formats;
-				}
-				return prev;
-			});
-		}
-	}, []);
+  const $updateToolbar = useCallback((selection: BaseSelection) => {
+    if ($isRangeSelection(selection) || $isTableSelection(selection)) {
+      const formats: string[] = [];
+      FORMATS.forEach(({ format }) => {
+        if (selection.hasFormat(format as TextFormatType)) {
+          formats.push(format);
+        }
+      });
+      setActiveFormats((prev) => {
+        // Only update if formats have changed
+        if (
+          prev.length !== formats.length ||
+          !formats.every((f) => prev.includes(f))
+        ) {
+          return formats;
+        }
+        return prev;
+      });
+    }
+  }, []);
 
-	useUpdateToolbarHandler($updateToolbar);
+  useUpdateToolbarHandler($updateToolbar);
 
-	return (
-		<ToggleGroup
-			onValueChange={setActiveFormats}
-			size="sm"
-			type="multiple"
-			value={activeFormats}
-			variant="outline"
-		>
-			{FORMATS.map(({ format, icon: Icon, label }) => (
-				<ToggleGroupItem
-					aria-label={label}
-					key={format}
-					onClick={() => {
-						activeEditor.dispatchCommand(
-							FORMAT_TEXT_COMMAND,
-							format as TextFormatType,
-						);
-					}}
-					value={format}
-				>
-					<Icon className="size-4" />
-				</ToggleGroupItem>
-			))}
-		</ToggleGroup>
-	);
+  return (
+    <ToggleGroup
+      onValueChange={setActiveFormats}
+      size="sm"
+      type="multiple"
+      value={activeFormats}
+      variant="outline"
+    >
+      {FORMATS.map(({ format, icon: Icon, label }) => (
+        <ToggleGroupItem
+          aria-label={label}
+          key={format}
+          onClick={() => {
+            activeEditor.dispatchCommand(
+              FORMAT_TEXT_COMMAND,
+              format as TextFormatType
+            );
+          }}
+          value={format}
+        >
+          <Icon className="size-4" />
+        </ToggleGroupItem>
+      ))}
+    </ToggleGroup>
+  );
 }

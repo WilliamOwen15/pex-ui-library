@@ -7,22 +7,22 @@ import { InsertImageDialog } from "@/components/editor/plugins/images-plugin";
 import { SelectItem } from "@/components/ui/select";
 
 export function InsertImage() {
-	const { activeEditor, showModal } = useToolbarContext();
+  const { activeEditor, showModal } = useToolbarContext();
 
-	return (
-		<SelectItem
-			className=""
-			onPointerUp={(_e) => {
-				showModal("Insert Image", (onClose) => (
-					<InsertImageDialog activeEditor={activeEditor} onClose={onClose} />
-				));
-			}}
-			value="image"
-		>
-			<div className="flex items-center gap-1">
-				<ImageIcon className="size-4" />
-				<span>Image</span>
-			</div>
-		</SelectItem>
-	);
+  return (
+    <SelectItem
+      className=""
+      onPointerUp={(_e) => {
+        showModal("Insert Image", (onClose) => (
+          <InsertImageDialog activeEditor={activeEditor} onClose={onClose} />
+        ));
+      }}
+      value="image"
+    >
+      <div className="flex items-center gap-1">
+        <ImageIcon className="size-4" />
+        <span>Image</span>
+      </div>
+    </SelectItem>
+  );
 }

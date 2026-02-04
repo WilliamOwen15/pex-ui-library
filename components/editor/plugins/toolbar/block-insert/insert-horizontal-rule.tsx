@@ -7,20 +7,20 @@ import { useToolbarContext } from "@/components/editor/context/toolbar-context";
 import { SelectItem } from "@/components/ui/select";
 
 export function InsertHorizontalRule() {
-	const { activeEditor } = useToolbarContext();
+  const { activeEditor } = useToolbarContext();
 
-	return (
-		<SelectItem
-			className=""
-			onPointerUp={() =>
-				activeEditor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined)
-			}
-			value="horizontal-rule"
-		>
-			<div className="flex items-center gap-1">
-				<ScissorsIcon className="size-4" />
-				<span>Horizontal Rule</span>
-			</div>
-		</SelectItem>
-	);
+  return (
+    <SelectItem
+      className=""
+      onPointerUp={() =>
+        activeEditor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined)
+      }
+      value="horizontal-rule"
+    >
+      <div className="flex items-center gap-1">
+        <ScissorsIcon className="size-4" />
+        <span>Horizontal Rule</span>
+      </div>
+    </SelectItem>
+  );
 }

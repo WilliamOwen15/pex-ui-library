@@ -1,4 +1,96 @@
 {
-	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-	"extends": ["ultracite/biome/core", "ultracite/biome/next"]
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/biome/core", "ultracite/biome/next"],
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "tailwindDirectives": true
+    }
+  },
+  "linter": {
+    "enabled": true
+  },
+  "overrides": [
+    {
+      "includes": [
+        "components/glide/**/*",
+        "components/ui/**/*",
+        "components/kibo-ui/**/*"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveCognitiveComplexity": "off"
+          },
+          "a11y": {
+            "noStaticElementInteractions": "off",
+            "noNoninteractiveElementInteractions": "off",
+            "useSemanticElements": "off"
+          },
+          "performance": {
+            "noNamespaceImport": "off"
+          },
+          "style": {
+            "noExportedImports": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["components/editor/**/*", "components/blocks/editor-x/**/*"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveCognitiveComplexity": "off",
+            "noForEach": "off"
+          },
+          "suspicious": {
+            "noBitwiseOperators": "off",
+            "noEvolvingTypes": "off",
+            "noImplicitAnyLet": "off",
+            "noExplicitAny": "warn",
+            "noEmptyBlockStatements": "off",
+            "noAlert": "off",
+            "useAwait": "off",
+            "noAssignInExpressions": "off"
+          },
+          "style": {
+            "noNestedTernary": "off",
+            "noParameterAssign": "off",
+            "useDefaultSwitchClause": "off"
+          },
+          "performance": {
+            "useTopLevelRegex": "off",
+            "noNamespaceImport": "off",
+            "noImgElement": "off",
+            "noBarrelFile": "off"
+          },
+          "correctness": {
+            "useExhaustiveDependencies": "off",
+            "noUnusedVariables": "off",
+            "noUnusedFunctionParameters": "off",
+            "useImageSize": "off"
+          },
+          "a11y": {
+            "noNoninteractiveElementInteractions": "off",
+            "useAltText": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["components/docs/**/*", "content/docs/**/*"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off",
+            "noAlert": "off"
+          },
+          "performance": {
+            "noBarrelFile": "off"
+          }
+        }
+      }
+    }
+  ]
 }

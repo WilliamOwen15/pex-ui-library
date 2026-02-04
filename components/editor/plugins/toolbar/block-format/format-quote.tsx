@@ -9,23 +9,23 @@ import { SelectItem } from "@/components/ui/select";
 const BLOCK_FORMAT_VALUE = "quote";
 
 export function FormatQuote() {
-	const { activeEditor, blockType } = useToolbarContext();
+  const { activeEditor, blockType } = useToolbarContext();
 
-	const formatQuote = () => {
-		if (blockType !== "quote") {
-			activeEditor.update(() => {
-				const selection = $getSelection();
-				$setBlocksType(selection, () => $createQuoteNode());
-			});
-		}
-	};
+  const formatQuote = () => {
+    if (blockType !== "quote") {
+      activeEditor.update(() => {
+        const selection = $getSelection();
+        $setBlocksType(selection, () => $createQuoteNode());
+      });
+    }
+  };
 
-	return (
-		<SelectItem onPointerDown={formatQuote} value="quote">
-			<div className="flex items-center gap-1 font-normal">
-				{blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
-				{blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
-			</div>
-		</SelectItem>
-	);
+  return (
+    <SelectItem onPointerDown={formatQuote} value="quote">
+      <div className="flex items-center gap-1 font-normal">
+        {blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
+        {blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
+      </div>
+    </SelectItem>
+  );
 }

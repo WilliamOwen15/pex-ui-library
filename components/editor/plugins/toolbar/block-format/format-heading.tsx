@@ -7,27 +7,27 @@ import { blockTypeToBlockName } from "@/components/editor/plugins/toolbar/block-
 import { SelectItem } from "@/components/ui/select";
 
 export function FormatHeading({ levels = [] }: { levels: HeadingTagType[] }) {
-	const { activeEditor, blockType } = useToolbarContext();
+  const { activeEditor, blockType } = useToolbarContext();
 
-	const formatHeading = (headingSize: HeadingTagType) => {
-		if (blockType !== headingSize) {
-			activeEditor.update(() => {
-				const selection = $getSelection();
-				$setBlocksType(selection, () => $createHeadingNode(headingSize));
-			});
-		}
-	};
+  const formatHeading = (headingSize: HeadingTagType) => {
+    if (blockType !== headingSize) {
+      activeEditor.update(() => {
+        const selection = $getSelection();
+        $setBlocksType(selection, () => $createHeadingNode(headingSize));
+      });
+    }
+  };
 
-	return levels.map((level) => (
-		<SelectItem
-			key={level}
-			onPointerDown={() => formatHeading(level)}
-			value={level}
-		>
-			<div className="flex items-center gap-1 font-normal">
-				{blockTypeToBlockName[level].icon}
-				{blockTypeToBlockName[level].label}
-			</div>
-		</SelectItem>
-	));
+  return levels.map((level) => (
+    <SelectItem
+      key={level}
+      onPointerDown={() => formatHeading(level)}
+      value={level}
+    >
+      <div className="flex items-center gap-1 font-normal">
+        {blockTypeToBlockName[level].icon}
+        {blockTypeToBlockName[level].label}
+      </div>
+    </SelectItem>
+  ));
 }

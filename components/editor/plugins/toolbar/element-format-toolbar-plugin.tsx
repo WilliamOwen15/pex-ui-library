@@ -3,21 +3,21 @@
 import { $isLinkNode } from "@lexical/link";
 import { $findMatchingParent } from "@lexical/utils";
 import {
-	$isElementNode,
-	$isRangeSelection,
-	type BaseSelection,
-	type ElementFormatType,
-	FORMAT_ELEMENT_COMMAND,
-	INDENT_CONTENT_COMMAND,
-	OUTDENT_CONTENT_COMMAND,
+  $isElementNode,
+  $isRangeSelection,
+  type BaseSelection,
+  type ElementFormatType,
+  FORMAT_ELEMENT_COMMAND,
+  INDENT_CONTENT_COMMAND,
+  OUTDENT_CONTENT_COMMAND,
 } from "lexical";
 import {
-	AlignCenterIcon,
-	AlignJustifyIcon,
-	AlignLeftIcon,
-	AlignRightIcon,
-	IndentDecreaseIcon,
-	IndentIncreaseIcon,
+  AlignCenterIcon,
+  AlignJustifyIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
+  IndentDecreaseIcon,
+  IndentIncreaseIcon,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -28,133 +28,133 @@ import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const ELEMENT_FORMAT_OPTIONS: {
-	[key in Exclude<ElementFormatType, "start" | "end" | "">]: {
-		icon: React.ReactNode;
-		iconRTL: string;
-		name: string;
-	};
+  [key in Exclude<ElementFormatType, "start" | "end" | "">]: {
+    icon: React.ReactNode;
+    iconRTL: string;
+    name: string;
+  };
 } = {
-	left: {
-		icon: <AlignLeftIcon className="size-4" />,
-		iconRTL: "left-align",
-		name: "Left Align",
-	},
-	center: {
-		icon: <AlignCenterIcon className="size-4" />,
-		iconRTL: "center-align",
-		name: "Center Align",
-	},
-	right: {
-		icon: <AlignRightIcon className="size-4" />,
-		iconRTL: "right-align",
-		name: "Right Align",
-	},
-	justify: {
-		icon: <AlignJustifyIcon className="size-4" />,
-		iconRTL: "justify-align",
-		name: "Justify Align",
-	},
+  left: {
+    icon: <AlignLeftIcon className="size-4" />,
+    iconRTL: "left-align",
+    name: "Left Align",
+  },
+  center: {
+    icon: <AlignCenterIcon className="size-4" />,
+    iconRTL: "center-align",
+    name: "Center Align",
+  },
+  right: {
+    icon: <AlignRightIcon className="size-4" />,
+    iconRTL: "right-align",
+    name: "Right Align",
+  },
+  justify: {
+    icon: <AlignJustifyIcon className="size-4" />,
+    iconRTL: "justify-align",
+    name: "Justify Align",
+  },
 } as const;
 
 export function ElementFormatToolbarPlugin({
-	separator = true,
+  separator = true,
 }: {
-	separator?: boolean;
+  separator?: boolean;
 }) {
-	const { activeEditor } = useToolbarContext();
-	const [elementFormat, setElementFormat] = useState<ElementFormatType>("left");
+  const { activeEditor } = useToolbarContext();
+  const [elementFormat, setElementFormat] = useState<ElementFormatType>("left");
 
-	const $updateToolbar = (selection: BaseSelection) => {
-		if ($isRangeSelection(selection)) {
-			const node = getSelectedNode(selection);
-			const parent = node.getParent();
+  const $updateToolbar = (selection: BaseSelection) => {
+    if ($isRangeSelection(selection)) {
+      const node = getSelectedNode(selection);
+      const parent = node.getParent();
 
-			let matchingParent;
-			if ($isLinkNode(parent)) {
-				// If node is a link, we need to fetch the parent paragraph node to set format
-				matchingParent = $findMatchingParent(
-					node,
-					(parentNode) => $isElementNode(parentNode) && !parentNode.isInline(),
-				);
-			}
-			setElementFormat(
-				$isElementNode(matchingParent)
-					? matchingParent.getFormatType()
-					: $isElementNode(node)
-						? node.getFormatType()
-						: parent?.getFormatType() || "left",
-			);
-		}
-	};
+      let matchingParent;
+      if ($isLinkNode(parent)) {
+        // If node is a link, we need to fetch the parent paragraph node to set format
+        matchingParent = $findMatchingParent(
+          node,
+          (parentNode) => $isElementNode(parentNode) && !parentNode.isInline()
+        );
+      }
+      setElementFormat(
+        $isElementNode(matchingParent)
+          ? matchingParent.getFormatType()
+          : $isElementNode(node)
+            ? node.getFormatType()
+            : parent?.getFormatType() || "left"
+      );
+    }
+  };
 
-	useUpdateToolbarHandler($updateToolbar);
+  useUpdateToolbarHandler($updateToolbar);
 
-	const handleValueChange = (value: string) => {
-		if (!value) {
-			return; // Prevent unselecting current value
-		}
+  const handleValueChange = (value: string) => {
+    if (!value) {
+      return; // Prevent unselecting current value
+    }
 
-		setElementFormat(value as ElementFormatType);
+    setElementFormat(value as ElementFormatType);
 
-		if (value === "indent") {
-			activeEditor.dispatchCommand(INDENT_CONTENT_COMMAND, undefined);
-		} else if (value === "outdent") {
-			activeEditor.dispatchCommand(OUTDENT_CONTENT_COMMAND, undefined);
-		} else {
-			activeEditor.dispatchCommand(
-				FORMAT_ELEMENT_COMMAND,
-				value as ElementFormatType,
-			);
-		}
-	};
+    if (value === "indent") {
+      activeEditor.dispatchCommand(INDENT_CONTENT_COMMAND, undefined);
+    } else if (value === "outdent") {
+      activeEditor.dispatchCommand(OUTDENT_CONTENT_COMMAND, undefined);
+    } else {
+      activeEditor.dispatchCommand(
+        FORMAT_ELEMENT_COMMAND,
+        value as ElementFormatType
+      );
+    }
+  };
 
-	return (
-		<>
-			<ToggleGroup
-				defaultValue={elementFormat}
-				onValueChange={handleValueChange}
-				type="single"
-				value={elementFormat}
-			>
-				{/* Alignment toggles */}
-				{Object.entries(ELEMENT_FORMAT_OPTIONS).map(([value, option]) => (
-					<ToggleGroupItem
-						aria-label={option.name}
-						key={value}
-						size="sm"
-						value={value}
-						variant={"outline"}
-					>
-						{option.icon}
-					</ToggleGroupItem>
-				))}
-			</ToggleGroup>
-			{separator && <Separator className="!h-7" orientation="vertical" />}
-			{/* Indentation toggles */}
-			<ToggleGroup
-				defaultValue={elementFormat}
-				onValueChange={handleValueChange}
-				type="single"
-				value={elementFormat}
-			>
-				<ToggleGroupItem
-					aria-label="Outdent"
-					size="sm"
-					value="outdent"
-					variant={"outline"}
-				>
-					<IndentDecreaseIcon className="size-4" />
-				</ToggleGroupItem>
+  return (
+    <>
+      <ToggleGroup
+        defaultValue={elementFormat}
+        onValueChange={handleValueChange}
+        type="single"
+        value={elementFormat}
+      >
+        {/* Alignment toggles */}
+        {Object.entries(ELEMENT_FORMAT_OPTIONS).map(([value, option]) => (
+          <ToggleGroupItem
+            aria-label={option.name}
+            key={value}
+            size="sm"
+            value={value}
+            variant={"outline"}
+          >
+            {option.icon}
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
+      {separator && <Separator className="!h-7" orientation="vertical" />}
+      {/* Indentation toggles */}
+      <ToggleGroup
+        defaultValue={elementFormat}
+        onValueChange={handleValueChange}
+        type="single"
+        value={elementFormat}
+      >
+        <ToggleGroupItem
+          aria-label="Outdent"
+          size="sm"
+          value="outdent"
+          variant={"outline"}
+        >
+          <IndentDecreaseIcon className="size-4" />
+        </ToggleGroupItem>
 
-				<ToggleGroupItem
-					aria-label="Indent"
-					size="sm"
-					value="indent"
-					variant={"outline"}
-				>
-					<IndentIncreaseIcon className="size-4" />
-				</ToggleGroupItem>
-			</ToggleGroup>
-		</>
-	);
+        <ToggleGroupItem
+          aria-label="Indent"
+          size="sm"
+          value="indent"
+          variant={"outline"}
+        >
+          <IndentIncreaseIcon className="size-4" />
+        </ToggleGroupItem>
+      </ToggleGroup>
+    </>
+  );
 }

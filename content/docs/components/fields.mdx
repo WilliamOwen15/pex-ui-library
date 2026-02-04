@@ -1,0 +1,391 @@
+---
+title: Fields Component
+description: Display multiple field values side-by-side with editable and read-only modes, drag-and-drop reordering
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Fields } from "@/components/glide/fields";
+
+A flexible fields component system that displays multiple data fields in responsive layouts. Supports both read-only display and editable form inputs, with optional drag-and-drop reordering and dynamic field management.
+
+## Basic Read-Only Display
+
+Display product attributes or data fields in a clean, organized grid layout.
+
+<ComponentPreview
+  name="Basic Fields"
+  code={`<Fields
+  variant="readonly"
+  layout="grid"
+  columns={2}
+  fields={[
+    { id: 1, label: "SKU", value: "PRD-12345" },
+    { id: 2, label: "Price", value: "$299.99" },
+    { id: 3, label: "Stock", value: "48 units" },
+    { id: 4, label: "Category", value: "Electronics" },
+  ]}
+/>`}
+>
+  <Fields
+    variant="readonly"
+    layout="grid"
+    columns={2}
+    fields={[
+      { id: 1, label: "SKU", value: "PRD-12345" },
+      { id: 2, label: "Price", value: "$299.99" },
+      { id: 3, label: "Stock", value: "48 units" },
+      { id: 4, label: "Category", value: "Electronics" },
+    ]}
+  />
+</ComponentPreview>
+
+## Editable Form Fields
+
+Create dynamic forms with multiple field types including text, email, tel, and more.
+
+<ComponentPreview
+  name="Editable Fields"
+  code={`<Fields
+  variant="editable"
+  layout="grid"
+  columns={2}
+  fields={[
+    { id: "firstName", label: "First Name", type: "text", placeholder: "John" },
+    { id: "lastName", label: "Last Name", type: "text", placeholder: "Doe" },
+    { id: "email", label: "Email", type: "email", placeholder: "john@example.com" },
+    { id: "phone", label: "Phone", type: "tel", placeholder: "(555) 123-4567" },
+  ]}
+/>`}
+>
+  <Fields
+    variant="editable"
+    layout="grid"
+    columns={2}
+    fields={[
+      { id: "firstName", label: "First Name", type: "text", placeholder: "John" },
+      { id: "lastName", label: "Last Name", type: "text", placeholder: "Doe" },
+      { id: "email", label: "Email", type: "email", placeholder: "john@example.com" },
+      { id: "phone", label: "Phone", type: "tel", placeholder: "(555) 123-4567" },
+    ]}
+  />
+</ComponentPreview>
+
+## Three Column Layout
+
+Display more fields in a compact three-column grid that adapts to mobile screens.
+
+<ComponentPreview
+  name="Three Columns"
+  code={`<Fields
+  variant="readonly"
+  layout="grid"
+  columns={3}
+  fields={[
+    { id: 1, label: "Revenue", value: "$142,500" },
+    { id: 2, label: "Orders", value: "1,284" },
+    { id: 3, label: "Conversion", value: "3.2%" },
+    { id: 4, label: "AOV", value: "$111" },
+    { id: 5, label: "Customers", value: "892" },
+    { id: 6, label: "Growth", value: "+12.5%" },
+  ]}
+/>`}
+>
+  <Fields
+    variant="readonly"
+    layout="grid"
+    columns={3}
+    fields={[
+      { id: 1, label: "Revenue", value: "$142,500" },
+      { id: 2, label: "Orders", value: "1,284" },
+      { id: 3, label: "Conversion", value: "3.2%" },
+      { id: 4, label: "AOV", value: "$111" },
+      { id: 5, label: "Customers", value: "892" },
+      { id: 6, label: "Growth", value: "+12.5%" },
+    ]}
+  />
+</ComponentPreview>
+
+## Single Column Stack
+
+Perfect for mobile-first layouts or narrow containers where fields should stack vertically.
+
+<ComponentPreview
+  name="Stack Layout"
+  code={`<Fields
+  variant="editable"
+  layout="stack"
+  fields={[
+    { id: "name", label: "Full Name", type: "text", placeholder: "Enter your name" },
+    { id: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
+    { id: "message", label: "Message", type: "textarea", rows: 4, placeholder: "Your message here..." },
+  ]}
+/>`}
+>
+  <Fields
+    variant="editable"
+    layout="stack"
+    fields={[
+      { id: "name", label: "Full Name", type: "text", placeholder: "Enter your name" },
+      { id: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
+      { id: "message", label: "Message", type: "textarea", rows: 4, placeholder: "Your message here..." },
+    ]}
+  />
+</ComponentPreview>
+
+## With Descriptions and Errors
+
+Add helpful descriptions and display validation errors for better user experience.
+
+<ComponentPreview
+  name="With Descriptions"
+  code={`<Fields
+  variant="editable"
+  layout="grid"
+  columns={2}
+  fields={[
+    {
+      id: "username",
+      label: "Username",
+      type: "text",
+      description: "Choose a unique username (3-20 characters)",
+      required: true
+    },
+    {
+      id: "email",
+      label: "Email",
+      type: "email",
+      error: "Please enter a valid email address",
+      required: true
+    },
+  ]}
+/>`}
+>
+  <Fields
+    variant="editable"
+    layout="grid"
+    columns={2}
+    fields={[
+      {
+        id: "username",
+        label: "Username",
+        type: "text",
+        description: "Choose a unique username (3-20 characters)",
+        required: true
+      },
+      {
+        id: "email",
+        label: "Email",
+        type: "email",
+        error: "Please enter a valid email address",
+        required: true
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Select Fields
+
+Use dropdown selects for predefined options.
+
+<ComponentPreview
+  name="Select Fields"
+  code={`<Fields
+  variant="editable"
+  layout="grid"
+  columns={2}
+  fields={[
+    {
+      id: "country",
+      label: "Country",
+      type: "select",
+      placeholder: "Select a country",
+      options: [
+        { label: "United States", value: "us" },
+        { label: "Canada", value: "ca" },
+        { label: "United Kingdom", value: "uk" },
+        { label: "Australia", value: "au" },
+      ]
+    },
+    {
+      id: "language",
+      label: "Language",
+      type: "select",
+      placeholder: "Select a language",
+      options: [
+        { label: "English", value: "en" },
+        { label: "Spanish", value: "es" },
+        { label: "French", value: "fr" },
+      ]
+    },
+  ]}
+/>`}
+>
+  <Fields
+    variant="editable"
+    layout="grid"
+    columns={2}
+    fields={[
+      {
+        id: "country",
+        label: "Country",
+        type: "select",
+        placeholder: "Select a country",
+        options: [
+          { label: "United States", value: "us" },
+          { label: "Canada", value: "ca" },
+          { label: "United Kingdom", value: "uk" },
+          { label: "Australia", value: "au" },
+        ]
+      },
+      {
+        id: "language",
+        label: "Language",
+        type: "select",
+        placeholder: "Select a language",
+        options: [
+          { label: "English", value: "en" },
+          { label: "Spanish", value: "es" },
+          { label: "French", value: "fr" },
+        ]
+      },
+    ]}
+  />
+</ComponentPreview>
+
+## Compact Variant
+
+Use the compact variant for denser layouts with reduced spacing.
+
+<ComponentPreview
+  name="Compact Fields"
+  code={`<Fields
+  variant="compact"
+  size="sm"
+  layout="grid"
+  columns={3}
+  gap="sm"
+  fields={[
+    { id: 1, label: "Metric 1", value: "Value 1" },
+    { id: 2, label: "Metric 2", value: "Value 2" },
+    { id: 3, label: "Metric 3", value: "Value 3" },
+    { id: 4, label: "Metric 4", value: "Value 4" },
+    { id: 5, label: "Metric 5", value: "Value 5" },
+    { id: 6, label: "Metric 6", value: "Value 6" },
+  ]}
+/>`}
+>
+  <Fields
+    variant="compact"
+    size="sm"
+    layout="grid"
+    columns={3}
+    gap="sm"
+    fields={[
+      { id: 1, label: "Metric 1", value: "Value 1" },
+      { id: 2, label: "Metric 2", value: "Value 2" },
+      { id: 3, label: "Metric 3", value: "Value 3" },
+      { id: 4, label: "Metric 4", value: "Value 4" },
+      { id: 5, label: "Metric 5", value: "Value 5" },
+      { id: 6, label: "Metric 6", value: "Value 6" },
+    ]}
+  />
+</ComponentPreview>
+
+## Props
+
+### Fields Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `fields` | `FieldItemData[]` | - | Array of field objects to display |
+| `layout` | `"grid" \| "stack" \| "inline"` | `"grid"` | Layout strategy for fields |
+| `columns` | `1 \| 2 \| 3 \| 4 \| "auto"` | `2` | Number of columns for grid layout |
+| `gap` | `"none" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"` | Spacing between fields |
+| `variant` | `"editable" \| "readonly" \| "compact"` | `"editable"` | Display mode for all fields |
+| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Size variant for all fields |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Label/input orientation |
+| `enableReordering` | `boolean` | `false` | Enable drag-and-drop reordering |
+| `enableAddRemove` | `boolean` | `false` | Enable add/remove field buttons |
+| `showSeparators` | `boolean` | `false` | Show separators between fields |
+| `onChange` | `(fields) => void` | - | Called when fields array changes |
+| `onFieldChange` | `(id, value) => void` | - | Called when a field value changes |
+| `onFieldsReorder` | `(fields) => void` | - | Called after fields are reordered |
+| `onFieldAdd` | `() => FieldItemData` | - | Function that returns new field data |
+| `onFieldRemove` | `(id) => void` | - | Called when a field is removed |
+| `addFieldLabel` | `string` | `"Add Field"` | Label for add field button |
+| `showToolbar` | `boolean` | `enableAddRemove` | Show the toolbar |
+| `toolbarActions` | `ReactNode` | - | Custom toolbar actions |
+| `className` | `string` | - | Additional CSS classes |
+| `classNames` | `object` | - | CSS classes for sub-components |
+
+### FieldItemData Interface
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `string \| number` | Unique identifier for the field |
+| `label` | `string` | Field label text |
+| `value` | `string \| number` | Field value |
+| `description` | `string` | Helper text below the field |
+| `placeholder` | `string` | Placeholder text for inputs |
+| `type` | `"text" \| "number" \| "email" \| "tel" \| "url" \| "date" \| "textarea" \| "select"` | Input type |
+| `required` | `boolean` | Mark field as required |
+| `disabled` | `boolean` | Disable field interaction |
+| `error` | `string` | Error message to display |
+| `options` | `Array<{label: string, value: string}>` | Options for select type |
+| `rows` | `number` | Number of rows for textarea |
+| `render` | `(field) => ReactNode` | Custom render function |
+
+## Usage Guidelines
+
+### When to Use Each Layout
+
+**Grid**: Most common use case for dashboards, forms, and data displays. Automatically responsive with configurable columns.
+
+**Stack**: Single-column layouts, mobile-first designs, narrow containers, or when each field needs maximum width.
+
+**Inline**: Compact horizontal layouts for filters, toolbar controls, or dashboard metrics that should flow together.
+
+### Variant Selection
+
+**Editable**: Use for forms where users need to input or modify data. Includes full form controls with validation support.
+
+**Readonly**: Use for displaying data that shouldn't be modified. Perfect for profile views, invoice details, or report summaries.
+
+**Compact**: Use when space is limited and you need to fit more fields in a smaller area. Reduces padding and font sizes.
+
+### Column Configuration
+
+- **1 column**: Full-width fields, mobile layouts, forms with complex inputs
+- **2 columns**: Standard forms, profile editors, settings panels (recommended default)
+- **3 columns**: Dashboards, data grids, metric displays
+- **4 columns**: Dense layouts, overview panels, admin interfaces
+- **auto**: Responsive grid that adapts from 1→2→3→4 columns based on screen size
+
+### Accessibility
+
+- All fields include proper ARIA attributes (`aria-invalid`, `aria-describedby`, `aria-required`)
+- Semantic HTML with `<label>` elements properly associated with inputs
+- Keyboard navigation fully supported (Tab to navigate, Enter/Space for actions)
+- Error messages announced to screen readers via `role="alert"`
+- Required fields marked with visual and semantic indicators
+- Drag handles keyboard accessible when reordering is enabled
+
+### Best Practices
+
+1. **Consistent IDs**: Always provide unique `id` values for fields to enable proper state management
+2. **Meaningful Labels**: Use clear, concise labels that describe the expected input
+3. **Helpful Descriptions**: Add descriptions for fields that need clarification or formatting guidance
+4. **Validation Feedback**: Show errors inline with specific, actionable messages
+5. **Responsive Design**: Test layouts at different breakpoints to ensure fields remain usable
+6. **Field Types**: Use appropriate input types for better mobile keyboards and validation
+
+## Field Types Reference
+
+- **text**: Standard text input (default)
+- **number**: Numeric input with increment/decrement controls
+- **email**: Email input with validation and email keyboard on mobile
+- **tel**: Telephone input with tel keyboard on mobile
+- **url**: URL input with validation
+- **date**: Date picker input
+- **textarea**: Multi-line text input with configurable rows
+- **select**: Dropdown selection with predefined options

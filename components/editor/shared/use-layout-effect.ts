@@ -6,7 +6,7 @@ import { CAN_USE_DOM } from "@/components/editor/shared/can-use-dom";
 // but we currently support React >=17.x
 // https://github.com/facebook/react/pull/26395
 const useLayoutEffectImpl: typeof useLayoutEffect = CAN_USE_DOM
-	? useLayoutEffect
-	: useEffect;
+  ? useLayoutEffect
+  : useEffect;
 
 export default useLayoutEffectImpl;

@@ -1,0 +1,637 @@
+---
+title: Video Player
+description: Embed YouTube videos and play HTML5 videos with customizable controls and full accessibility support
+---
+
+import { ComponentPreview } from "@/components/docs";
+import {
+  VideoPlayer,
+  VideoPlayerContent,
+  VideoPlayerControlBar,
+  VideoPlayerPlayButton,
+  VideoPlayerSeekBackwardButton,
+  VideoPlayerSeekForwardButton,
+  VideoPlayerTimeRange,
+  VideoPlayerTimeDisplay,
+  VideoPlayerMuteButton,
+  VideoPlayerVolumeRange,
+} from "@/components/kibo-ui/video-player";
+
+Embed YouTube videos with proper styling and responsive design, or use the composable HTML5 video player built on media-chrome for direct video files. Supports full keyboard navigation, screen reader accessibility, and seamless integration with shadcn/ui theming.
+
+## YouTube Embeds (Recommended)
+
+For YouTube videos, use an iframe embed with responsive aspect ratio and proper styling. This is the recommended approach for most use cases as it leverages YouTube's CDN and built-in features.
+
+<ComponentPreview
+  name="YouTube Embed"
+  code={`<div className="overflow-hidden rounded-lg border">
+  <iframe
+    src="https://www.youtube.com/embed/vjzbu5xvlVU"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="aspect-video w-full"
+  />
+</div>`}
+>
+  <div className="overflow-hidden rounded-lg border">
+    <iframe
+      src="https://www.youtube.com/embed/vjzbu5xvlVU"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="aspect-video w-full"
+    />
+  </div>
+</ComponentPreview>
+
+### YouTube Embed Options
+
+You can customize YouTube embeds using URL parameters:
+
+<ComponentPreview
+  name="Autoplay YouTube"
+  code={`<div className="overflow-hidden rounded-lg border">
+  <iframe
+    src="https://www.youtube.com/embed/vjzbu5xvlVU?autoplay=1&mute=1"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="aspect-video w-full"
+  />
+</div>`}
+>
+  <div className="overflow-hidden rounded-lg border">
+    <iframe
+      src="https://www.youtube.com/embed/vjzbu5xvlVU?autoplay=1&mute=1"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="aspect-video w-full"
+    />
+  </div>
+</ComponentPreview>
+
+**Common YouTube URL parameters:**
+- `autoplay=1` - Start playing automatically (must be muted)
+- `mute=1` - Mute the video
+- `loop=1` - Loop the video
+- `controls=0` - Hide player controls
+- `modestbranding=1` - Minimal YouTube branding
+- `start=10` - Start at 10 seconds
+- `end=60` - End at 60 seconds
+
+### Responsive YouTube Embeds
+
+Use Tailwind's responsive classes for different screen sizes:
+
+<ComponentPreview
+  name="Responsive YouTube"
+  code={`<div className="w-full overflow-hidden rounded-lg border sm:w-3/4 lg:w-1/2">
+  <iframe
+    src="https://www.youtube.com/embed/vjzbu5xvlVU"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="aspect-video w-full"
+  />
+</div>`}
+>
+  <div className="w-full overflow-hidden rounded-lg border sm:w-3/4 lg:w-1/2">
+    <iframe
+      src="https://www.youtube.com/embed/vjzbu5xvlVU"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="aspect-video w-full"
+    />
+  </div>
+</ComponentPreview>
+
+## HTML5 Video Player
+
+For direct video files (MP4, WebM, OGG), use the VideoPlayer component with custom controls.
+
+### Installation
+
+```bash
+npx kibo-ui add video-player
+```
+
+### Basic HTML5 Player
+
+A simple video player with essential controls: play button, progress bar, and time display.
+
+<ComponentPreview
+  name="Basic Video Player"
+  code={`<VideoPlayer className="overflow-hidden rounded-lg border">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerTimeDisplay showDuration />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-lg border">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerTimeDisplay showDuration />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Full Controls
+
+All available controls including seek buttons, volume controls, and mute button.
+
+<ComponentPreview
+  name="Full Control Bar"
+  code={`<VideoPlayer className="overflow-hidden rounded-lg border">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerSeekBackwardButton />
+    <VideoPlayerSeekForwardButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerTimeDisplay showDuration />
+    <VideoPlayerMuteButton />
+    <VideoPlayerVolumeRange />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-lg border">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerSeekBackwardButton />
+      <VideoPlayerSeekForwardButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerTimeDisplay showDuration />
+      <VideoPlayerMuteButton />
+      <VideoPlayerVolumeRange />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Custom Styling
+
+Style the video player with Tailwind classes and custom border radius.
+
+<ComponentPreview
+  name="Custom Styled Player"
+  code={`<VideoPlayer className="overflow-hidden rounded-xl border-2 border-primary shadow-lg">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerTimeDisplay showDuration />
+    <VideoPlayerMuteButton />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-xl border-2 border-primary shadow-lg">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerTimeDisplay showDuration />
+      <VideoPlayerMuteButton />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Autoplay with Muted
+
+Autoplay videos with the `autoPlay` and `muted` attributes. Note that most browsers require videos to be muted for autoplay to work.
+
+<ComponentPreview
+  name="Autoplay Muted"
+  code={`<VideoPlayer className="overflow-hidden rounded-lg border">
+  <VideoPlayerContent
+    autoPlay
+    loop
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerMuteButton />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-lg border">
+    <VideoPlayerContent
+      autoPlay
+      loop
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerMuteButton />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Responsive Sizing
+
+Control the video player size with Tailwind responsive classes.
+
+<ComponentPreview
+  name="Responsive Size"
+  code={`<VideoPlayer className="w-full overflow-hidden rounded-lg border sm:w-96">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerTimeDisplay showDuration />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="w-full overflow-hidden rounded-lg border sm:w-96">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerTimeDisplay showDuration />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Minimal Controls
+
+For a clean, minimalist interface with only play/pause and progress bar.
+
+<ComponentPreview
+  name="Minimal Player"
+  code={`<VideoPlayer className="overflow-hidden rounded-lg border">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+    src="/videos/project-exodus-demo.mp4"
+  />
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-lg border">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+      src="/videos/project-exodus-demo.mp4"
+    />
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+### HTML5 Video Source Formats
+
+The HTML5 video player supports standard video formats including MP4, WebM, and OGG.
+
+<ComponentPreview
+  name="Video Formats"
+  code={`<VideoPlayer className="overflow-hidden rounded-lg border">
+  <VideoPlayerContent
+    muted
+    preload="auto"
+    slot="media"
+  >
+    <source src="/videos/project-exodus-demo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </VideoPlayerContent>
+  <VideoPlayerControlBar>
+    <VideoPlayerPlayButton />
+    <VideoPlayerTimeRange />
+    <VideoPlayerTimeDisplay showDuration />
+  </VideoPlayerControlBar>
+</VideoPlayer>`}
+>
+  <VideoPlayer className="overflow-hidden rounded-lg border">
+    <VideoPlayerContent
+      muted
+      preload="auto"
+      slot="media"
+    >
+      <source src="/videos/project-exodus-demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </VideoPlayerContent>
+    <VideoPlayerControlBar>
+      <VideoPlayerPlayButton />
+      <VideoPlayerTimeRange />
+      <VideoPlayerTimeDisplay showDuration />
+    </VideoPlayerControlBar>
+  </VideoPlayer>
+</ComponentPreview>
+
+## Video Sources Guide
+
+### Recommended: Use /public Folder
+
+For HTML5 video examples and development, store videos in your project's `/public` folder:
+
+```tsx
+// Video at: /public/videos/project-exodus-demo.mp4
+<VideoPlayerContent
+  src="/videos/project-exodus-demo.mp4"
+  slot="media"
+  muted
+  preload="auto"
+/>
+```
+
+**Benefits:**
+- No CORS issues
+- Fast local loading
+- Works offline
+- Easy version control for small videos
+
+**Setup:**
+1. Create `/public/videos/` directory
+2. Add your video files
+3. Reference with `/videos/filename.mp4`
+
+## Accessibility
+
+### YouTube Accessibility
+
+YouTube embeds include built-in accessibility features:
+- Full keyboard navigation (Space, K, arrows, etc.)
+- Closed captions and subtitles
+- Screen reader support
+- Adjustable playback speed
+
+### HTML5 Video Player Accessibility
+
+The HTML5 video player is built with accessibility in mind:
+
+**Keyboard Navigation:**
+- **Space** - Play/Pause
+- **Left Arrow** - Seek backward
+- **Right Arrow** - Seek forward
+- **Up Arrow** - Increase volume
+- **Down Arrow** - Decrease volume
+- **M** - Mute/Unmute
+- **F** - Fullscreen (when supported)
+
+**Screen Reader Support:**
+All controls have proper ARIA labels and announce their state changes. The time display and progress bar are accessible to screen readers with live updates.
+
+**Focus Management:**
+Controls are keyboard accessible with visible focus indicators. Tab through controls in logical order.
+
+## Component API (HTML5 Video Player)
+
+### VideoPlayer
+
+The main wrapper component that provides context for all child components.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+| `style` | `CSSProperties` | Custom inline styles |
+| `children` | `ReactNode` | Child components (VideoPlayerContent and VideoPlayerControlBar) |
+
+### VideoPlayerContent
+
+The video element that displays the media content.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | - | Video source URL |
+| `slot` | `string` | - | Should be set to `"media"` for media-chrome integration |
+| `autoPlay` | `boolean` | `false` | Start playing automatically |
+| `loop` | `boolean` | `false` | Loop the video |
+| `muted` | `boolean` | `false` | Mute the audio |
+| `preload` | `"none" \| "metadata" \| "auto"` | `"metadata"` | Preload strategy |
+| `controls` | `boolean` | `false` | Show native browser controls (not recommended when using custom controls) |
+| `poster` | `string` | - | Image to show before video plays |
+| `crossOrigin` | `"anonymous" \| "use-credentials" \| ""` | - | CORS setting for cross-origin videos |
+| `className` | `string` | - | Custom CSS classes |
+
+### VideoPlayerControlBar
+
+Container for player controls.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+| `children` | `ReactNode` | Control components |
+
+### VideoPlayerPlayButton
+
+Play/Pause toggle button.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+
+### VideoPlayerSeekBackwardButton
+
+Button to seek backward by a set interval (default 10 seconds).
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+| `seekOffset` | `number` | Seconds to seek backward |
+
+### VideoPlayerSeekForwardButton
+
+Button to seek forward by a set interval (default 10 seconds).
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+| `seekOffset` | `number` | Seconds to seek forward |
+
+### VideoPlayerTimeRange
+
+Interactive progress bar for seeking through the video.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+
+### VideoPlayerTimeDisplay
+
+Displays current time and optionally total duration.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+| `showDuration` | `boolean` | Show total duration alongside current time |
+
+### VideoPlayerMuteButton
+
+Mute/Unmute toggle button.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+
+### VideoPlayerVolumeRange
+
+Interactive volume slider.
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Custom CSS classes |
+
+## Best Practices
+
+### YouTube Embeds (Primary Use Case)
+
+**Why use YouTube embeds:**
+- Videos are hosted on YouTube's global CDN (free, fast, reliable)
+- Built-in features (recommendations, captions, annotations)
+- Automatic quality adaptation
+- Mobile optimization
+- No bandwidth costs on your end
+- Built-in analytics
+
+**YouTube URL parameters for customization:**
+- Use `?autoplay=1&mute=1` for autoplay (browsers require mute)
+- Add `&rel=0` to minimize related videos
+- Add `&modestbranding=1` for minimal YouTube branding
+- Add `&controls=0` to hide controls (not recommended for accessibility)
+
+**Extracting video ID from YouTube URLs:**
+- From `https://www.youtube.com/watch?v=VIDEO_ID` → use `VIDEO_ID`
+- From `https://youtu.be/VIDEO_ID` → use `VIDEO_ID`
+- Embed URL format: `https://www.youtube.com/embed/VIDEO_ID`
+
+### HTML5 Video Files (Secondary Use Case)
+
+**Use the VideoPlayer component when:**
+- You have direct video files (MP4, WebM, OGG)
+- You need full control over the player UI and behavior
+- You want custom branding and styling
+- Videos are hosted on your own CDN or storage
+- You need specific player features not available on YouTube
+
+### HTML5 Video Sources
+
+**Recommended hosting options (in order of preference):**
+
+1. **/public folder** (best for development and small projects)
+   - Store videos in `/public/videos/` directory
+   - Access with `/videos/filename.mp4`
+   - No CORS issues, fast loading, works offline
+   - Example: `/videos/project-exodus-demo.mp4`
+
+2. **Dedicated video CDN** (best for production)
+   - Use services like Cloudflare R2, AWS S3 + CloudFront, Bunny.net
+   - Optimized for video streaming
+   - Global CDN for fast worldwide delivery
+   - Automatic quality adaptation and bandwidth optimization
+
+**File format best practices:**
+- **Use MP4 (H.264)** for broad compatibility across all browsers
+- **Add WebM** as alternative for better compression (smaller file sizes)
+- **Provide multiple sources** using `<source>` tags for fallback support
+- **Optimize file size** by compressing videos for web delivery
+- **Add poster image** for better perceived performance and SEO
+
+### CORS
+
+When loading videos from external domains, set the `crossOrigin` attribute:
+
+```tsx
+<VideoPlayerContent
+  crossOrigin="anonymous"
+  src="https://example.com/video.mp4"
+  slot="media"
+/>
+```
+
+### Autoplay
+
+- Always mute videos that autoplay (`muted` attribute)
+- Consider user experience and accessibility before enabling autoplay
+- Respect user preferences (some browsers block autoplay)
+
+### Performance
+
+- Use `preload="metadata"` for faster initial load (loads only duration and dimensions)
+- Use `preload="none"` if video is below the fold
+- Use `preload="auto"` only when immediate playback is likely
+- Add a `poster` image for better perceived performance
+
+### Responsive Design
+
+Control video size with Tailwind classes on the `VideoPlayer` wrapper:
+
+```tsx
+<VideoPlayer className="w-full max-w-2xl overflow-hidden rounded-lg border">
+  {/* ... */}
+</VideoPlayer>
+```
+
+### Custom Controls Layout
+
+Arrange controls in any order to match your design:
+
+```tsx
+<VideoPlayerControlBar>
+  <VideoPlayerTimeDisplay showDuration />
+  <VideoPlayerPlayButton />
+  <VideoPlayerTimeRange />
+  <VideoPlayerVolumeRange />
+</VideoPlayerControlBar>
+```

@@ -1,0 +1,846 @@
+---
+title: Image Component
+description: A flexible, practical image component with three clear sizing modes for web and mobile applications
+---
+
+import { ComponentPreview } from "@/components/docs";
+import { Image } from "@/components/ui/image";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
+A versatile image component built on Next.js Image and shadcn/ui's AspectRatio. Features three intuitive sizing modes to prevent distortion and work naturally in any layout. Perfect for avatars, product grids, hero banners, and responsive content.
+
+## Sizing Modes
+
+The Image component supports three sizing modes:
+
+1. **Explicit** - Specify both `width` and `height` for fixed dimensions
+2. **Constrained** - Specify one dimension + `aspectRatio` (other dimension calculated)
+3. **Responsive** - Specify only `aspectRatio` with Tailwind classes for container-controlled sizing
+
+## Basic Usage
+
+### Responsive with Aspect Ratio
+
+Use `aspectRatio` with Tailwind responsive classes for container-responsive images.
+
+<ComponentPreview
+  name="Responsive Image"
+  code={`<Image
+  src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+  alt="Responsive image"
+  aspectRatio="16:9"
+  className="w-full sm:w-96"
+/>`}
+>
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Responsive image"
+    aspectRatio="16:9"
+    className="w-full sm:w-96"
+  />
+</ComponentPreview>
+
+### Width-Constrained
+
+Specify `width` + `aspectRatio` for images with fixed width and proportional height.
+
+<ComponentPreview
+  name="Width Constrained"
+  code={`<Image
+  src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+  alt="Product photo"
+  width={300}
+  aspectRatio="4:3"
+/>`}
+>
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Product photo"
+    width={300}
+    aspectRatio="4:3"
+  />
+</ComponentPreview>
+
+### Height-Constrained
+
+Specify `height` + `aspectRatio` for images with fixed height and proportional width.
+
+<ComponentPreview
+  name="Height Constrained"
+  code={`<Image
+  src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+  alt="Story format"
+  height={500}
+  aspectRatio="9:16"
+/>`}
+>
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Story format"
+    height={500}
+    aspectRatio="9:16"
+  />
+</ComponentPreview>
+
+## Aspect Ratios
+
+All standard aspect ratios for modern web and mobile applications.
+
+<ComponentPreview
+  name="Aspect Ratios"
+  code={`<div className="grid grid-cols-2 gap-6 max-w-3xl">
+  <div>
+    <p className="text-sm font-medium mb-2">16:9 (Widescreen)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Widescreen ratio"
+      aspectRatio="16:9"
+      className="w-full"
+    />
+  </div>
+  <div>
+    <p className="text-sm font-medium mb-2">9:16 (Portrait)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Portrait ratio"
+      height={300}
+      aspectRatio="9:16"
+    />
+  </div>
+  <div>
+    <p className="text-sm font-medium mb-2">1:1 (Square)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Square ratio"
+      width={200}
+      aspectRatio="1:1"
+    />
+  </div>
+  <div>
+    <p className="text-sm font-medium mb-2">4:3 (Standard)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Standard ratio"
+      width={200}
+      aspectRatio="4:3"
+    />
+  </div>
+</div>`}
+>
+  <div className="grid grid-cols-2 gap-6 max-w-3xl">
+    <div>
+      <p className="text-sm font-medium mb-2">16:9 (Widescreen)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Widescreen ratio"
+        aspectRatio="16:9"
+        className="w-full"
+      />
+    </div>
+    <div>
+      <p className="text-sm font-medium mb-2">9:16 (Portrait)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Portrait ratio"
+        height={300}
+        aspectRatio="9:16"
+      />
+    </div>
+    <div>
+      <p className="text-sm font-medium mb-2">1:1 (Square)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Square ratio"
+        width={200}
+        aspectRatio="1:1"
+      />
+    </div>
+    <div>
+      <p className="text-sm font-medium mb-2">4:3 (Standard)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Standard ratio"
+        width={200}
+        aspectRatio="4:3"
+      />
+    </div>
+  </div>
+</ComponentPreview>
+
+## Preset Sizes
+
+Convenience presets for common widths (xs: 64px, sm: 96px, md: 192px, lg: 384px, xl: 512px).
+
+<ComponentPreview
+  name="Preset Sizes"
+  code={`<div className="flex items-end gap-4">
+  <div>
+    <p className="text-xs text-muted-foreground mb-1">xs (64px)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Extra small"
+      preset="xs"
+      aspectRatio="1:1"
+    />
+  </div>
+  <div>
+    <p className="text-xs text-muted-foreground mb-1">sm (96px)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Small"
+      preset="sm"
+      aspectRatio="1:1"
+    />
+  </div>
+  <div>
+    <p className="text-xs text-muted-foreground mb-1">md (192px)</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Medium"
+      preset="md"
+      aspectRatio="1:1"
+    />
+  </div>
+</div>`}
+>
+  <div className="flex items-end gap-4">
+    <div>
+      <p className="text-xs text-muted-foreground mb-1">xs (64px)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Extra small"
+        preset="xs"
+        aspectRatio="1:1"
+      />
+    </div>
+    <div>
+      <p className="text-xs text-muted-foreground mb-1">sm (96px)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Small"
+        preset="sm"
+        aspectRatio="1:1"
+      />
+    </div>
+    <div>
+      <p className="text-xs text-muted-foreground mb-1">md (192px)</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Medium"
+        preset="md"
+        aspectRatio="1:1"
+      />
+    </div>
+  </div>
+</ComponentPreview>
+
+## Fit Options
+
+Control how images fill their containers: `cover` (fills container, may crop) vs `contain` (fits entirely, may have space).
+
+<ComponentPreview
+  name="Fit Options"
+  code={`<div className="flex gap-8">
+  <div>
+    <p className="text-sm font-medium mb-2">Cover (default)</p>
+    <p className="text-xs text-muted-foreground mb-3">Fills container, may crop</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Cover fit"
+      fit="cover"
+      width={200}
+      aspectRatio="1:1"
+    />
+  </div>
+  <div>
+    <p className="text-sm font-medium mb-2">Contain</p>
+    <p className="text-xs text-muted-foreground mb-3">Full image visible</p>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Contain fit"
+      fit="contain"
+      width={200}
+      aspectRatio="1:1"
+    />
+  </div>
+</div>`}
+>
+  <div className="flex gap-8">
+    <div>
+      <p className="text-sm font-medium mb-2">Cover (default)</p>
+      <p className="text-xs text-muted-foreground mb-3">Fills container, may crop</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Cover fit"
+        fit="cover"
+        width={200}
+        aspectRatio="1:1"
+      />
+    </div>
+    <div>
+      <p className="text-sm font-medium mb-2">Contain</p>
+      <p className="text-xs text-muted-foreground mb-3">Full image visible</p>
+      <Image
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+        alt="Contain fit"
+        fit="contain"
+        width={200}
+        aspectRatio="1:1"
+      />
+    </div>
+  </div>
+</ComponentPreview>
+
+## Rounded Variants
+
+Choose from multiple corner radius options.
+
+<ComponentPreview
+  name="Rounded Variants"
+  code={`<div className="flex gap-4">
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="None"
+    rounded="none"
+    width={120}
+    aspectRatio="1:1"
+  />
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Small"
+    rounded="sm"
+    width={120}
+    aspectRatio="1:1"
+  />
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Medium"
+    rounded="md"
+    width={120}
+    aspectRatio="1:1"
+  />
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Large"
+    rounded="lg"
+    width={120}
+    aspectRatio="1:1"
+  />
+  <Image
+    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+    alt="Full"
+    rounded="full"
+    width={120}
+    aspectRatio="1:1"
+  />
+</div>`}
+>
+  <div className="flex gap-4">
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="None"
+      rounded="none"
+      width={120}
+      aspectRatio="1:1"
+    />
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Small"
+      rounded="sm"
+      width={120}
+      aspectRatio="1:1"
+    />
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Medium"
+      rounded="md"
+      width={120}
+      aspectRatio="1:1"
+    />
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Large"
+      rounded="lg"
+      width={120}
+      aspectRatio="1:1"
+    />
+    <Image
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="Full"
+      rounded="full"
+      width={120}
+      aspectRatio="1:1"
+    />
+  </div>
+</ComponentPreview>
+
+## Avatars & Profiles
+
+For circular profile images, use the Avatar component directly for optimal rendering.
+
+<ComponentPreview
+  name="Avatar Examples"
+  code={`<div className="flex items-center gap-4">
+  <Avatar className="size-10">
+    <AvatarImage
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="User"
+    />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+  <Avatar className="size-12">
+    <AvatarImage
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="User"
+    />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+  <Avatar className="size-16">
+    <AvatarImage
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="User"
+    />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+  <Avatar className="size-20">
+    <AvatarImage
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="User"
+    />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+</div>`}
+>
+  <div className="flex items-center gap-4">
+    <Avatar className="size-10">
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+        alt="User"
+      />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+    <Avatar className="size-12">
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+        alt="User"
+      />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+    <Avatar className="size-16">
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+        alt="User"
+      />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+    <Avatar className="size-20">
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+        alt="User"
+      />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  </div>
+</ComponentPreview>
+
+## Interactive Features
+
+Enable `openOnClick` to display images in a full-screen lightbox.
+
+<ComponentPreview
+  name="Click to Open"
+  code={`<Image
+  src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+  alt="Click to view full size"
+  openOnClick
+  aspectRatio="16:9"
+  className="w-full sm:w-96"
+/>`}
+>
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Click to view full size"
+    openOnClick
+    aspectRatio="16:9"
+    className="w-full sm:w-96"
+  />
+</ComponentPreview>
+
+## Error Handling
+
+The component automatically handles image loading errors with fallback content.
+
+```tsx
+// Default fallback (shows first 2 characters of alt text)
+<Image
+  src={failedUrl}
+  alt="Fallback Demo"
+  width={80}
+  aspectRatio="1:1"
+  rounded="full"
+/>
+
+// Custom fallback content
+<Image
+  src={failedUrl}
+  alt="Custom Fallback"
+  width={80}
+  aspectRatio="1:1"
+  rounded="full"
+  fallback={<span className="text-xs">🖼️</span>}
+/>
+
+// With error callback
+<Image
+  src={imageUrl}
+  alt="Image"
+  width={200}
+  aspectRatio="1:1"
+  onError={() => console.log('Image failed to load')}
+/>
+```
+
+## Common Patterns
+
+Real-world usage examples for typical UI scenarios.
+
+### Profile Card
+
+<ComponentPreview
+  name="Profile Card"
+  code={`<div className="flex items-center gap-4 p-4 border rounded-lg max-w-sm">
+  <Avatar className="size-12">
+    <AvatarImage
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+      alt="John Doe"
+    />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+  <div>
+    <p className="font-semibold">John Doe</p>
+    <p className="text-sm text-muted-foreground">Product Designer</p>
+  </div>
+</div>`}
+>
+  <div className="flex items-center gap-4 p-4 border rounded-lg max-w-sm">
+    <Avatar className="size-12">
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+        alt="John Doe"
+      />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+    <div>
+      <p className="font-semibold">John Doe</p>
+      <p className="text-sm text-muted-foreground">Product Designer</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Product Grid
+
+<ComponentPreview
+  name="Product Grid"
+  code={`<div className="grid grid-cols-3 gap-4">
+  <div>
+    <Image
+      src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
+      alt="Product 1"
+      aspectRatio="1:1"
+      className="w-full"
+      openOnClick
+    />
+    <p className="mt-2 text-sm font-medium">Product Name</p>
+    <p className="text-sm text-muted-foreground">$99.00</p>
+  </div>
+  <div>
+    <Image
+      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+      alt="Product 2"
+      aspectRatio="1:1"
+      className="w-full"
+      openOnClick
+    />
+    <p className="mt-2 text-sm font-medium">Product Name</p>
+    <p className="text-sm text-muted-foreground">$149.00</p>
+  </div>
+  <div>
+    <Image
+      src="https://images.unsplash.com/photo-1572635196237-14b3f281503f"
+      alt="Product 3"
+      aspectRatio="1:1"
+      className="w-full"
+      openOnClick
+    />
+    <p className="mt-2 text-sm font-medium">Product Name</p>
+    <p className="text-sm text-muted-foreground">$79.00</p>
+  </div>
+</div>`}
+>
+  <div className="grid grid-cols-3 gap-4">
+    <div>
+      <Image
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
+        alt="Product 1"
+        aspectRatio="1:1"
+        className="w-full"
+        openOnClick
+      />
+      <p className="mt-2 text-sm font-medium">Product Name</p>
+      <p className="text-sm text-muted-foreground">$99.00</p>
+    </div>
+    <div>
+      <Image
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+        alt="Product 2"
+        aspectRatio="1:1"
+        className="w-full"
+        openOnClick
+      />
+      <p className="mt-2 text-sm font-medium">Product Name</p>
+      <p className="text-sm text-muted-foreground">$149.00</p>
+    </div>
+    <div>
+      <Image
+        src="https://images.unsplash.com/photo-1572635196237-14b3f281503f"
+        alt="Product 3"
+        aspectRatio="1:1"
+        className="w-full"
+        openOnClick
+      />
+      <p className="mt-2 text-sm font-medium">Product Name</p>
+      <p className="text-sm text-muted-foreground">$79.00</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Hero Banner
+
+<ComponentPreview
+  name="Hero Banner"
+  code={`<div>
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Hero banner"
+    aspectRatio="21:9"
+    className="w-full"
+    priority
+  />
+  <div className="mt-6 text-center">
+    <h2 className="text-2xl font-bold">Explore Nature</h2>
+    <p className="text-muted-foreground">Discover breathtaking landscapes</p>
+  </div>
+</div>`}
+>
+  <div>
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Hero banner"
+      aspectRatio="21:9"
+      className="w-full"
+      priority
+    />
+    <div className="mt-6 text-center">
+      <h2 className="text-2xl font-bold">Explore Nature</h2>
+      <p className="text-muted-foreground">Discover breathtaking landscapes</p>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Story/Portrait Format
+
+<ComponentPreview
+  name="Story Format"
+  code={`<div className="flex justify-center">
+  <Image
+    src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+    alt="Story"
+    height={600}
+    aspectRatio="9:16"
+    fit="cover"
+  />
+</div>`}
+>
+  <div className="flex justify-center">
+    <Image
+      src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba"
+      alt="Story"
+      height={600}
+      aspectRatio="9:16"
+      fit="cover"
+    />
+  </div>
+</ComponentPreview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | - | **Required.** Image source URL |
+| `alt` | `string` | - | **Required.** Alternative text for accessibility |
+| `width` | `number \| string` | - | Fixed width in pixels or CSS value |
+| `height` | `number \| string` | - | Fixed height in pixels or CSS value |
+| `aspectRatio` | `"1:1" \| "4:3" \| "3:2" \| "16:9" \| "21:9" \| "9:16" \| "2:3" \| number` | - | Aspect ratio constraint |
+| `preset` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | - | Preset width (64/96/192/384/512px) |
+| `fit` | `"cover" \| "contain"` | `"cover"` | How image fills container |
+| `objectPosition` | `string` | - | CSS object-position value |
+| `rounded` | `"none" \| "sm" \| "md" \| "lg" \| "full"` | `"md"` | Corner radius variant |
+| `loading` | `"lazy" \| "eager"` | `"lazy"` | Image loading strategy |
+| `priority` | `boolean` | `false` | Next.js Image priority loading |
+| `openOnClick` | `boolean` | `false` | Enable lightbox on click |
+| `onClick` | `() => void` | - | Custom click handler |
+| `fallback` | `ReactNode` | - | Custom fallback content for errors |
+| `onError` | `() => void` | - | Error callback |
+| `className` | `string` | - | Image element classes |
+| `containerClassName` | `string` | - | Container element classes |
+
+## Usage Guidelines
+
+### Choosing Sizing Modes
+
+**Explicit (width + height)**: Use when you need exact dimensions without aspect ratio constraints. Perfect for logos, icons, or images with specific requirements.
+
+```tsx
+<Image src={logo} alt="Logo" width={200} height={80} />
+```
+
+**Width-Constrained (width + aspectRatio)**: Use when you want a fixed width with proportional height. Ideal for cards, thumbnails, and sidebar images.
+
+```tsx
+<Image src={thumb} alt="Thumbnail" width={300} aspectRatio="16:9" />
+```
+
+**Height-Constrained (height + aspectRatio)**: Use when you want a fixed height with proportional width. Great for portrait images and story formats.
+
+```tsx
+<Image src={story} alt="Story" height={600} aspectRatio="9:16" />
+```
+
+**Responsive (aspectRatio + className)**: Use when the container should control sizing. Perfect for grids, flex layouts, and responsive designs.
+
+```tsx
+<Image src={hero} alt="Hero" aspectRatio="16:9" className="w-full max-w-6xl" />
+```
+
+### Aspect Ratio Guide
+
+- **16:9** - Widescreen (videos, hero banners, landscape photos)
+- **9:16** - Portrait/Story (mobile screenshots, vertical content)
+- **1:1** - Square (profile images, product thumbnails, Instagram-style posts)
+- **4:3** - Standard (traditional photography, presentations)
+- **3:2** - Classic photography ratio
+- **21:9** - Ultra-wide (cinematic banners, wide hero sections)
+- **2:3** - Portrait photography
+
+### Common Pitfalls
+
+**Portrait Aspect Ratios with Fixed Width**
+
+```tsx
+// ❌ Creates very tall image (192px × 341px)
+<Image width={192} aspectRatio="9:16" />
+
+// ✅ Use height-constrained instead
+<Image height={400} aspectRatio="9:16" />
+
+// ✅ Or use responsive with max-width
+<Image aspectRatio="9:16" className="w-full max-w-xs" />
+```
+
+**Grid Layouts**
+
+```tsx
+// ❌ Fixed width breaks grid
+<div className="grid grid-cols-3">
+  <Image width={300} aspectRatio="1:1" />
+</div>
+
+// ✅ Let grid control width
+<div className="grid grid-cols-3 gap-4">
+  <Image aspectRatio="1:1" className="w-full" />
+</div>
+```
+
+**Flex Layouts**
+
+```tsx
+// ❌ Fixed width fights flex
+<div className="flex gap-4">
+  <Image width={300} aspectRatio="1:1" />
+</div>
+
+// ✅ Use flex-1 with min-width
+<div className="flex gap-4">
+  <Image aspectRatio="1:1" className="flex-1 min-w-0" />
+</div>
+```
+
+### Accessibility
+
+Always provide descriptive alt text:
+
+```tsx
+// ✅ Good
+<Image src={product} alt="Red leather backpack with bronze buckles" />
+
+// ❌ Bad
+<Image src={product} alt="Product image" />
+
+// ✅ Decorative images
+<Image src={decoration} alt="" />
+```
+
+### Performance
+
+Use `priority` for above-the-fold images:
+
+```tsx
+<Image
+  src={hero}
+  alt="Hero"
+  aspectRatio="16:9"
+  className="w-full"
+  priority
+/>
+```
+
+Images are lazy-loaded by default for optimal performance.
+
+### Alignment
+
+Use Tailwind classes for alignment:
+
+```tsx
+// Center
+<Image {...props} className="mx-auto" />
+
+// Right
+<Image {...props} className="ml-auto" />
+
+// Left (default)
+<Image {...props} />
+```
+
+## Migration from Old API
+
+If you have existing code using the old API, update as follows:
+
+| Old API | New API |
+|---------|---------|
+| `size="small"` | `preset="sm"` or `width={96}` |
+| `size="medium"` | `preset="md"` or `width={192}` |
+| `size="full"` | `className="w-full"` (with aspectRatio) |
+| `shape="circular"` | Use `Avatar` component or `rounded="full"` |
+| `align="center"` | `className="mx-auto"` |
+| `align="right"` | `className="ml-auto"` |
+| `fullWidthOnMobile` | `className="w-full sm:w-96"` |
+| `fit="fill"` | `fit="cover"` |
+| `fit="fit"` | `fit="contain"` |
+
+## Built With
+
+This component leverages:
+
+- **Next.js Image** - Automatic optimization and responsive images
+- **Radix AspectRatio** - Maintains proportions and prevents layout shift
+- **Tailwind CSS** - Flexible styling and responsive design

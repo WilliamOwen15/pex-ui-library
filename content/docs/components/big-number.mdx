@@ -1,0 +1,599 @@
+---
+title: Big Number
+description: Prominently display numerical values with labels and icons for dashboards and KPI displays.
+---
+
+import { ComponentPreview } from "@/components/docs/component-preview";
+import {
+  BasicExample,
+  WithIconsExample,
+  DashboardExample,
+  GradientValuesExample,
+  ClickableExample,
+  CustomRenderExample,
+  MinimalVariantExample,
+  MixedSizesExample,
+  OutlineVariantExample,
+  SingleItemExample,
+  WithCustomSlotsExample,
+  PrefixSuffixExample,
+} from "@/components/docs/big-number-examples";
+
+## Introduction
+
+The Big Number component displays numerical values in a large, prominent format, ideal for showing top-level reporting numbers, KPIs, and statistics. Use it to create impactful dashboards and data visualizations.
+
+**Key Features:**
+- Display large numbers with labels and descriptions
+- Support for icons (Lucide React)
+- Multiple variants: card, outline, ghost, minimal
+- Responsive grid layouts
+- Interactive with href and onClick support
+- Prefix and suffix formatting (e.g., "$", "%", "K")
+- Custom render functions for advanced formatting
+- Fully accessible with ARIA labels
+
+## Installation
+
+Copy the following files to your project:
+
+```bash
+components/glide/big-number-item.tsx
+components/glide/big-number-collection.tsx
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <BasicExample />
+</ComponentPreview>
+
+```tsx
+import { BigNumberCollection } from "@/components/glide/big-number-collection";
+
+export function BasicExample() {
+  return (
+    <BigNumberCollection
+      columns={3}
+      items={[
+        {
+          value: 847,
+          label: "Total Attendance",
+          description: "This month",
+        },
+        {
+          value: 23,
+          label: "Active Groups",
+          description: "Meeting regularly",
+        },
+        {
+          value: "92%",
+          label: "Attendance Rate",
+          description: "vs last month",
+        },
+      ]}
+    />
+  );
+}
+```
+
+## With Icons
+
+Add visual context with Lucide React icons.
+
+<ComponentPreview>
+  <WithIconsExample />
+</ComponentPreview>
+
+```tsx
+import { BigNumberCollection } from "@/components/glide/big-number-collection";
+import { Users, Calendar, Activity } from "lucide-react";
+
+export function WithIconsExample() {
+  return (
+    <BigNumberCollection
+      columns={3}
+      items={[
+        {
+          value: 847,
+          label: "Total Attendance",
+          description: "This month",
+          icon: <Users className="h-5 w-5" />,
+        },
+        {
+          value: 23,
+          label: "Active Groups",
+          description: "Meeting regularly",
+          icon: <Calendar className="h-5 w-5" />,
+        },
+        {
+          value: "92%",
+          label: "Attendance Rate",
+          description: "vs last month",
+          icon: <Activity className="h-5 w-5" />,
+        },
+      ]}
+    />
+  );
+}
+```
+
+## Dashboard Example
+
+Create comprehensive KPI dashboards with 4-column layouts and larger sizes.
+
+<ComponentPreview>
+  <DashboardExample />
+</ComponentPreview>
+
+```tsx
+import { BigNumberCollection } from "@/components/glide/big-number-collection";
+import { UserPlus, Users, Shield, ThumbsUp } from "lucide-react";
+
+export function DashboardExample() {
+  return (
+    <BigNumberCollection
+      columns={4}
+      size="lg"
+      items={[
+        {
+          value: 156,
+          label: "New Sign-ups",
+          description: "This month",
+          icon: <UserPlus className="h-6 w-6" />,
+        },
+        {
+          value: 1247,
+          label: "Total Members",
+          icon: <Users className="h-6 w-6" />,
+        },
+        {
+          value: 34,
+          label: "Facilitators",
+          icon: <Shield className="h-6 w-6" />,
+        },
+        {
+          value: "98%",
+          label: "Satisfaction",
+          icon: <ThumbsUp className="h-6 w-6" />,
+        },
+      ]}
+    />
+  );
+}
+```
+
+## Variants
+
+Choose from multiple visual styles: card (default), outline, ghost, and minimal.
+
+### Outline Variant
+
+<ComponentPreview>
+  <OutlineVariantExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  variant="outline"
+  columns={3}
+  items={[...]}
+/>
+```
+
+### Minimal Variant
+
+Perfect for landing pages and hero sections.
+
+<ComponentPreview>
+  <MinimalVariantExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  variant="minimal"
+  alignment="center"
+  size="xl"
+  columns={3}
+  items={[
+    { value: "10M+", label: "Users Worldwide", description: "Trusted by millions" },
+    { value: "99.9%", label: "Uptime SLA", description: "Enterprise-grade reliability" },
+    { value: "24/7", label: "Support", description: "Always here to help" },
+  ]}
+/>
+```
+
+## Gradient Values
+
+Create eye-catching displays with gradient text effects.
+
+<ComponentPreview>
+  <GradientValuesExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  valueVariant="gradient"
+  alignment="center"
+  size="xl"
+  variant="minimal"
+  columns={3}
+  items={[
+    { value: "10K+", label: "Lives Changed" },
+    { value: "500+", label: "Active Groups" },
+    { value: "15", label: "Years of Impact" },
+  ]}
+/>
+```
+
+## Sizes
+
+Control the size of numbers and labels with sm, md (default), lg, and xl sizes.
+
+<ComponentPreview>
+  <MixedSizesExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  columns={3}
+  showIcon={false}
+  items={[
+    { value: 847, label: "Small Size", description: "This uses sm size", size: "sm" },
+    { value: 23, label: "Medium Size", description: "This uses md size (default)", size: "md" },
+    { value: "92%", label: "Large Size", description: "This uses lg size", size: "lg" },
+  ]}
+/>
+```
+
+## Interactive
+
+Make big numbers interactive with href (links) or onClick (buttons).
+
+<ComponentPreview>
+  <ClickableExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  columns={3}
+  items={[
+    {
+      value: 847,
+      label: "Total Attendance",
+      description: "Click to view details",
+      icon: <Users className="h-5 w-5" />,
+      onClick: () => alert("Viewing attendance details"),
+    },
+    {
+      value: 23,
+      label: "Active Groups",
+      description: "Click to see groups",
+      icon: <Calendar className="h-5 w-5" />,
+      href: "/groups",
+    },
+    {
+      value: "92%",
+      label: "Attendance Rate",
+      description: "Click for analytics",
+      icon: <Activity className="h-5 w-5" />,
+      onClick: () => alert("Opening analytics"),
+    },
+  ]}
+/>
+```
+
+## Prefix and Suffix
+
+Format numbers with currency symbols, units, or other indicators.
+
+<ComponentPreview>
+  <PrefixSuffixExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  columns={4}
+  items={[
+    { value: "142,894", prefix: "$", label: "Revenue", description: "This month" },
+    { value: "98.2", suffix: "%", label: "Uptime", description: "Last 30 days" },
+    { value: "2.5", suffix: "K", label: "New Users", description: "This week" },
+    { value: "45", suffix: " min", label: "Avg. Session", description: "User engagement" },
+  ]}
+/>
+```
+
+## Custom Slots
+
+Add custom header and footer content to each item.
+
+<ComponentPreview>
+  <WithCustomSlotsExample />
+</ComponentPreview>
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+<BigNumberCollection
+  columns={3}
+  items={[
+    {
+      value: 847,
+      label: "Total Attendance",
+      icon: <Users className="h-5 w-5" />,
+      header: <Badge variant="secondary">NEW</Badge>,
+      footer: <div className="text-xs text-muted-foreground">Updated 5 minutes ago</div>,
+    },
+    {
+      value: 23,
+      label: "Active Groups",
+      icon: <Calendar className="h-5 w-5" />,
+      header: <Badge variant="default">TRENDING</Badge>,
+      footer: <div className="text-xs text-muted-foreground">+12% from last week</div>,
+    },
+    {
+      value: "92%",
+      label: "Attendance Rate",
+      icon: <Activity className="h-5 w-5" />,
+      footer: <div className="text-xs text-muted-foreground">Above target (90%)</div>,
+    },
+  ]}
+/>
+```
+
+## Custom Rendering
+
+Use render functions to format values dynamically.
+
+<ComponentPreview>
+  <CustomRenderExample />
+</ComponentPreview>
+
+```tsx
+<BigNumberCollection
+  columns={3}
+  items={[
+    { value: 847000, label: "Revenue", icon: <Users className="h-5 w-5" /> },
+    { value: 23, label: "Active Groups", icon: <Calendar className="h-5 w-5" /> },
+    { value: 92, label: "Satisfaction Score", icon: <ThumbsUp className="h-5 w-5" /> },
+  ]}
+  renderValue={(item) => {
+    if (typeof item.value === "number" && item.value > 1000) {
+      return (
+        <div className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight">
+          ${(item.value / 1000).toFixed(0)}K
+        </div>
+      );
+    }
+    if (item.label === "Satisfaction Score") {
+      return (
+        <div className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight">
+          {item.value}/100
+        </div>
+      );
+    }
+    return (
+      <div className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight">
+        {item.value}
+      </div>
+    );
+  }}
+/>
+```
+
+## Single Item
+
+Display a single featured metric without a collection.
+
+<ComponentPreview>
+  <SingleItemExample />
+</ComponentPreview>
+
+```tsx
+import { BigNumberItem } from "@/components/glide/big-number-item";
+
+<BigNumberItem
+  size="xl"
+  variant="card"
+  alignment="center"
+  item={{
+    value: 1247,
+    label: "Daily Active Users",
+    description: "Across all platforms",
+    icon: <Users className="h-6 w-6" />,
+  }}
+/>
+```
+
+## Layout Options
+
+Control the grid layout with the `columns` prop:
+
+- `1` - Single column
+- `2` - Two columns (responsive)
+- `3` - Three columns (responsive)
+- `4` - Four columns (responsive)
+- `auto` - Automatic responsive grid (1 → 2 → 3 → 4 based on screen size)
+
+```tsx
+<BigNumberCollection columns={4} items={[...]} />
+```
+
+## Alignment
+
+Align content to the left (default), center, or right.
+
+```tsx
+<BigNumberCollection alignment="center" items={[...]} />
+```
+
+## API Reference
+
+### BigNumberCollection Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `BigNumberItem[]` | - | Array of big number items to display |
+| `columns` | `1 \| 2 \| 3 \| 4 \| "auto"` | `"auto"` | Number of columns in the grid |
+| `variant` | `"card" \| "outline" \| "ghost" \| "minimal"` | `"card"` | Visual style variant |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Size of numbers and labels |
+| `valueVariant` | `"default" \| "gradient" \| "muted" \| "primary"` | `"default"` | Color variant for values |
+| `alignment` | `"left" \| "center" \| "right"` | `"left"` | Text alignment |
+| `labelStyle` | `"simple" \| "bold" \| "uppercase" \| "muted"` | `"muted"` | Label text style |
+| `labelPosition` | `"above" \| "below"` | `"above"` | Position of label relative to value |
+| `descriptionPosition` | `"above" \| "below"` | `"below"` | Position of description relative to value |
+| `showIcon` | `boolean` | `true` | Whether to show icons |
+| `limit` | `number` | - | Limit number of items displayed |
+| `onItemClick` | `(item, index) => void` | - | Click handler for all items |
+| `renderValue` | `(item, index) => ReactNode` | - | Custom value renderer |
+| `renderLabel` | `(label, item, index) => ReactNode` | - | Custom label renderer |
+| `renderIcon` | `(icon, item, index) => ReactNode` | - | Custom icon renderer |
+| `renderItem` | `(item, index) => ReactNode` | - | Custom item renderer |
+| `itemAs` | `"div" \| "article"` | `"div"` | HTML element for items |
+| `className` | `string` | - | Additional CSS classes |
+
+### BigNumberItem Interface
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `value` | `string \| number` | The big number value |
+| `label` | `string` | Title/name of the metric |
+| `description` | `string` | Supporting text |
+| `id` | `string \| number` | Unique identifier |
+| `icon` | `ReactNode` | Lucide icon or custom element |
+| `prefix` | `string` | Text before value (e.g., "$") |
+| `suffix` | `string` | Text after value (e.g., "%") |
+| `href` | `string` | Link URL (renders as `<a>`) |
+| `onClick` | `() => void` | Click handler (renders as `<button>`) |
+| `header` | `ReactNode` | Custom header content |
+| `footer` | `ReactNode` | Custom footer content |
+| `ariaLabel` | `string` | Accessibility label |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | Per-item size override |
+| `variant` | `"card" \| "outline" \| "ghost" \| "minimal"` | Per-item variant override |
+| `valueVariant` | `"default" \| "gradient" \| "muted" \| "primary"` | Per-item value variant override |
+| `alignment` | `"left" \| "center" \| "right"` | Per-item alignment override |
+
+### BigNumberItem Component Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `item` | `BigNumberItem` | - | Item configuration object |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Size of number and label |
+| `variant` | `"card" \| "outline" \| "ghost" \| "minimal"` | `"card"` | Visual style variant |
+| `valueVariant` | `"default" \| "gradient" \| "muted" \| "primary"` | `"default"` | Color variant for value |
+| `alignment` | `"left" \| "center" \| "right"` | `"left"` | Text alignment |
+| `labelStyle` | `"simple" \| "bold" \| "uppercase" \| "muted"` | `"muted"` | Label text style |
+| `labelPosition` | `"above" \| "below"` | `"above"` | Position of label relative to value |
+| `descriptionPosition` | `"above" \| "below"` | `"below"` | Position of description |
+| `showIcon` | `boolean` | `true` | Whether to show icon |
+| `onClick` | `() => void` | - | Additional click handler |
+| `as` | `"div" \| "article"` | `"div"` | HTML element |
+| `renderValue` | `(item) => ReactNode` | - | Custom value renderer |
+| `renderLabel` | `(label, item) => ReactNode` | - | Custom label renderer |
+| `renderIcon` | `(icon, item) => ReactNode` | - | Custom icon renderer |
+| `classNames` | `object` | - | Granular CSS class overrides |
+
+## Accessibility
+
+The Big Number component follows accessibility best practices:
+
+- **Semantic HTML**: Uses `<a>` for links, `<button>` for interactions, and `<article>` or `<div>` for static content
+- **ARIA Labels**: Automatically generates descriptive labels (e.g., "Total Attendance: 847")
+- **Keyboard Navigation**: Full keyboard support with Tab, Enter, and Space keys
+- **Screen Readers**: Proper announcement of values, labels, and descriptions
+- **Color Contrast**: All text meets WCAG AA standards
+- **Focus Indicators**: Visible focus states for interactive elements
+
+### Custom ARIA Labels
+
+```tsx
+<BigNumberCollection
+  items={[
+    {
+      value: 847,
+      label: "Total Attendance",
+      ariaLabel: "Total group attendance this month is 847 people",
+    },
+  ]}
+/>
+```
+
+## Use Cases
+
+### Project Management Dashboard
+
+```tsx
+<BigNumberCollection
+  columns={4}
+  size="lg"
+  items={[
+    { value: 12, label: "Active Projects", icon: <Folder /> },
+    { value: 47, label: "Tasks Completed", icon: <CheckCircle /> },
+    { value: 8, label: "Team Members", icon: <Users /> },
+    { value: "94%", label: "On Schedule", icon: <TrendingUp /> },
+  ]}
+/>
+```
+
+### E-commerce Analytics
+
+```tsx
+<BigNumberCollection
+  columns={3}
+  items={[
+    { value: "$142,894", label: "Revenue", description: "This month", icon: <DollarSign /> },
+    { value: 2847, label: "Orders", description: "Last 30 days", icon: <ShoppingCart /> },
+    { value: "3.2%", label: "Conversion Rate", description: "+0.5% vs last month", icon: <TrendingUp /> },
+  ]}
+/>
+```
+
+### Landing Page Statistics
+
+```tsx
+<BigNumberCollection
+  variant="minimal"
+  alignment="center"
+  size="xl"
+  valueVariant="gradient"
+  columns={3}
+  showIcon={false}
+  items={[
+    { value: "10M+", label: "Downloads", description: "Worldwide" },
+    { value: "500K", label: "Active Users", description: "Monthly" },
+    { value: "4.9", label: "App Rating", description: "Average score" },
+  ]}
+/>
+```
+
+## Best Practices
+
+1. **Keep labels concise**: Use short, descriptive labels (1-3 words)
+2. **Use appropriate sizes**: Match size to importance (xl for hero metrics, sm for supporting data)
+3. **Group related metrics**: Use collections to show related KPIs together
+4. **Provide context**: Add descriptions to explain what the numbers mean
+5. **Use icons wisely**: Icons should add clarity, not clutter
+6. **Format large numbers**: Use K, M, B suffixes or custom formatting for readability
+7. **Make it interactive**: Add href or onClick for drill-down functionality
+8. **Consider color meaning**: Use gradient or primary variants for positive metrics
+9. **Test responsive behavior**: Verify layout works at all screen sizes
+10. **Ensure accessibility**: Always provide meaningful aria-labels
+
+## Future Enhancements (V2)
+
+Planned features for future versions:
+
+- **Counter Animation**: Animate numbers from 0 to target value
+- **Trend Indicators**: Up/down arrows with percentage changes
+- **Sparkline Charts**: Inline mini charts showing trends
+- **Progress Bars**: Visual progress indicators underneath values
+- **Comparison Mode**: Side-by-side before/after metrics
+- **Badge Support**: Built-in status badges (NEW, BETA, etc.)
+- **Loading States**: Skeleton loaders for async data
+- **Real-time Updates**: Live data polling and updates
+
+## Related Components
+
+- [Card Collection](/docs/components/card-collection) - Display collections of content cards
+- [Data Grid](/docs/components/data-grid) - Advanced tabular data display
+- [Table Collection](/docs/components/table-collection) - Simple table layouts

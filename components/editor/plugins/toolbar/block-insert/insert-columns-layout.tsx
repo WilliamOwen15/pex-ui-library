@@ -7,22 +7,22 @@ import { InsertLayoutDialog } from "@/components/editor/plugins/layout-plugin";
 import { SelectItem } from "@/components/ui/select";
 
 export function InsertColumnsLayout() {
-	const { activeEditor, showModal } = useToolbarContext();
+  const { activeEditor, showModal } = useToolbarContext();
 
-	return (
-		<SelectItem
-			className=""
-			onPointerUp={() =>
-				showModal("Insert Columns Layout", (onClose) => (
-					<InsertLayoutDialog activeEditor={activeEditor} onClose={onClose} />
-				))
-			}
-			value="columns"
-		>
-			<div className="flex items-center gap-1">
-				<Columns3Icon className="size-4" />
-				<span>Columns Layout</span>
-			</div>
-		</SelectItem>
-	);
+  return (
+    <SelectItem
+      className=""
+      onPointerUp={() =>
+        showModal("Insert Columns Layout", (onClose) => (
+          <InsertLayoutDialog activeEditor={activeEditor} onClose={onClose} />
+        ))
+      }
+      value="columns"
+    >
+      <div className="flex items-center gap-1">
+        <Columns3Icon className="size-4" />
+        <span>Columns Layout</span>
+      </div>
+    </SelectItem>
+  );
 }

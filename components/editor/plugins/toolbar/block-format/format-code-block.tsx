@@ -9,36 +9,36 @@ import { SelectItem } from "@/components/ui/select";
 const BLOCK_FORMAT_VALUE = "code";
 
 export function FormatCodeBlock() {
-	const { activeEditor, blockType } = useToolbarContext();
+  const { activeEditor, blockType } = useToolbarContext();
 
-	const formatCode = () => {
-		if (blockType !== "code") {
-			activeEditor.update(() => {
-				let selection = $getSelection();
+  const formatCode = () => {
+    if (blockType !== "code") {
+      activeEditor.update(() => {
+        let selection = $getSelection();
 
-				if (selection !== null) {
-					if (selection.isCollapsed()) {
-						$setBlocksType(selection, () => $createCodeNode());
-					} else {
-						const textContent = selection.getTextContent();
-						const codeNode = $createCodeNode();
-						selection.insertNodes([codeNode]);
-						selection = $getSelection();
-						if ($isRangeSelection(selection)) {
-							selection.insertRawText(textContent);
-						}
-					}
-				}
-			});
-		}
-	};
+        if (selection !== null) {
+          if (selection.isCollapsed()) {
+            $setBlocksType(selection, () => $createCodeNode());
+          } else {
+            const textContent = selection.getTextContent();
+            const codeNode = $createCodeNode();
+            selection.insertNodes([codeNode]);
+            selection = $getSelection();
+            if ($isRangeSelection(selection)) {
+              selection.insertRawText(textContent);
+            }
+          }
+        }
+      });
+    }
+  };
 
-	return (
-		<SelectItem onPointerDown={formatCode} value="code">
-			<div className="flex items-center gap-1 font-normal">
-				{blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
-				{blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
-			</div>
-		</SelectItem>
-	);
+  return (
+    <SelectItem onPointerDown={formatCode} value="code">
+      <div className="flex items-center gap-1 font-normal">
+        {blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
+        {blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
+      </div>
+    </SelectItem>
+  );
 }

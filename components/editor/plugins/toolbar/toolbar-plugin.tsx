@@ -8,41 +8,41 @@ import { ToolbarContext } from "@/components/editor/context/toolbar-context";
 import { useEditorModal } from "@/components/editor/editor-hooks/use-modal";
 
 export function ToolbarPlugin({
-	children,
+  children,
 }: {
-	children: (props: { blockType: string }) => React.ReactNode;
+  children: (props: { blockType: string }) => React.ReactNode;
 }) {
-	const [editor] = useLexicalComposerContext();
+  const [editor] = useLexicalComposerContext();
 
-	const [activeEditor, setActiveEditor] = useState(editor);
-	const [blockType, setBlockType] = useState<string>("paragraph");
+  const [activeEditor, setActiveEditor] = useState(editor);
+  const [blockType, setBlockType] = useState<string>("paragraph");
 
-	const [modal, showModal] = useEditorModal();
+  const [modal, showModal] = useEditorModal();
 
-	const $updateToolbar = () => {};
+  const $updateToolbar = () => {};
 
-	useEffect(() => {
-		return activeEditor.registerCommand(
-			SELECTION_CHANGE_COMMAND,
-			(_payload, newEditor) => {
-				setActiveEditor(newEditor);
-				return false;
-			},
-			COMMAND_PRIORITY_CRITICAL,
-		);
-	}, [activeEditor.registerCommand]);
+  useEffect(() => {
+    return activeEditor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      (_payload, newEditor) => {
+        setActiveEditor(newEditor);
+        return false;
+      },
+      COMMAND_PRIORITY_CRITICAL
+    );
+  }, [activeEditor.registerCommand]);
 
-	return (
-		<ToolbarContext
-			$updateToolbar={$updateToolbar}
-			activeEditor={activeEditor}
-			blockType={blockType}
-			setBlockType={setBlockType}
-			showModal={showModal}
-		>
-			{modal}
+  return (
+    <ToolbarContext
+      $updateToolbar={$updateToolbar}
+      activeEditor={activeEditor}
+      blockType={blockType}
+      setBlockType={setBlockType}
+      showModal={showModal}
+    >
+      {modal}
 
-			{children({ blockType })}
-		</ToolbarContext>
-	);
+      {children({ blockType })}
+    </ToolbarContext>
+  );
 }

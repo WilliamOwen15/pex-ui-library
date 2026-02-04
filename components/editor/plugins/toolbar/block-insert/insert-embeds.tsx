@@ -7,20 +7,20 @@ import { EmbedConfigs } from "@/components/editor/plugins/embeds/auto-embed-plug
 import { SelectItem } from "@/components/ui/select";
 
 export function InsertEmbeds() {
-	const { activeEditor } = useToolbarContext();
-	return EmbedConfigs.map((embedConfig) => (
-		<SelectItem
-			className=""
-			key={embedConfig.type}
-			onPointerUp={() => {
-				activeEditor.dispatchCommand(INSERT_EMBED_COMMAND, embedConfig.type);
-			}}
-			value={embedConfig.type}
-		>
-			<div className="flex items-center gap-1">
-				{embedConfig.icon}
-				<span>{embedConfig.contentName}</span>
-			</div>
-		</SelectItem>
-	));
+  const { activeEditor } = useToolbarContext();
+  return EmbedConfigs.map((embedConfig) => (
+    <SelectItem
+      className=""
+      key={embedConfig.type}
+      onPointerUp={() => {
+        activeEditor.dispatchCommand(INSERT_EMBED_COMMAND, embedConfig.type);
+      }}
+      value={embedConfig.type}
+    >
+      <div className="flex items-center gap-1">
+        {embedConfig.icon}
+        <span>{embedConfig.contentName}</span>
+      </div>
+    </SelectItem>
+  ));
 }

@@ -6,61 +6,61 @@ import { Trash2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 
 export function ClearEditorActionPlugin() {
-	const [editor] = useLexicalComposerContext();
+  const [editor] = useLexicalComposerContext();
 
-	return (
-		<Dialog>
-			<Tooltip disableHoverableContent>
-				<TooltipTrigger asChild>
-					<DialogTrigger asChild>
-						<Button className="p-2" size={"sm"} variant={"ghost"}>
-							<Trash2Icon className="h-4 w-4" />
-						</Button>
-					</DialogTrigger>
-				</TooltipTrigger>
-				<TooltipContent>Clear Editor</TooltipContent>
-			</Tooltip>
+  return (
+    <Dialog>
+      <Tooltip disableHoverableContent>
+        <TooltipTrigger asChild>
+          <DialogTrigger asChild>
+            <Button className="p-2" size={"sm"} variant={"ghost"}>
+              <Trash2Icon className="h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+        </TooltipTrigger>
+        <TooltipContent>Clear Editor</TooltipContent>
+      </Tooltip>
 
-			<DialogContent>
-				<DialogHeader>
-					<DialogTitle>Clear Editor</DialogTitle>
-					<DialogDescription>
-						Are you sure you want to clear the editor?
-					</DialogDescription>
-				</DialogHeader>
-				<DialogFooter>
-					<DialogClose asChild>
-						<Button variant="outline">Cancel</Button>
-					</DialogClose>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Clear Editor</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to clear the editor?
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
 
-					<DialogClose asChild>
-						<Button
-							onClick={() => {
-								editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
-							}}
-							variant="destructive"
-						>
-							Clear
-						</Button>
-					</DialogClose>
-				</DialogFooter>
-			</DialogContent>
-		</Dialog>
-	);
+          <DialogClose asChild>
+            <Button
+              onClick={() => {
+                editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
+              }}
+              variant="destructive"
+            >
+              Clear
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
 }

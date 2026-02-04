@@ -1,0 +1,13 @@
+# Ignore all video files to keep repository size small
+*.mp4
+*.webm
+*.ogg
+*.mov
+*.avi
+
+# Keep specific files if needed (uncomment and specify)
+# !project-exodus-demo.mp4
+
+# Always keep this directory structure
+!.gitignore
+!README.md

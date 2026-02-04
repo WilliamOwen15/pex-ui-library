@@ -1,8 +1,8 @@
 "use client";
 
 import {
-	$getSelectionStyleValueForProperty,
-	$patchStyleText,
+  $getSelectionStyleValueForProperty,
+  $patchStyleText,
 } from "@lexical/selection";
 import { $getSelection, $isRangeSelection, type BaseSelection } from "lexical";
 import { Minus, Plus } from "lucide-react";
@@ -19,71 +19,71 @@ const MIN_FONT_SIZE = 1;
 const MAX_FONT_SIZE = 72;
 
 export function FontSizeToolbarPlugin() {
-	const style = "font-size";
-	const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
+  const style = "font-size";
+  const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
-	const { activeEditor } = useToolbarContext();
+  const { activeEditor } = useToolbarContext();
 
-	const $updateToolbar = (selection: BaseSelection) => {
-		if ($isRangeSelection(selection)) {
-			const value = $getSelectionStyleValueForProperty(
-				selection,
-				"font-size",
-				`${DEFAULT_FONT_SIZE}px`,
-			);
-			setFontSize(Number.parseInt(value, 10) || DEFAULT_FONT_SIZE);
-		}
-	};
+  const $updateToolbar = (selection: BaseSelection) => {
+    if ($isRangeSelection(selection)) {
+      const value = $getSelectionStyleValueForProperty(
+        selection,
+        "font-size",
+        `${DEFAULT_FONT_SIZE}px`
+      );
+      setFontSize(Number.parseInt(value, 10) || DEFAULT_FONT_SIZE);
+    }
+  };
 
-	useUpdateToolbarHandler($updateToolbar);
+  useUpdateToolbarHandler($updateToolbar);
 
-	const updateFontSize = useCallback(
-		(newSize: number) => {
-			const size = Math.min(Math.max(newSize, MIN_FONT_SIZE), MAX_FONT_SIZE);
-			activeEditor.update(() => {
-				const selection = $getSelection();
-				if (selection !== null) {
-					$patchStyleText(selection, {
-						[style]: `${size}px`,
-					});
-				}
-			});
-			setFontSize(size);
-		},
-		[activeEditor],
-	);
+  const updateFontSize = useCallback(
+    (newSize: number) => {
+      const size = Math.min(Math.max(newSize, MIN_FONT_SIZE), MAX_FONT_SIZE);
+      activeEditor.update(() => {
+        const selection = $getSelection();
+        if (selection !== null) {
+          $patchStyleText(selection, {
+            [style]: `${size}px`,
+          });
+        }
+      });
+      setFontSize(size);
+    },
+    [activeEditor]
+  );
 
-	return (
-		<ButtonGroup>
-			<Button
-				className="!size-8"
-				disabled={fontSize <= MIN_FONT_SIZE}
-				onClick={() => updateFontSize(fontSize - 1)}
-				size="icon-sm"
-				variant="outline"
-			>
-				<Minus className="size-3" />
-			</Button>
-			<Input
-				className="!h-8 w-12 text-center"
-				max={MAX_FONT_SIZE}
-				min={MIN_FONT_SIZE}
-				onChange={(e) =>
-					updateFontSize(
-						Number.parseInt(e.target.value, 10) || DEFAULT_FONT_SIZE,
-					)
-				}
-				value={fontSize}
-			/>
-			<Button
-				className="!size-8"
-				disabled={fontSize >= MAX_FONT_SIZE}
-				onClick={() => updateFontSize(fontSize + 1)}
-				size="icon-sm"
-				variant="outline"
-			>
-				<Plus className="size-3" />
-			</Button>
-		</ButtonGroup>
-	);
+  return (
+    <ButtonGroup>
+      <Button
+        className="!size-8"
+        disabled={fontSize <= MIN_FONT_SIZE}
+        onClick={() => updateFontSize(fontSize - 1)}
+        size="icon-sm"
+        variant="outline"
+      >
+        <Minus className="size-3" />
+      </Button>
+      <Input
+        className="!h-8 w-12 text-center"
+        max={MAX_FONT_SIZE}
+        min={MIN_FONT_SIZE}
+        onChange={(e) =>
+          updateFontSize(
+            Number.parseInt(e.target.value, 10) || DEFAULT_FONT_SIZE
+          )
+        }
+        value={fontSize}
+      />
+      <Button
+        className="!size-8"
+        disabled={fontSize >= MAX_FONT_SIZE}
+        onClick={() => updateFontSize(fontSize + 1)}
+        size="icon-sm"
+        variant="outline"
+      >
+        <Plus className="size-3" />
+      </Button>
+    </ButtonGroup>
+  );
 }
